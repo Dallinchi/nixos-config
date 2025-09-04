@@ -1,0 +1,20 @@
+{
+  inputs,
+  host,
+  ...
+}:
+{
+  imports = [
+    ./boot.nix
+    ./fonts.nix
+    ./hardware.nix
+    ./network.nix
+    ./packages.nix
+    ./greetd.nix
+    ./services.nix
+    ./system.nix
+    ./user.nix
+    ./xserver.nix
+    ./quickshell.nix
+];
+}

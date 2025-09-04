@@ -1,0 +1,2 @@
+#!/bin/bash
+python /home/dallinchi/Code/Projects/cli-timer-delay -i | grep -o "'timer': '[^']*'" | sed "s/'timer': '//;s/'//"
