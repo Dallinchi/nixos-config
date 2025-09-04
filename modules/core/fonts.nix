@@ -1,8 +1,9 @@
 {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
-      #dejavu_fonts
-      #fira-code
+      nerd-fonts.symbols-only
+      dejavu_fonts
+      fira-code
       #fira-code-symbols
       #font-awesome
       #hackgen-nf-font
@@ -14,15 +15,15 @@
       #minecraftia
       #nerd-fonts.im-writing
       #nerd-fonts.blex-mono
-      #noto-fonts
+      noto-fonts
       #noto-fonts-emoji
       #noto-fonts-cjk-sans
       #noto-fonts-cjk-serif
       #noto-fonts-monochrome-emoji
       #powerline-fonts
-      #roboto
-      #roboto-mono
-      #symbola
+      roboto
+      roboto-mono
+      symbola
       #terminus_font
     ];
   };

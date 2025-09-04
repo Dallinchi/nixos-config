@@ -42,7 +42,7 @@ Item {
       spacing: 5
  
       Icon {
-        y: +2.7
+        y: +1.2
         color: Theme.get.symbol
         symbol: `${sink?.audio?.muted ? "" : ""}`
         pointSize: 12

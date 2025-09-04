@@ -29,10 +29,10 @@ Item {
       }
 
       Icon {
-        y: +2.7
+        y: +0.5
         color: Theme.get.symbol
         symbol: batterySymbol
-        pointSize: 12
+        pointSize: 13
       }
     }
   }

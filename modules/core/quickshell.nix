@@ -10,10 +10,15 @@
     qt6.qtwayland
     qt6.qtdeclarative
     qt6.qtsvg
+    
+    qt5.qtbase
+    qt5.qtdeclarative
+    qt5.qtmultimedia
+    qt5.qtgraphicaleffects
 
     # alternate options
     # libsForQt5.qt5compat
-    kdePackages.qt5compat
+    # kdePackages.qt5compat
     libsForQt5.qt5.qtgraphicaleffects
   ];
 

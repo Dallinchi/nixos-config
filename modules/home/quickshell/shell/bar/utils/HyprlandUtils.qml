@@ -25,12 +25,12 @@ Singleton {
 
     Process {
       id: procWorkspaceStatus
-      command: ["sh", "-c", "~/.config/quickshell/nerd-space/scripts/workspace_state_scribe " + Hyprland.focusedWorkspace.id]
+      command: ["sh", "-c", "~/.config/quickshell/lacrity-space/scripts/workspace_state_scribe " + Hyprland.focusedWorkspace.id]
       running: false
 
       stdout: SplitParser {
-          onRead: data => {
-            switch (data) {
+           onRead: data => {
+                switch (data) {
                 case "default":
                 {
                   Theme.get.background = Theme.get.backgroundDefault

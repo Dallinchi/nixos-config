@@ -89,6 +89,7 @@
     wget # Tool For Fetching Files With Links
     #ytmdl # Tool For Downloading Audio From YouTube
     waybar
-    tofi 
+    tofi
+    python3
  ];
 }

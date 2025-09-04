@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 
 import subprocess
 from optparse import OptionParser
@@ -15,7 +15,7 @@ for window in windows:
     lines = window.splitlines()
     workspace_number = ""
     floating = ""
-    
+
     for line in lines:
         if "workspace:" in line:
             workspace_number = line.split(":")[1].strip().split()[0]
@@ -43,6 +43,5 @@ def get_status():
 
 if __name__ == "__main__":
     print(get_status())
-    # for ws, windows in workspace_dict.items():
-        # print(f"Workspace {ws}: {len(workspace_dict[ws])}")
-        # print(workspace_dict[ws])
+#    for ws, windows in workspace_dict.items():
+#        print(f"Workspace {ws}: {len(wo

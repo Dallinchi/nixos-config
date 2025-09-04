@@ -85,7 +85,7 @@ Item {
                         id: icon
                         anchors.centerIn: parent
                         source: item.icon
-                        implicitSize: 13
+                        implicitSize: 12
                       }
 
                     QsMenuAnchor {
