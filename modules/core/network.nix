@@ -10,7 +10,9 @@ in
   networking = {
     hostName = "${host}";
     hostId = hostId;
-    networkmanager.enable = true;
+    networkmanager.enable = false;
+    dhcpcd.wait = "background";
+    dhcpcd.extraConfig = "noarp";
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {
       enable = true;
@@ -27,5 +29,5 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+#  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
 }

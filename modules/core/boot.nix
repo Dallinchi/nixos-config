@@ -3,14 +3,16 @@
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-   # kernelModules = [ "v4l2loopback" ];
-   # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    # kernelModules = [ "v4l2loopback" ];
+    # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = { 
       "vm.max_map_count" = 65530;
       "kernel.pid_max" = 32768;
     };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    loader.timeout = 0;
+
     # Appimage Support
     #binfmt.registrations.appimage = {
     #  wrapInterpreterInShell = false;

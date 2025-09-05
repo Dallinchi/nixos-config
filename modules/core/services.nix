@@ -5,9 +5,13 @@
   ... }:
 {
   # Services to start
+#  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.audit.enable = false;
+
   services = {
     libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
+    #audit.enable = false; # SHUTUP
     gvfs.enable = true; # For Mounting USB & More
     openssh = {
       enable = false; # Enable SSH
@@ -18,6 +22,7 @@
       };
       ports = [ 22 ];
     };
+    journald.extraConfig = "SystemMaxUser=50m"; # Max weight logs
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
     gnome.gnome-keyring.enable = true;
