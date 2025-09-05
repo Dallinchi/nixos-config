@@ -1,10 +1,8 @@
-
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  nixpkgs.config.allowUnfree = true;
+  
+  home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
     alacritty
