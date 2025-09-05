@@ -1,4 +1,8 @@
-{ profile, ... }:
+{
+  pkgs,
+  profile,
+  username,
+  ... }:
 {
   # Services to start
   services = {
@@ -70,6 +74,17 @@
         CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
         START_CHARGE_THRESH_BAT0 = 75;
         STOP_CHARGE_THRESH_BAT0 = 81;
+      };
+    };
+
+    greetd = {
+      enable = true;
+      vt = 3;
+      settings = {
+        default_session = {
+          user = username;
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
+        };
       };
     };
   };

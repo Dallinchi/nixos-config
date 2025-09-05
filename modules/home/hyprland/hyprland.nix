@@ -157,7 +157,12 @@ in
       xwayland = {
         force_zero_scaling = true;
       };
+
+      layerrule = [
+       "blur, quickshell"
+      ];
     };
+
 
     extraConfig = "
       monitor=eDP-1, 1920x1080,900x360,1
