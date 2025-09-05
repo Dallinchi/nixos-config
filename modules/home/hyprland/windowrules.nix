@@ -44,9 +44,9 @@
 	"move 5% 5%, class:Electron"
 	"size 90% 90%, class:Electron"
 
-	"workspace 1, class:Firefox, floating:0"
-	"nodim, class:Firefox"
-	"float, class:Firefox), title:Картинка в картинке)"
+	"workspace 1, class:firefox, floating:0"
+	"nodim, class:firefox"
+	"float, class:firefox), title:Картинка в картинке)"
 
 	"workspace 1, class:zen, floating:0"
 	"nodim, class:zen"
@@ -123,7 +123,7 @@
 
 	"opacity 0.90 0.90,class:Alacritty"
 	"opacity 0.90 0.90,class:Vivaldi-stable"
-	"opacity 0.95 0.95,class:Firefox"
+	"opacity 0.95 0.95,class:firefox"
 	"opacity 0.95 0.95,class:waterfox"
 	"opacity 0.80 0.80,class:Steam"
 	"opacity 0.80 0.80,class:steam"
