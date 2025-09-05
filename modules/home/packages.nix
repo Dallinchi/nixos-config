@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
-    alacritty
+#    alacritty
     ranger
     btop
     openconnect

@@ -9,6 +9,7 @@
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix
+    ./alacritty.nix
     ./packages.nix
   ];
 
