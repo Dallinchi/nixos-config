@@ -10,7 +10,7 @@ in
   networking = {
     hostName = "${host}";
     hostId = hostId;
-    networkmanager.enable = false;
+    networkmanager.enable = true;
     dhcpcd.wait = "background";
     dhcpcd.extraConfig = "noarp";
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
