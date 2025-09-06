@@ -1,10 +1,10 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell
-import Quickshell.Services.Pipewire
 import Quickshell.Io
 
 import "../"
+import "../utils"
 import "root:/" 
 
 Item {
@@ -12,26 +12,8 @@ Item {
     width: parent.width
     height: Theme.get.preferredHeight
     
-    property var sink: Pipewire.defaultAudioSink
-
     property string text: text_content
-
-    PwObjectTracker { 
-        objects: [Pipewire.defaultAudioSink]
-        onObjectsChanged: {
-            sink = Pipewire.defaultAudioSink
-            if (sink?.audio) {
-                sink.audio.volumeChanged.connect(updateVolume)
-            } 
-        }
-    }
-
-    function updateVolume() {
-        if (sink?.audio) {
-            const icon = sink.audio.muted ? "" : ""
-            content.symbolText = `${icon} ${Math.round(sink.audio.volume * 100)}%`
-        }
-    }
+    
     Rectangle {
         anchors.fill: parent 
         color: "transparent" 
@@ -44,13 +26,13 @@ Item {
       Icon {
         y: +1.7
         color: Theme.get.symbol
-        symbol: `${Pipewire.defaultAudioSink.audio.muted ? "" : ""}`
+        symbol: `${Audio.muted ? "" : ""}`
         pointSize: 11
       }
       
       Text {
         id: text_content
-        text: `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
+        text: `${Math.round(Audio.volume * 100)}%`
         font.weight: Theme.get.fontWeight
         color: Theme.get.text 
       }
@@ -66,13 +48,13 @@ Item {
             closeTimer.start()
             toggleMenu() 
           } else if (mouse.button == Qt.LeftButton)
-              Pipewire.defaultAudioSink.audio && (Pipewire.defaultAudioSink.audio.muted = !Pipewire.defaultAudioSink.audio.muted) 
+              Audio.sink.audio && (Audio.sink.audio.muted = !Audio.sink.audio.muted) 
         }
 
 
-        onWheel: function(event) {
-            if (Pipewire.defaultAudioSink.audio) {
-                Pipewire.defaultAudioSink.audio.volume = Math.max(0, Math.min(1, Pipewire.defaultAudioSink.audio.volume + (event.angleDelta.y / 120) * 0.05))
+	onWheel: function(event) {
+            if (Audio.sink.audio) {
+                Audio.setVolume(Math.max(0, Math.min(1, Audio.volume + (event.angleDelta.y / 120) * 0.05)))
             }
         }
     }
@@ -164,10 +146,10 @@ Item {
                             anchors.fill: parent
                             from: 0
                             to: 1
-                            value: Pipewire.defaultAudioSink.audio.volume || 0
+                            value: Audio.volume || 0
                             onValueChanged: {
-                                if (Pipewire.defaultAudioSink.audio) {
-                                    Pipewire.defaultAudioSink.audio.volume = value
+                                if (Audio.sink.audio) {
+                                    Audio.setVolume(value)
                                 }
                             }
 
@@ -201,7 +183,7 @@ Item {
 
                     Repeater {
                         model: [
-                            { text: Pipewire.defaultAudioSink.audio.muted ? "Unmute" : "Mute", action: () => Pipewire.defaultAudioSink.audio && (Pipewire.defaultAudioSink.audio.muted = !Pipewire.defaultAudioSink.audio.muted) },
+                            { text: Audio.muted ? "Unmute" : "Mute", action: () => Audio.sink.audio && (Audio.sink.audio.muted = !Audio.sink.audio.muted) },
                             { text: "Pavucontrol", action: () => { pavucontrol.running = true; menuWindow.visible = false } }
                         ]
 
