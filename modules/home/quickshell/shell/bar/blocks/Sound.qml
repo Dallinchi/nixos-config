@@ -13,7 +13,17 @@ Item {
     height: Theme.get.preferredHeight
     
     property string text: text_content
-    
+    property var icons: {
+        "headset-output": "",
+	"analog-output-headphones": "",
+	"analog-output-speaker": "",
+    }
+    property var icons_mute: {
+        "headset-output": "󰟎",
+	"analog-output-headphones": "󰟎",
+	"analog-output-speaker": "",
+    }
+
     Rectangle {
         anchors.fill: parent 
         color: "transparent" 
@@ -26,8 +36,8 @@ Item {
       Icon {
         y: +1.7
         color: Theme.get.symbol
-        symbol: `${Audio.muted ? "" : ""}`
-        pointSize: 11
+        symbol: `${Audio.muted ? icons_mute[Audio.activePort] : icons[Audio.activePort]}`
+        pointSize: 12
       }
       
       Text {

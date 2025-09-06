@@ -4,19 +4,27 @@ import subprocess
 import re
 
 def get_active_sink():
-    result = subprocess.run(['pactl', 'list', 'sinks'], capture_output=True, text=True)
+    result_info = subprocess.run(['pactl', 'info'], capture_output=True, text=True)
+    result_sink = subprocess.run(['pactl', 'list', 'sinks'], capture_output=True, text=True)
     
-    if result.returncode != 0:
+    if result_sink.returncode != 0:
         print("Ошибка при выполнении команды pactl.")
         return
     
-    output = result.stdout.splitlines()
-    
+    output_info = result_info.stdout.splitlines()
+    output_sink = result_sink.stdout.splitlines()
+   
+    name = ""
+    for line in output_info:
+        if "Default Sink:" in line:
+            name = line.split(":")[1].strip()
+            break
+
     running_state = False
     active_port = None
-    for line in output:
+    for line in output_sink:
         if not running_state:
-            if "State: RUNNING" in line:
+            if name in line:
                 running_state = True
             continue
 
@@ -25,7 +33,7 @@ def get_active_sink():
             break
     
     if active_port:
-        print(f"Тип устройства: {active_port}")
+        print(active_port)
     else:
         print("Не удалось определить активное устройство вывода звука.")
 
