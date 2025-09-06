@@ -52,10 +52,10 @@ Item {
       spacing: 5
  
       Icon {
-        y: +2.7
+        y: +1.7
         color: Theme.get.symbol
         symbol: text_content.text.length >= 1 ? `` : "" 
-        pointSize: 12
+        pointSize: 11
       }
       Text {
         id: text_content

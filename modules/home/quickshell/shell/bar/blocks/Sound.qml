@@ -42,15 +42,15 @@ Item {
       spacing: 5
  
       Icon {
-        y: +1.2
+        y: +1.7
         color: Theme.get.symbol
-        symbol: `${sink?.audio?.muted ? "" : ""}`
-        pointSize: 12
+        symbol: `${Pipewire.defaultAudioSink.audio.muted ? "" : ""}`
+        pointSize: 11
       }
       
       Text {
         id: text_content
-        text: `${Math.round(sink?.audio?.volume * 100)}%`
+        text: `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
         font.weight: Theme.get.fontWeight
         color: Theme.get.text 
       }
@@ -66,13 +66,13 @@ Item {
             closeTimer.start()
             toggleMenu() 
           } else if (mouse.button == Qt.LeftButton)
-              sink?.audio && (sink.audio.muted = !sink.audio.muted) 
+              Pipewire.defaultAudioSink.audio && (Pipewire.defaultAudioSink.audio.muted = !Pipewire.defaultAudioSink.audio.muted) 
         }
 
 
         onWheel: function(event) {
-            if (sink?.audio) {
-                sink.audio.volume = Math.max(0, Math.min(1, sink.audio.volume + (event.angleDelta.y / 120) * 0.05))
+            if (Pipewire.defaultAudioSink.audio) {
+                Pipewire.defaultAudioSink.audio.volume = Math.max(0, Math.min(1, Pipewire.defaultAudioSink.audio.volume + (event.angleDelta.y / 120) * 0.05))
             }
         }
     }
@@ -164,10 +164,10 @@ Item {
                             anchors.fill: parent
                             from: 0
                             to: 1
-                            value: sink?.audio?.volume || 0
+                            value: Pipewire.defaultAudioSink.audio.volume || 0
                             onValueChanged: {
-                                if (sink?.audio) {
-                                    sink.audio.volume = value
+                                if (Pipewire.defaultAudioSink.audio) {
+                                    Pipewire.defaultAudioSink.audio.volume = value
                                 }
                             }
 
@@ -201,7 +201,7 @@ Item {
 
                     Repeater {
                         model: [
-                            { text: sink?.audio?.muted ? "Unmute" : "Mute", action: () => sink?.audio && (sink.audio.muted = !sink.audio.muted) },
+                            { text: Pipewire.defaultAudioSink.audio.muted ? "Unmute" : "Mute", action: () => Pipewire.defaultAudioSink.audio && (Pipewire.defaultAudioSink.audio.muted = !Pipewire.defaultAudioSink.audio.muted) },
                             { text: "Pavucontrol", action: () => { pavucontrol.running = true; menuWindow.visible = false } }
                         ]
 

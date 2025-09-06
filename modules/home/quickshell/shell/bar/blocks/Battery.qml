@@ -29,10 +29,10 @@ Item {
       }
 
       Icon {
-        y: +0.5
+        y: +1.2
         color: Theme.get.symbol
         symbol: batterySymbol
-        pointSize: 13
+        pointSize: 12
       }
     }
   }
@@ -62,7 +62,7 @@ Item {
         else if (capacity <= 80) batteryIcon = ""
         else batteryIcon = ""
         
-        const symbol = status === "Charging" ? "" : batteryIcon
+        const symbol = status === "Not charging" ? "" : batteryIcon
         battery = `${capacity}%`
         batterySymbol = symbol
       }

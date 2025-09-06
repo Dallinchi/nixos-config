@@ -18,7 +18,7 @@ Item {
         y: +1.2
         color: Theme.get.symbol
         symbol: ""
-        pointSize: 12
+        pointSize: 11
       }
     
       Text {

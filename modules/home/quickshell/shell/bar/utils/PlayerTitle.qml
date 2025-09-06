@@ -12,7 +12,7 @@ Singleton {
 
   Process {
     id: titleProc
-    command: ["sh", "-c", "~/Code/Projects/waybar-player-title/waybar_script"]
+    command: ["sh", "-c", "~/.config/quickshell/lacrity-space/scripts/player_title"]
     running: true
 
     stdout: StdioCollector {

@@ -9,6 +9,7 @@ import "root:/"
 
 Item {
     height: Theme.get.preferredHeight 
+    visible: SystemTray.items.values.length >= 1 ? true : false
     Rectangle {
         color: Theme.get.block 
         width: 23.5 * SystemTray.items.values.length 

@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+from os import popen 
+import re
+
+def get_player_title():
+    text = popen('playerctl metadata').read()
+    title_match = re.search(r'xesam:title\s+(.*)', text)
+    artist_match = re.search(r'xesam:artist\s+(.*)', text)
+
+    if title_match and artist_match:
+        title = title_match.group(1)
+        artist = artist_match.group(1) + ' - ' if "firefox xesam:url" not in artist_match.group(1) and "firefox mpris:artUrl" not in artist_match.group(1) else ''
+
+        # Удаляем запрещенные знаки. (&) - почему то багует
+        allowed_chars = r'[^a-zA-Zа-яёА-Я0-9\s!"\'@:;,.?-]'
+        
+        title = re.sub(allowed_chars, '', title)
+        artist = re.sub(allowed_chars, '', artist)
+
+        # Убираем лишние пробелы
+        title = re.sub(r'\s+', ' ', title).strip()
+        artist = re.sub(r'\s+', ' ', artist).strip()
+        
+        artist = f"{artist}" if artist else ""
+        
+        add = "..." if len(f"{artist} {title}") > 30 else ""
+        # return f"{artist} {title}"[:30].strip() + add
+        return f"{artist} {title}".strip()
+    return ""
+if __name__ == '__main__':
+    print(get_player_title())
