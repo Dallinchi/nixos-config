@@ -9,6 +9,9 @@ Item {
   property bool hasBattery: false
   property string text: text_content
   property string batterySymbol
+  
+  property int icon_size
+  property real icon_top
 
   width: parent.width
   height: Theme.get.preferredHeight
@@ -29,10 +32,10 @@ Item {
       }
 
       Icon {
-        y: +1.2
+        y: +icon_top
         color: Theme.get.symbol
         symbol: batterySymbol
-        pointSize: 12
+        pointSize: icon_size
       }
     }
   }
@@ -61,9 +64,12 @@ Item {
         else if (capacity <= 60) batteryIcon = ""
         else if (capacity <= 80) batteryIcon = ""
         else batteryIcon = ""
-        
-        const symbol = status === "Not charging" ? "" : batteryIcon
-        battery = `${capacity}%`
+	
+	icon_size = status === "Charging" ? 11 : 14 
+	icon_top = status === "Charging" ? 1 : 0.2 
+        const symbol = status === "Charging" ? "" : batteryIcon
+	
+	battery = `${capacity}%`
         batterySymbol = symbol
       }
     }

@@ -89,7 +89,7 @@ Scope {
               Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 height: Theme.get.preferredHeight
-                width: 125
+                width: 129
                 color: Theme.get.block
         
                 border.color: Theme.get.border
@@ -220,9 +220,7 @@ Scope {
               Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 height: Theme.get.preferredHeight
-                width: {
-                  return 155 
-                }
+                width: 150
                 color: Theme.get.block
         
                 border.color: Theme.get.border
@@ -261,7 +259,7 @@ Scope {
     
                   Blocks.Battery {
                     id: battery
-                    width: 50
+                    width: 55
                   }   
                 }
               }

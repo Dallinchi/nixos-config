@@ -34,7 +34,7 @@ Item {
       spacing: 5
  
       Icon {
-        y: +1.7
+        y: +1
         color: Theme.get.symbol
         symbol: `${Audio.muted ? icons_mute[Audio.activePort] : icons[Audio.activePort]}`
         pointSize: 12

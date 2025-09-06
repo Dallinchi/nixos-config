@@ -13,7 +13,7 @@ Item {
   Rectangle {
     color: text_content.text.length >= 1 ? Theme.get.block : "transparent" 
     anchors.right: parent.right
-    width: text_content.implicitWidth + 35
+    width: text_content.implicitWidth + 30
     height: Theme.get.preferredHeight
     
     border.color: text_content.text.length >= 1 ? Theme.get.border : "transparent" 
@@ -55,7 +55,7 @@ Item {
         y: +1.7
         color: Theme.get.symbol
         symbol: text_content.text.length >= 1 ? `` : "" 
-        pointSize: 11
+        pointSize: 10
       }
       Text {
         id: text_content
