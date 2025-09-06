@@ -19,7 +19,7 @@
     v4l-utils # Used For Things Like OBS Virtual Camera
     tofi
     swaybg
-    
+
     # Fonts
     nerd-fonts.symbols-only
     nerd-fonts.agave
