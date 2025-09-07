@@ -19,6 +19,9 @@
     v4l-utils # Used For Things Like OBS Virtual Camera
     tofi
     swaybg
+    fastfetch
+#    yandex-music
+    telegram-desktop
 
     # Fonts
     nerd-fonts.symbols-only

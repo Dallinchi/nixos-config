@@ -1,0 +1,9 @@
+{
+  host,
+  ...
+}:
+{
+  imports = [
+    ./vpn.nix
+  ];
+}

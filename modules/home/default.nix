@@ -11,7 +11,6 @@
     ./xdg.nix
     ./alacritty.nix
     ./packages.nix
-    ./steam.nix
   ];
 
    home.file = {

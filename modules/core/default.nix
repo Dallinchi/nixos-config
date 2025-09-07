@@ -12,5 +12,6 @@
     ./services.nix
     ./system.nix
     ./user.nix
+    ./scripts
   ];
 }
