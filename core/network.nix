@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  inherit (import ../../hosts/${host}/variables.nix) hostId;
+  inherit (import ../hosts/${host}/variables.nix) hostId;
 in
 {
   networking = {

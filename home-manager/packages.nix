@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, lib, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-  
+
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
@@ -20,8 +20,9 @@
     tofi
     swaybg
     fastfetch
-#    yandex-music
     telegram-desktop
+    cassette
+    discord
 
     # Fonts
     nerd-fonts.symbols-only

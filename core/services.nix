@@ -1,6 +1,5 @@
 {
   pkgs,
-  profile,
   username,
   ... }:
 {
@@ -28,10 +27,7 @@
     gnome.gnome-keyring.enable = true;
 
     smartd = {
-      enable =
-        if profile == "vm"
-        then false
-        else true;
+      enable = true;
       autodetect = true;
     };
     pipewire = {
