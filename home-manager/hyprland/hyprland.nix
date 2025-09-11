@@ -1,6 +1,7 @@
 { host
 , config
 , pkgs
+, inputs
 , ...
 }:
 let
@@ -36,7 +37,8 @@ in
 #  };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -45,7 +47,18 @@ in
     xwayland = {
       enable = true;
     };
+    plugins = [
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
     settings = {
+      plugin = {
+        split-monitor-workspaces = {
+	  count = 8;
+	  keep_focused = true;
+	  enable_notification = false;
+	  enable_persistent_workspaces = false;
+	};
+      };
       input = {
         kb_layout = "${keyboardLayout}";
         kb_options = [
@@ -57,6 +70,7 @@ in
         follow_mouse = 1;
         float_switch_override_focus = 0;
         sensitivity = 0;
+	special_fallthrough = true;
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;
@@ -64,16 +78,17 @@ in
         };
       };
 
-      gestures = {
-        workspace_swipe = 1;
-        workspace_swipe_fingers = 3;
-        workspace_swipe_distance = 500;
-        workspace_swipe_invert = 1;
-        workspace_swipe_min_speed_to_force = 30;
-        workspace_swipe_cancel_ratio = 0.5;
-        workspace_swipe_create_new = 1;
-        workspace_swipe_forever = 1;
-      };
+#      gestures = {
+#        #workspace_swipe = 1;
+#	workspace_swipe_touch = true;
+#        #workspace_swipe_fingers = 3;
+#        workspace_swipe_distance = 500;
+#        workspace_swipe_invert = 1;
+#        workspace_swipe_min_speed_to_force = 30;
+#        workspace_swipe_cancel_ratio = 0.5;
+#        workspace_swipe_create_new = 1;
+#        workspace_swipe_forever = 1;
+#      };
 
       general = {
         "$modifier" = "SUPER";
@@ -103,7 +118,9 @@ in
        # enable_anr_dialog = true;
        # anr_missed_pings = 15;
       };
-
+      binds = {
+        workspace_back_and_forth = true;
+      };
       dwindle = {
         pseudotile = true;
         preserve_split = true;
@@ -167,10 +184,6 @@ in
     extraConfig = "
       monitor=eDP-1, 1920x1080,900x360,1
       monitor=HDMI-A-1,1440x900,0x0,1,transform,1
-      ${extraMonitorSettings}
-      # To enable blur on waybar uncomment the line below
-      # Thanks to SchotjeChrisman
-      #layerrule = blur,waybar
     ";
   };
 }

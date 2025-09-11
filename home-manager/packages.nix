@@ -5,11 +5,10 @@
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
-#    alacritty
-    ranger
-    btop
-    openconnect
-    firefox
+    ranger # File manager
+    btop # System monitor
+    openconnect # Vpn client
+    firefox # Browser
     brightnessctl # For Screen Brightness Control
     ffmpeg # Terminal Video / Audio Editing
     mpv # Incredible Video Player
@@ -17,12 +16,12 @@
     playerctl # Allows Changing Media Volume Through Scripts
     usbutils # Good Tools For USB Devices
     v4l-utils # Used For Things Like OBS Virtual Camera
-    tofi
-    swaybg
-    fastfetch
-    telegram-desktop
-    cassette
-    discord
+    tofi # Launch menu
+    swaybg # Wallpaper
+    fastfetch # System info
+    telegram-desktop # Chat
+    discord # Voice chat
+    nsxiv # Image viewer
 
     # Fonts
     nerd-fonts.symbols-only

@@ -8,6 +8,12 @@ let
 in
 {
   wayland.windowManager.hyprland.settings = {
+    
+    gesture = [
+      #"3, left, workspace, e+1"
+      #"3, right, workspace, e-1"
+    ];
+
     bind = [
       "$modifier, F, fullscreen"
       "$modifier, W, exec, $wallpaper"
@@ -22,8 +28,6 @@ in
       "$modifier, mouse_down, workspace, e+1"
       "$modifier, mouse_up, workspace, e-1"
 
-      # Перемещение и ресайз окон ЛКМ ПКМ + modifier
-
       # Управлени фокусом
       "$modifier, H, movefocus, l"
       "$modifier, L, movefocus, r"
@@ -32,14 +36,14 @@ in
       "$modifier, C, cyclenext"
      
       # Переключение воркспейсов
-      "$modifier, 1, workspace, 1"
-      "$modifier, 2, workspace, 2"
-      "$modifier, 3, workspace, 3"
-      "$modifier, 4, workspace, 4"
-      "$modifier, 5, workspace, 5"
-      "$modifier, 6, workspace, 6"
-      "$modifier, 7, workspace, 7"
-      "$modifier, 8, workspace, 8"
+      "$modifier, 1, split-workspace, 1"
+      "$modifier, 2, split-workspace, 2"
+      "$modifier, 3, split-workspace, 3"
+      "$modifier, 4, split-workspace, 4"
+      "$modifier, 5, split-workspace, 5"
+      "$modifier, 6, split-workspace, 6"
+      "$modifier, 7, split-workspace, 7"
+      "$modifier, 8, split-workspace, 8"
  
       # Перемещение окна между мониторами
       "$modifier CTRL, 1, movetoworkspace, -8"
@@ -68,23 +72,23 @@ in
       "$modifier SHIFT, Q, killactive," 
 
       # Перемещение окна на другой воркспейс
-      #"$modifier SHIFT, 1, split-movetoworkspace, 1"
-      #"$modifier SHIFT, 2, split-movetoworkspace, 2"
-      #"$modifier SHIFT, 3, split-movetoworkspace, 3"
-      #"$modifier SHIFT, 4, split-movetoworkspace, 4"
-      #"$modifier SHIFT, 5, split-movetoworkspace, 5"
-      #"$modifier SHIFT, 6, split-movetoworkspace, 6"
-      #"$modifier SHIFT, 7, split-movetoworkspace, 7"
-      #"$modifier SHIFT, 8, split-movetoworkspace, 8"
+      "$modifier SHIFT, 1, split-movetoworkspace, 1"
+      "$modifier SHIFT, 2, split-movetoworkspace, 2"
+      "$modifier SHIFT, 3, split-movetoworkspace, 3"
+      "$modifier SHIFT, 4, split-movetoworkspace, 4"
+      "$modifier SHIFT, 5, split-movetoworkspace, 5"
+      "$modifier SHIFT, 6, split-movetoworkspace, 6"
+      "$modifier SHIFT, 7, split-movetoworkspace, 7"
+      "$modifier SHIFT, 8, split-movetoworkspace, 8"
      
-      "$modifier SHIFT, 1, movetoworkspace, 1"
-      "$modifier SHIFT, 2, movetoworkspace, 2"
-      "$modifier SHIFT, 3, movetoworkspace, 3"
-      "$modifier SHIFT, 4, movetoworkspace, 4"
-      "$modifier SHIFT, 5, movetoworkspace, 5"
-      "$modifier SHIFT, 6, movetoworkspace, 6"
-      "$modifier SHIFT, 7, movetoworkspace, 7"
-      "$modifier SHIFT, 8, movetoworkspace, 8"
+      #"$modifier SHIFT, 1, movetoworkspace, 1"
+      #"$modifier SHIFT, 2, movetoworkspace, 2"
+      #"$modifier SHIFT, 3, movetoworkspace, 3"
+      #"$modifier SHIFT, 4, movetoworkspace, 4"
+      #"$modifier SHIFT, 5, movetoworkspace, 5"
+      #"$modifier SHIFT, 6, movetoworkspace, 6"
+      #"$modifier SHIFT, 7, movetoworkspace, 7"
+      #"$modifier SHIFT, 8, movetoworkspace, 8"
      
 
       # Поворот второго монитора
@@ -133,9 +137,9 @@ in
     ];
  
     # Блокировка перехода курсора на второй монитор
-    binds = [
-      "Super_L, M&L, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"
-    ];
+#    binds = [
+#      "Super_L, M&L, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"
+#    ];
 
     bindm = [
       "$modifier, mouse:272, movewindow"

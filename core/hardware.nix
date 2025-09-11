@@ -8,7 +8,7 @@
   #  };
    # logitech.wireless.enable = false;
    # logitech.wireless.enableGraphical = false;
-   # graphics.enable = true;
+    graphics.enable = true; # OpenGL
    # enableRedistributableFirmware = true;
    # keyboard.qmk.enable = true;
     bluetooth.enable = true;

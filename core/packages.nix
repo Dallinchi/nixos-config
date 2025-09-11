@@ -37,6 +37,13 @@
      pkgs.wget # Tool For Fetching Files With Links
      pkgs.python3
      pkgs.screen
-#     pkgs-unstable.yandex-music
+	
+     # Graphical support
+     pkgs.mesa
+     pkgs.libGL
+     pkgs.vulkan-tools
+     pkgs.vulkan-headers
+     pkgs.vulkan-loader
+     pkgs.vulkan-validation-layers
   ];
 }

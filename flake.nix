@@ -13,40 +13,42 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    
+    # Hyprland split-monitor-workspaces plugin
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      quickshell,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      host = "hero";
-      username = "dallinchi";
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    host = "hero";
+    username = "dallinchi";
 
-      pkgs = import nixpkgs { 
-        inherit system;
-	config.allowUnfree = true;
-      };
+    pkgs = import nixpkgs { 
+      inherit system;
+      config.allowUnfree = true;
+    };
 
-      # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-      mkNixosConfig = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-	  inherit username;
-          inherit host;
-        };
-        modules = [
-          ./hosts/${host}
-        ];
+    # Deduplicate nixosConfigurations while preserving the top-level 'profile'
+    mkNixosConfig = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs;
+	inherit username;
+        inherit host;
       };
-    in
-    {
+      modules = [
+        ./hosts/${host}
+      ];
+    };
+      
+  in {
     nixosConfigurations = {
       hero = mkNixosConfig;
     };
