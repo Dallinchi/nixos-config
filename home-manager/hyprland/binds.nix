@@ -10,7 +10,7 @@ in
   wayland.windowManager.hyprland.settings = {
     
     gesture = [
-      #"3, left, workspace, e+1"
+      "3, horizontal, workspace"
       #"3, right, workspace, e-1"
     ];
 
@@ -20,7 +20,7 @@ in
 #      "$modifier, PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m region" # Replace
 #      " 	,  PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m output" #Replace
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
-      "$modifier, D, exec, pkill tofi || tofi-drun --output \"eDP-1\" --drun-launch=true"
+      "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"
       "$modifier, V, exec, pkill tofi || cliphist list | tofi --output \"eDP-1\" | cliphist decode | wl-copy"
       "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
 
