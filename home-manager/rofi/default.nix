@@ -11,7 +11,7 @@
         ];
       };
       xdg.configFile."rofi/config-menu.rasi".source = ./config-menu.rasi;
-     # xdg.configFile."rofi/config-long.rasi".source = ./config-long.rasi;
+      xdg.configFile."rofi/config-cliphist.rasi".source = ./config-cliphist.rasi;
      # xdg.configFile."rofi/config-wallpaper.rasi".source = ./config-wallpaper.rasi;
      # xdg.configFile."rofi/launchers" = {
      #   source = ./launchers;

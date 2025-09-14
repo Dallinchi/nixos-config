@@ -21,7 +21,7 @@ in
 #      " 	,  PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m output" #Replace
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
       "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"
-      "$modifier, V, exec, pkill tofi || cliphist list | tofi --output \"eDP-1\" | cliphist decode | wl-copy"
+      "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"
       "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
 
       # Переключение на другой воркспейс скролом мыши с зажатым $modifier
