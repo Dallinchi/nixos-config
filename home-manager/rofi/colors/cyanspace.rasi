@@ -1,0 +1,17 @@
+/**
+ *
+ * Author : Dallinchi
+ * Github : @Dallinchi
+ *
+ * Colors
+ **/
+
+* {
+    background:     #111111A0; 
+    background-alt: #000000AA;
+    
+    foreground:     #FFFFFFAA;
+    selected:       #70E6E0FF;
+    active:         #414868FF;
+    urgent:         #F7768EFF;
+}
