@@ -56,6 +56,7 @@ Item {
         id: text_content
         anchors.centerIn: parent
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         text: {
           var str = activeWindowTitle
           if (activeWindowTitle.length < 1) {

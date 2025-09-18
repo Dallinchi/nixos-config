@@ -7,7 +7,6 @@
     ../../core/drivers
     
     inputs.home-manager.nixosModules.home-manager 
-#    ../../home-manager
   ];
 
   zramSwap = {
@@ -16,11 +15,9 @@
     memoryPercent = 80;
   };
 
+  nixCats.enable = true; # Nvim
+  
   drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
-  drivers.nvidia-prime.enable = false;
-  drivers.intel.enable = false;
-  vm.guest-services.enable = false;
 
   home-manager = {
     useUserPackages = true;

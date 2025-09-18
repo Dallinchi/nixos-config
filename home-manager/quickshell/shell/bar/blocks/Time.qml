@@ -25,6 +25,7 @@ Item {
         text: `${Datetime.time}`
         color: Theme.get.text 
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
       }
 
    }

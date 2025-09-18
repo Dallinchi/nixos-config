@@ -1,53 +1,48 @@
 { pkgs
 , host
 , inputs
+, lib
 , ...
 }:
 {
   imports = [
     inputs.stylix.nixosModules.stylix
   ];
-  # Styling Options
   stylix = {
     enable = true;
-    # image = stylixImage;
-     base16Scheme = {
-       base00 = "282936";
-       base01 = "3a3c4e";
-       base02 = "4d4f68";
-       base03 = "626483";
-       base04 = "62d6e8";
-       base05 = "e9e9f4";
-       base06 = "f1f2f8";
-       base07 = "f7f7fb";
-       base08 = "ea51b2";
-       base09 = "b45bcf";
-       base0A = "00f769";
-       base0B = "ebff87";
-       base0C = "a1efe4";
-       base0D = "62d6e8";
-       base0E = "b45bcf";
-       base0F = "00f769";
-     };
-    polarity = "dark";
-#    opacity.terminal = 1.0;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gotham.yaml";
+#    base16Scheme = lib.mkDefault {
+#      base00 = "#050608";
+#      base01 = "#1a1b1c";
+#      base02 = "#28292a";
+#      base03 = "#474849";
+#      base04 = "#a3a5a6";
+#      base05 = "#c1c3c4";
+#      base06 = "#cfd1d2";
+#      base07 = "#dddfe0";
+#      base08 = "#b53b50";
+#      base09 = "#ea770d";
+#      base0A = "#c9d364";
+#      base0B = "#09ba8b";
+#      base0C = "#356394";
+#      base0D = "#42fff9";
+#      base0E = "#551f9c";
+#      base0F = "#cd6320";
+#    };
+#    image = ../../wallpapers/wallhaven-1qkzkv.jpg;
+
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
       size = 24;
     };
+
+    polarity = "dark";
+
 #    fonts = {
 #      monospace = {
 #        package = pkgs.nerd-fonts.jetbrains-mono;
 #        name = "JetBrains Mono";
-#      };
-#      sansSerif = {
-#        package = pkgs.montserrat;
-#        name = "Montserrat";
-#      };
-#      serif = {
-#        package = pkgs.montserrat;
-#        name = "Montserrat";
 #      };
 #      sizes = {
 #        applications = 12;
@@ -58,3 +53,4 @@
 #    };
   };
 }
+

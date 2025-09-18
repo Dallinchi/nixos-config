@@ -123,7 +123,7 @@
 
 	"opacity 0.90 0.90,class:Alacritty"
 	"opacity 0.90 0.90,class:Vivaldi-stable"
-	"opacity 0.95 0.95,class:firefox"
+	"opacity 0.85 0.85,class:firefox"
 	"opacity 0.95 0.95,class:waterfox"
 	"opacity 0.80 0.80,class:Steam"
 	"opacity 0.80 0.80,class:steam"
@@ -142,7 +142,7 @@
 
 	"opacity 0.90 0.90,class:com.github.rafostar.Clapper" #Clapper-Gtk
 	"opacity 0.80 0.80,class:com.github.tchx84.Flatseal" #Flatseal-Gtk
-	"opacity 0.80 0.80,class:hu.kramo.Cartridges" #Cartridges-Gtk
+	"opacity 0.80 0.8:0,class:hu.kramo.Cartridges" #Cartridges-Gtk
 	"opacity 0.80 0.80,class:com.obsproject.Studio" #Obs-Qt
 	"opacity 0.80 0.80,class:gnome-boxes" #Boxes-Gtk
 	"opacity 0.80 0.80,class:discord" #Discord-Electron

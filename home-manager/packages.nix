@@ -7,7 +7,6 @@
     filezilla # FTP Client
     ranger # File manager
     btop # System monitor
-    openconnect # Vpn client
     firefox # Browser
     brightnessctl # For Screen Brightness Control
     ffmpeg # Terminal Video / Audio Editing
@@ -24,6 +23,7 @@
     nsxiv # Image viewer
     seafile-client # Cloud
     libnotify # Notify utils
+    obsidian # Notes
 
     # Fonts
     nerd-fonts.symbols-only

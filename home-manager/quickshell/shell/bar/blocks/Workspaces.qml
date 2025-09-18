@@ -83,7 +83,7 @@ Item {
                         color: "transparent" 
                         Icon {
                           anchors.centerIn: parent
-                          color: isActive ? Theme.get.textActive : Theme.get.textEmpty // Цвет текста в зависимости от активности
+                          color: isActive ? Theme.get.symbol : Theme.get.symbolEmpty // Цвет текста в зависимости от активности
                           symbol: workspaceTextMap[Utils.HyprlandUtils.focusedmonitor_workspaces[index].id.toString()]
                           pointSize: 11
                         }

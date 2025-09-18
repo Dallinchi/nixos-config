@@ -44,6 +44,7 @@ Item {
         id: text_content
         text: `${Math.round(Audio.volume * 100)}%`
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         color: Theme.get.text 
       }
     }

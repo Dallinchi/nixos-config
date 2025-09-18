@@ -17,8 +17,8 @@ in
     bind = [
       "$modifier, F, fullscreen"
       "$modifier, W, exec, $wallpaper"
-      "$modifier, PRINT, exec, grim -g \"$(slurp)\" /tmp/last_screenshot.png; swappy -f /tmp/last_screenshot.png -o ~/Pictures/screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png"
-      " 	, PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m output"
+      "$modifier, PRINT, exec, hyprshot -m region -o ~/Pictures/screenshots/"
+      " 	, PRINT, exec, hyprshot -m output -o ~/Pictures/screenshots/"
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
       "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"
       "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"

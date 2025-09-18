@@ -20,6 +20,7 @@ Item {
         anchors.centerIn: parent
         text: `${keyboardLayout}`
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         color: Theme.get.text
       }
     }

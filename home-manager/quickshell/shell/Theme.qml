@@ -8,7 +8,7 @@ Singleton {
   
   Item {
     id: cyanSpace
-    property string accent: "#70e6e0"
+    property string accent: "#2aa889"
 
     property string textActive: accent
     property string textDefault: "#d2fffd"
@@ -18,11 +18,11 @@ Singleton {
     property string backgroundDefault: "#00000000"
     property string backgroundEmpty: "#00000000"
  
-    property string blockActive: "#00cccc"
+    property string blockActive: accent
     property string blockDefault: "#AA000000"
     property string blockEmpty: "#65000000"
  
-    property string symbolActive: "#00cccc"
+    property string symbolActive: accent
     property string symbolDefault: accent
     property string symbolEmpty: "#ccffffff"
  
@@ -46,7 +46,7 @@ Singleton {
     property real borderWidth: 1
     property real preferredHeight: 21
       
-    property real fontSize: 20
+    property real fontSize: 12
     property real fontWeight: 900
 
     property bool onTop: true

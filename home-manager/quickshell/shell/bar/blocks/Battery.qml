@@ -28,6 +28,7 @@ Item {
         id: text_content
         text: `${battery}`
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         color: Theme.get.text
       }
 

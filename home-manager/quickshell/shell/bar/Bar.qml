@@ -7,7 +7,6 @@ import Quickshell.Services.SystemTray
 
 import "blocks" as Blocks
 import "root:/"
-import "../utils" as Utils
 
 Scope {
   IpcHandler {

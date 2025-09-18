@@ -1,13 +1,13 @@
-{ pkgs, ... }:
-{
+{ pkgs, lib, ... }:
+{ 
   services.dunst = {
-    enable = true;
+    enable = false;
        # iconTheme = {
        #   name = "Papirus-Dark";
        ##   package = pkgs.papirus-icon-theme;
        # };
         settings = {
-          global = {
+          global = lib.mkForce{
 #	    monitor = 0;
 #	    follow = "mouse";
 #	    width = "(0, 300)";
@@ -69,18 +69,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
             frame_color = "#00000022";
             separator_color = "frame";
             highlight = "#89b4fa";
@@ -108,7 +96,7 @@
             always_run_script = true;
             corner_radius = 10;
             follow = "mouse";
-            #font = "DejaVu Sans Mono 11";
+            font = "DejaVu Sans Mono 11";
             format = "<b>%s</b>\\n%b"; #format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b"
             frame_width = 1;
             offset = "10x3";
@@ -133,21 +121,21 @@
 
  #         fullscreen_delay_everything = {fullscreen = "delay";};
 
-          urgency_critical = {
+          urgency_critical = lib.mkForce {
             background = "#000000AA";
             foreground = "#f5cb42";
             frame_color = "#f5cb42";
             timeout = "0";
 	    icon = "${./images/notification.png}";
           };
-          urgency_low = {
+          urgency_low = lib.mkForce {
             background = "#000000AA";
             foreground = "#dadada";
             timeout = "3";
 	    frame_color = "#2c2c2c";
 	    icon = "${./images/notification.png}";
           };
-          urgency_normal = {
+          urgency_normal = lib.mkForce {
             background = "#000000AA";
             foreground = "#70e6e0";
             timeout = "8";

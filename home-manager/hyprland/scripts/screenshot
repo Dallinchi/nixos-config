@@ -1,6 +1,0 @@
-#!/bin/bash
-
-path_to_screenshot="~/Pictures/screenshots/screen-'$(date +%s)'.png"
-echo $path_to_screenshot
-
-grim -g "$(slurp)" -o $path_to_screenshot | wl-copy < $path_to_screenshot

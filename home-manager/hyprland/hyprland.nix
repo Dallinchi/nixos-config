@@ -2,6 +2,7 @@
 , config
 , pkgs
 , inputs
+, lib
 , ...
 }:
 let
@@ -9,40 +10,30 @@ let
     (import ../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
-#    stylixImage
     ;
 in
 {
   home.packages = with pkgs; [
-#    swww
     grim
     slurp
     wl-clipboard
     swappy
- #   ydotool
     hyprpolkitagent
     hyprland-qtutils # needed for banners and ANR messages
   ];
+
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
-  # Place Files Inside Home Directory
-#  home.file = {
-#    "Pictures/Wallpapers" = {
-#      source = ../../../wallpapers;
-#      recursive = true;
-#    };
-#    ".face.icon".source = ./face.jpg;
-#    ".config/face.jpg".source = ./face.jpg;
-#  };
+
   # Shell scripts
   xdg.configFile = {
-    # Main caelestia shell configuration
     "hypr/scripts" = {
       source = ./scripts;
       recursive = true;
     };
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -103,8 +94,9 @@ in
         gaps_out = 8;
         border_size = 1;
         resize_on_border = true;
-	"col.active_border" = "rgba(70e6e0ff)";
-    	"col.inactive_border" = "rgba(2f343fff)";
+	"col.active_border" = lib.mkForce "rgba(2aa889ff)";
+	#"col.active_border" = "rgba(70e6e0ff)";
+    	#"col.inactive_border" = "rgba(2f343fff)";
       };
 
       misc = {
@@ -146,7 +138,7 @@ in
           enabled = true;
           range = 10;
           render_power = 2;
-          color = "rgba(000214aa)";
+          #color = "rgba(000214aa)";
         };
       };
 

@@ -1,10 +1,10 @@
-{ host, ... }:
+{ host, lib, ... }:
 {
     programs.alacritty = {
     enable = true;
     settings = {
 
-      font = {
+      font = lib.mkForce {
         size = 12.0;
         normal = {
           family = "Fira Code";
@@ -31,46 +31,46 @@
         };
         decorations = "none";
       };
-      colors = {
+#      colors = lib.mkForce {
         
 	# Gotham theme 
 
-        primary = {
-          background = "#0c1014";
-          foreground = "#99d1ce";
-        };
-	cursor = {
-          text = "#99d1ce";
-	  background = "#d5e2f2";
-	};
-	
-	selection = {
-	  text = "#99d1ce";
-	  background = "#0a3749";
-	};
-	
-	normal = {
-	  black = "#17141e";
-	  red = "#c23127";
-	  green = "#2aa889";
-	  yellow = "#edb443";
-	  blue = "#195466";
-	  magenta = "#4e5166";
-	  cyan = "#33859e";
-	  white = "#99d1ce";
-	};
-
-	bright = {
-	  black = "#546d75";
-	  red = "#c23127";
-	  green = "#2aa889";
-	  yellow = "#edb443";
-	  blue = "#195466";
-	  magenta = "#4e5166";
-	  cyan = "#33859e";
-	  white = "#99d1ce";
-	};
-      };
+#        primary = {
+#          background = "#0c1014";
+#          foreground = "#99d1ce";
+#        };
+#	cursor = {
+#          text = "#99d1ce";
+#	  background = "#d5e2f2";
+#	};
+#	
+#	selection = {
+#	  text = "#99d1ce";
+#	  background = "#0a3749";
+#	};
+#	
+#	normal = {
+#	  black = "#17141e";
+#	  red = "#c23127";
+#	  green = "#2aa889";
+#	  yellow = "#edb443";
+#	  blue = "#195466";
+#	  magenta = "#4e5166";
+#	  cyan = "#33859e";
+#	  white = "#99d1ce";
+#	};
+#
+#	bright = {
+#	  black = "#546d75";
+#	  red = "#c23127";
+#	  green = "#2aa889";
+#	  yellow = "#edb443";
+#	  blue = "#195466";
+#	  magenta = "#4e5166";
+#	  cyan = "#33859e";
+#	  white = "#99d1ce";
+#	};
+#      };
     };
   };
   }

@@ -64,6 +64,7 @@ Item {
           return str.length > chopLength ? str.slice(0, chopLength) + '...' : str;
         }
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         color: Theme.get.text 
       }
     }

@@ -63,6 +63,7 @@ Item {
         id: text_content
         text: title 
         font.weight: Theme.get.fontWeight
+        font.pixelSize: Theme.get.fontSize
         color: Theme.get.text 
         onTextChanged: {
           width_content = text_content.width + 35; // Обновляем ширину

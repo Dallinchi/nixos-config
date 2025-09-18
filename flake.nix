@@ -24,6 +24,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    nixCats.url = "./flakes/nixCats/";
+    
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -47,6 +49,7 @@
       };
       modules = [
         ./hosts/${host}
+	inputs.nixCats.nixosModules.default
 #	inputs.stylix.nixosModules.stylix
       ];
     };
