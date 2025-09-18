@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
+    ./stylix.nix
     ../../core
     ../../core/drivers
     

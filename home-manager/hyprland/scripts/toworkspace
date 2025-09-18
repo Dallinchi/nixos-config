@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# Получаем ID активного рабочего пространства
+ACTIVE_WORKSPACE_ID=$(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')
+
+# Время ожидания для двойного нажатия (в миллисекундах)
+DOUBLE_PRESS_TIME=150
+
+LAST_PRESS_FILE="/tmp/last_press_time"
+CURRENT_TIME=$(($(date +%s%N)/1000000))
+
+NUM1=$1
+NUM2=$2
+SUM=$((NUM1 + NUM2))
+
+# Проверяем, больше ли ID 8 или меньше
+if [ "$ACTIVE_WORKSPACE_ID" -gt 8 ]; then
+
+    if [ -f "$LAST_PRESS_FILE" ]; then
+    LAST_PRESS=$(cat "$LAST_PRESS_FILE")
+    TIME_DIFF=$((CURRENT_TIME - LAST_PRESS))
+
+    if [ "$TIME_DIFF" -le "$DOUBLE_PRESS_TIME" ]; then
+        # Выполняем действие для двойного нажатия
+        # hyprctl dispatch workspace $SUM
+        hyprctl dispatch workspace $NUM1
+    else
+        # Выполняем действие для одиночного нажатия
+        hyprctl dispatch workspace $SUM
+    fi
+    else
+    # Выполняем действие для одиночного нажатия
+      hyprctl dispatch workspace $SUM
+    fi
+
+
+  else
+
+    if [ -f "$LAST_PRESS_FILE" ]; then
+    LAST_PRESS=$(cat "$LAST_PRESS_FILE")
+    TIME_DIFF=$((CURRENT_TIME - LAST_PRESS))
+
+    if [ "$TIME_DIFF" -le "$DOUBLE_PRESS_TIME" ]; then
+        # Выполняем действие для двойного нажатия
+        # hyprctl dispatch workspace $NUM1
+        hyprctl dispatch workspace $SUM
+    else
+        # Выполняем действие для одиночного нажатия
+        hyprctl dispatch workspace $NUM1
+    fi
+    else
+    # Выполняем действие для одиночного нажатия
+      hyprctl dispatch workspace $NUM1
+    fi
+
+
+fi
+
+echo "$CURRENT_TIME" > "$LAST_PRESS_FILE"

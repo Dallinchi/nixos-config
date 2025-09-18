@@ -18,7 +18,7 @@ in
     grim
     slurp
     wl-clipboard
- #   swappy
+    swappy
  #   ydotool
     hyprpolkitagent
     hyprland-qtutils # needed for banners and ANR messages
@@ -35,6 +35,14 @@ in
 #    ".face.icon".source = ./face.jpg;
 #    ".config/face.jpg".source = ./face.jpg;
 #  };
+  # Shell scripts
+  xdg.configFile = {
+    # Main caelestia shell configuration
+    "hypr/scripts" = {
+      source = ./scripts;
+      recursive = true;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;

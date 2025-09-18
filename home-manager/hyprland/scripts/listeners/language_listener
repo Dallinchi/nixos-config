@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Скрипт который слушает евенты, и узнает раскладку клавы,
+# что бы отправить это в notification
+
+function handle {
+  if [[ ${1:0:13} == "activelayout>" ]]; then
+    IFS=',' read -r -a parts1 <<< "$1"
+    IFS=' ' read -r -a parts2 <<< "${parts1[1]}"
+    notify-send -u 'low' "${parts2[0]:0:7}" -t 500 -i none
+    # hyprctl notify 121 400 "rgb(000000)" "fontsize:15 ${parts2[0]:0:2}"
+    # python /home/dallinchi/Code/Projects/cli-calculate-busy-time "${parts2[2]} - ${parts1[1]}"
+  fi
+}
+
+socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do handle "$line"; done
+

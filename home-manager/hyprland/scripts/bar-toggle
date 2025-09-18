@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if pgrep -x ".quickshell-wra" > /dev/null
+then
+    pkill quickshell
+    echo "quickshell off"
+else
+    echo "quickshell on"
+    quickshell -c ~/.config/quickshell/lacrity-space &
+fi

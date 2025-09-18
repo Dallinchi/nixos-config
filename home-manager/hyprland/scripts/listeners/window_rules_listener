@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Скрипт, который слушает евенты, и динамически распределяет их по окнам внутри монитора,
+# для улучшения опыта использования Hyprland вместе с плагином split-workspaces
+
+# ID workspace для мониторов
+MONITOR_EDP_1=(1 2 3 4 5 6 7 8)
+MONITOR_HDMI_A_1=(9 10 11 12 13 14 15 16)
+
+function handle { 
+  if [[ ${1:0:10} == "openwindow" ]]; then
+    
+      # Получаем номер воркспейса, исходя из того, на каком мониторе фокус
+      # МОЖНО ЮЗАТЬ ЭТО, ЕСЛИ ТЫ БЕЗ ПЛАГИНА, а если с плагином? ну, юзай его диспатчер, не будь мной ;D
+#     function get_monitor_id {
+#     local workspace=$1
+#     local active_workspace_id=$(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')
+#     local monitor_id=""
+#
+#     # Проверяем, есть ли число в списке MONITOR_HDMI_A_1
+#     if [[ " ${MONITOR_HDMI_A_1[@]} " =~ " ${active_workspace_id} " ]]; then
+#         # Получаем индекс для MONITOR_HDMI_A_1
+#         for index in "${!MONITOR_HDMI_A_1[@]}"; do
+#             if [[ "${MONITOR_HDMI_A_1[$index]}" -eq "$active_workspace_id" ]]; then
+#                 monitor_id=${MONITOR_HDMI_A_1[$((workspace - 1))]}
+#                 break
+#             fi
+#         done
+#     elif [[ " ${MONITOR_EDP_1[@]} " =~ " ${active_workspace_id} " ]]; then
+#         # Получаем индекс для MONITOR_EDP_1
+#         for index in "${!MONITOR_EDP_1[@]}"; do
+#             if [[ "${MONITOR_EDP_1[$index]}" -eq "$active_workspace_id" ]]; then
+#                 monitor_id=${MONITOR_EDP_1[$((workspace - 1))]}
+#                 break
+#             fi
+#         done
+#     else
+#         echo "$workspace нет в списке."
+#         return 1
+#     fi
+#     echo "$monitor_id"
+# }
+#
+    # Тут делаем логику окон!  
+    #------------------------
+
+    # Разделяем строки на составные части, и получаем title и class окна | точно не помню, порядок, мб сначала class?
+    IFS=',' read -r -a parts <<< "$1"
+    # Получаем address окна
+    IFS='>>' read -r -a addr_parts <<< ${parts[0]}
+    
+    window_workspace=${parts[1]}
+    window_class=${parts[2]} # мб это title
+    window_address="0x${addr_parts[2]}" 
+    # Как то так матчишь окна:
+     
+    # start here
+    if [[ $window_class == "Alacritty" ]]; then
+      # monitor_id=$(get_monitor_id "2")
+      hyprctl dispatch split-movetoworkspace 2,address:$window_address
+    elif  [[ $window_class == "Firefox" ]]; then
+      hyprctl dispatch split-movetoworkspace 1,address:$window_address
+    fi
+    # end here
+
+  fi
+}
+
+socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do handle "$line"; done
+

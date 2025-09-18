@@ -12,7 +12,8 @@
     ./xdg.nix
     ./alacritty.nix
     ./packages.nix
-    ./dunst.nix
+    ./dunst
+#    ./stylix.nix
   ];
 
    home.file = {

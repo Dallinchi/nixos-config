@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Получаем ID активного рабочего пространства
+ACTIVE_WORKSPACE_ID=$(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')
+
+# ID workspace для мониторов
+MONITOR_EDP_1=(1 2 3 4 5 6 7 8)
+MONITOR_HDMI_A_1=(9 10 11 12 13 14 15 16)
+
+WORKSPACE=$1
+APP=$2
+
+# Проверяем, есть ли число в списке MONITOR_HDMI_A_1
+if [[ " ${MONITOR_HDMI_A_1[@]} " =~ " ${ACTIVE_WORKSPACE_ID} " ]]; then
+    # Получаем индекс для MONITOR_HDMI_A_1
+    for index in "${!MONITOR_HDMI_A_1[@]}"; do
+        if [[ "${MONITOR_HDMI_A_1[$index]}" -eq "$ACTIVE_WORKSPACE_ID" ]]; then
+          # WORKSPACE - 1, для того что cli был удобнее, а индексы - правильные
+          monitor_id=${MONITOR_HDMI_A_1[$((WORKSPACE - 1))]}
+            break
+        fi
+    done
+elif [[ " ${MONITOR_EDP_1[@]} " =~ " ${ACTIVE_WORKSPACE_ID} " ]]; then
+    # Получаем индекс для MONITOR_EDP_1
+    for index in "${!MONITOR_EDP_1[@]}"; do
+        if [[ "${MONITOR_EDP_1[$index]}" -eq "$ACTIVE_WORKSPACE_ID" ]]; then
+            monitor_id=${MONITOR_EDP_1[$((WORKSPACE - 1))]}
+            break
+        fi
+    done
+  else
+    echo "$WORKSPACE нет в списке."
+
+fi
+
+hyprctl dispatch exec [workspace $monitor_id] $APP

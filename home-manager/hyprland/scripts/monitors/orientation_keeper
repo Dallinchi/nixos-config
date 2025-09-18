@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Сохраняет ориентацию монитора при перезапуске
+
+LAST_ORIENTATION_FILE="/home/dallinchi/.config/hypr/scripts/monitors/orientation_keeper_value"
+
+if [ "$#" -eq 1 ]; then
+    orientation=$1
+else
+    if [ -f "$LAST_ORIENTATION_FILE" ]; then
+        orientation=$(cat "$LAST_ORIENTATION_FILE")
+    else
+        orientation=0
+    fi
+fi
+
+if [ "$orientation" -eq 1 ]; then
+    # Вертикальная ориентация
+    hyprctl keyword monitor "HDMI-A-1, 1440x900, 0x0, 1, transform, 1" | hyprctl keyword monitor "eDP-1, 1920x1080, 900x360,1"
+else
+    # Горизонтальная ориентация
+    hyprctl keyword monitor "HDMI-A-1, 1440x900, 0x0, 0" | hyprctl keyword monitor "eDP-1, 1920x1080, 1440x0,0"
+fi
+
+echo "$orientation" > "$LAST_ORIENTATION_FILE"
+

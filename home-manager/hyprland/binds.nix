@@ -1,4 +1,4 @@
-{ host, ... }:
+{ host, lib, pkgs, ... }:
 let
   inherit
     (import ../../hosts/${host}/variables.nix)
@@ -17,13 +17,14 @@ in
     bind = [
       "$modifier, F, fullscreen"
       "$modifier, W, exec, $wallpaper"
-#      "$modifier, PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m region" # Replace
-#      " 	,  PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m output" #Replace
+      "$modifier, PRINT, exec, grim -g \"$(slurp)\" /tmp/last_screenshot.png; swappy -f /tmp/last_screenshot.png -o ~/Pictures/screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png"
+      " 	, PRINT, exec, ~/.config/hypr/scripts/Hyprshot -m output"
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
       "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"
       "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"
-      "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
-
+      "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode"
+      "$modifier, F2, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"
+      
       # Переключение на другой воркспейс скролом мыши с зажатым $modifier
       "$modifier, mouse_down, workspace, e+1"
       "$modifier, mouse_up, workspace, e-1"
@@ -36,14 +37,14 @@ in
       "$modifier, C, cyclenext"
      
       # Переключение воркспейсов
-      "$modifier, 1, split-workspace, 1"
-      "$modifier, 2, split-workspace, 2"
-      "$modifier, 3, split-workspace, 3"
-      "$modifier, 4, split-workspace, 4"
-      "$modifier, 5, split-workspace, 5"
-      "$modifier, 6, split-workspace, 6"
-      "$modifier, 7, split-workspace, 7"
-      "$modifier, 8, split-workspace, 8"
+      "$modifier, 1, exec, ~/.config/hypr/scripts/toworkspace 1 8"
+      "$modifier, 2, exec, ~/.config/hypr/scripts/toworkspace 2 8"
+      "$modifier, 3, exec, ~/.config/hypr/scripts/toworkspace 3 8"
+      "$modifier, 4, exec, ~/.config/hypr/scripts/toworkspace 4 8"
+      "$modifier, 5, exec, ~/.config/hypr/scripts/toworkspace 5 8"
+      "$modifier, 6, exec, ~/.config/hypr/scripts/toworkspace 6 8"
+      "$modifier, 7, exec, ~/.config/hypr/scripts/toworkspace 7 8"
+      "$modifier, 8, exec, ~/.config/hypr/scripts/toworkspace 8 8"
  
       # Перемещение окна между мониторами
       "$modifier CTRL, 1, movetoworkspace, -8"
@@ -81,16 +82,6 @@ in
       "$modifier SHIFT, 7, split-movetoworkspace, 7"
       "$modifier SHIFT, 8, split-movetoworkspace, 8"
      
-      #"$modifier SHIFT, 1, movetoworkspace, 1"
-      #"$modifier SHIFT, 2, movetoworkspace, 2"
-      #"$modifier SHIFT, 3, movetoworkspace, 3"
-      #"$modifier SHIFT, 4, movetoworkspace, 4"
-      #"$modifier SHIFT, 5, movetoworkspace, 5"
-      #"$modifier SHIFT, 6, movetoworkspace, 6"
-      #"$modifier SHIFT, 7, movetoworkspace, 7"
-      #"$modifier SHIFT, 8, movetoworkspace, 8"
-     
-
       # Поворот второго монитора
       "$modifier SHIFT, V, exec, ~/.config/hypr/scripts/monitors/orientation_keeper 1"
       "$modifier SHIFT, H, exec, ~/.config/hypr/scripts/monitors/orientation_keeper 0"

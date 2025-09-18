@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Скрипт который слушает евенты, и считаем время активности,
+# если перевести фокус на окно
+
+function handle {
+  if [[ ${1:0:13} == "activewindow>" ]]; then
+    IFS=',' read -r -a parts1 <<< "$1"
+    IFS='>>' read -r -a parts2 <<< "${parts1[0]}"
+    # echo "${parts2[2]} - ${parts1[1]}"
+    python /home/dallinchi/Code/Projects/cli-calculate-busy-time "${parts2[2]} - ${parts1[1]}"
+  fi
+}
+
+socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do handle "$line"; done
+

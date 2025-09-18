@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Я ленивец. И эта штука работает блювотно. Если уж и решил реализовать такой функционал, напиши свой скрипт
+function handle {
+  echo $1             
+  if [[ ${1:0:13} == "monitorremove" ]]; then
+    hyprctl dispatch split-grabroguewindows  
+  fi
+}
+
+socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do handle "$line"; done
+
