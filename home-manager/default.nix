@@ -13,6 +13,7 @@
     ./alacritty.nix
     ./packages.nix
     ./dunst
+    ./nvchad.nix
   ];
 
    home.file = {

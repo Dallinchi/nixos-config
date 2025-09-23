@@ -15,8 +15,6 @@
     memoryPercent = 80;
   };
 
-  nixCats.enable = true; # Nvim
-  
   drivers.amdgpu.enable = true;
 
   home-manager = {

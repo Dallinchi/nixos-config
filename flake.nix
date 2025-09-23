@@ -24,8 +24,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    nixCats.url = "./flakes/nixCats/";
-    
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };    
+
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -44,13 +47,11 @@
       inherit system;
       specialArgs = {
         inherit inputs;
-	inherit username;
+        inherit username;
         inherit host;
       };
       modules = [
         ./hosts/${host}
-	inputs.nixCats.nixosModules.default
-#	inputs.stylix.nixosModules.stylix
       ];
     };
       
