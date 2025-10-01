@@ -20,7 +20,7 @@ in
       "$modifier, PRINT, exec, hyprshot -m region -o ~/Pictures/screenshots/"
       " 	, PRINT, exec, hyprshot -m output -o ~/Pictures/screenshots/"
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
-      "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"
+      "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor 0"
       "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"
       "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode"
       "$modifier, F2, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"

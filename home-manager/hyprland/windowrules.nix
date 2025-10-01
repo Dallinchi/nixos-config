@@ -7,8 +7,8 @@
 
 	workspace = [
 	# Замена no_gaps_only (В новой версии сделали гибкую систему)
-	"w[tv1]s[false], gapsout:0, gapsin:0, decorate:0"
-	"f[1]s[false], gapsout:0, gapsin:0"
+	# "w[tv1]s[false], gapsout:0, gapsin:0, decorate:0"
+	# "f[1]s[false], gapsout:0, gapsin:0"
 	
 	"1, monitor:eDP-1"
 	"2, monitor:eDP-1"
@@ -32,10 +32,11 @@
 	];
 
     windowrule = [
-	"bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
-	"rounding 0, floating:0, onworkspace:w[tv1]s[false]"
-	"bordersize 0, floating:0, onworkspace:f[1]s[false]"
-	"rounding 0, floating:0, onworkspace:f[1]s[false]"
+  # Для окон no_gaps_only
+	 "bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
+	# "rounding 0, floating:0, onworkspace:w[tv1]s[false]"
+	# "bordersize 0, floating:0, onworkspace:f[1]s[false]"
+	# "rounding 0, floating:0, onworkspace:f[1]s[false]"
 
 	"nodim, class:GLava)"
 	"noblur, class:GLava$"

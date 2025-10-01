@@ -12,7 +12,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 80;
+    memoryPercent = 150;
   };
 
   drivers.amdgpu.enable = true;

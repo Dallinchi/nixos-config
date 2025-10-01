@@ -5,5 +5,5 @@ import "notification"
 
 ShellRoot {
     Bar {}
-    Notification {}
+    // Notification {}
 }

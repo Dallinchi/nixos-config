@@ -14,7 +14,8 @@ Singleton {
     property string textDefault: "#d2fffd"
     property string textEmpty: "#AAffffff"
 
-    property string backgroundActive: "#cc000000"
+    // property string backgroundActive: "#cc000000"
+    property string backgroundActive: "#00000000"
     property string backgroundDefault: "#00000000"
     property string backgroundEmpty: "#00000000"
  
@@ -26,9 +27,11 @@ Singleton {
     property string symbolDefault: accent
     property string symbolEmpty: "#ccffffff"
  
-    property string borderActive: "#222020"
+    // property string borderActive: "#222020"
+    property string borderActive: "#transparent"
     property string borderDefault: "#transparent"
-    property string borderEmpty: "#88404040"        
+    // property string borderEmpty: "#88404040"        
+    property string borderEmpty: "#transparent"        
 
     property string background: backgroundDefault
     property string text: textDefault

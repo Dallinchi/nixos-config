@@ -3,14 +3,14 @@
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,run,filebrowser,games,window";
+    modi:                       "drun,window,games";
     font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
     display-run:                "";
     display-filebrowser:        "";
-    display-games:              "";
     display-window:             "󱂬";
+    display-games:              "";
     drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
@@ -26,8 +26,8 @@ configuration {
 //@import "~/.cache/wal/colors-rofi-dark.rasi"
 /* ---- Window ---- */
 window {
-    width:			400px;
-    height:			1060px;
+    width:                			400px;
+    height:		                	1060px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;

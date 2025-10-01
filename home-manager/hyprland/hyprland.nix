@@ -65,15 +65,16 @@ in
         ];
         numlock_by_default = true;
         repeat_delay = 250;
-	repeat_rate = 60;
+      	repeat_rate = 60;
         follow_mouse = 1;
-        float_switch_override_focus = 0;
+     #   float_switch_override_focus = 0;
         sensitivity = 0;
-	special_fallthrough = true;
+      	special_fallthrough = true;
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;
-          scroll_factor = 0.8;
+          clickfinger_behavior = true;
+          scroll_factor = 0.4;
         };
       };
 
@@ -84,7 +85,7 @@ in
         workspace_swipe_cancel_ratio = 0.5;
         workspace_swipe_create_new = 1;
         workspace_swipe_forever = 1;
-	workspace_swipe_direction_lock = 0;
+      	workspace_swipe_direction_lock = 0;
       };
 
       general = {
@@ -94,9 +95,9 @@ in
         gaps_out = 8;
         border_size = 1;
         resize_on_border = true;
-	"col.active_border" = lib.mkForce "rgba(2aa889ff)";
-	#"col.active_border" = "rgba(70e6e0ff)";
-    	#"col.inactive_border" = "rgba(2f343fff)";
+      	"col.active_border" = lib.mkForce "rgba(2aa889ff)";
+      	#"col.active_border" = "rgba(70e6e0ff)";
+    	  #"col.inactive_border" = "rgba(2f343fff)";
       };
 
       misc = {
@@ -166,6 +167,7 @@ in
         new_status = "master";
         new_on_top = 1;
         mfact = 0.5;
+        allow_small_split = true;
       };
 
       # Ensure Xwayland windows render at integer scale; compositor scales them
