@@ -7,7 +7,7 @@ import "root:/"
 Item {
   property string battery
   property bool hasBattery: false
-  property string text: text_content
+  property string text: text_content.text
   property string batterySymbol
   
   property int icon_size

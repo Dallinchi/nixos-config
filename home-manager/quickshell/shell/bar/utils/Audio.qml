@@ -21,22 +21,24 @@ Singleton {
     	command: ["sh", "-c", "~/.config/quickshell/lacrity-space/scripts/sink_info"]
     	running: true
 
-	stdout: StdioCollector {
-      	    onStreamFinished: root.activePort = this.text.trim()
-	}
+	    stdout: StdioCollector {
+  	    onStreamFinished: root.activePort = this.text.trim()
+	    }
     }
 
     function setVolume(volume: real): void {
         if (sink?.ready && sink?.audio) {
             sink.audio.muted = false;
-	    sink.audio.volume = volume;
-	    activePortProc.running = true
-	    console.log(root.activePort)
-	    console.log("УРА, победа?")
+      	    sink.audio.volume = volume;
+            activePortProc.running = true
+            console.log([Pipewire.defaultAudioSink.description, Pipewire.defaultAudioSource])
         }
     }
 
     PwObjectTracker {
-	objects: [Pipewire.defaultAudioSink, Pipewire.defaultAudioSource]
+      objects: {
+        console.log([Pipewire.defaultAudioSink.description, Pipewire.defaultAudioSource])
+        return [Pipewire.defaultAudioSink, Pipewire.defaultAudioSource]
+      }   
     }
 }

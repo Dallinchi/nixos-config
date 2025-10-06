@@ -12,16 +12,16 @@ Item {
     width: parent.width
     height: Theme.get.preferredHeight
     
-    property string text: text_content
+    property string text: text_content.text
     property var icons: {
         "headset-output": "",
-	"analog-output-headphones": "",
-	"analog-output-speaker": "",
+        "analog-output-headphones": "",
+        "analog-output-speaker": "",
     }
     property var icons_mute: {
         "headset-output": "󰟎",
-	"analog-output-headphones": "󰟎",
-	"analog-output-speaker": "",
+        "analog-output-headphones": "󰟎",
+        "analog-output-speaker": "",
     }
 
     Rectangle {
@@ -42,7 +42,10 @@ Item {
       
       Text {
         id: text_content
-        text: `${Math.round(Audio.volume * 100)}%`
+        text: {
+          console.log(Audio.volume)
+          return `${Math.round(Audio.volume * 100)}%`
+        }
         font.weight: Theme.get.fontWeight
         font.pixelSize: Theme.get.fontSize
         color: Theme.get.text 
@@ -63,7 +66,7 @@ Item {
         }
 
 
-	onWheel: function(event) {
+        onWheel: function(event) {
             if (Audio.sink.audio) {
                 Audio.setVolume(Math.max(0, Math.min(1, Audio.volume + (event.angleDelta.y / 120) * 0.05)))
             }
@@ -80,10 +83,9 @@ Item {
         id: menuWindow
         implicitWidth: 150
         implicitHeight: 150
-        visible: falsanimationDurationHeighte
+        visible: false
         color: "transparent" 
         anchor {
-   
             window: root.QsWindow.window
             // item: root
             edges: Edges.Bottom

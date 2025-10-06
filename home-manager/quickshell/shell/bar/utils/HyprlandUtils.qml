@@ -11,7 +11,6 @@ Singleton {
     id: hyprland
 
     property list<HyprlandWorkspace> focusedmonitor_workspaces: filterWorkspacesByMonitor(Hyprland.focusedMonitor.id)
-    property int maxWorkspace: findMaxId()
     
     function switchWorkspace(w: int): void {
         Hyprland.dispatch(`workspace ${w}`);

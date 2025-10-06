@@ -136,6 +136,7 @@ Scope {
               }
 
               Blocks.Workspaces {
+                monitorId: Quickshell.screens.indexOf(modelData)
                 Layout.fillWidth: true // Позволяет занимать доступное пространство
                 Layout.alignment: Qt.AlignLeft // Центрирование
               } 

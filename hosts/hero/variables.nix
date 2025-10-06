@@ -6,7 +6,7 @@
   displayManager = "tui";
 
   # Program Options
-  browser = "firefox"; # Set Default Browser (google-chrome-stable for google-chrome)
+  browser = "zen-twilight"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "alacritty"; # Set Default System Terminal
   keyboardLayout = "us, ru";
   consoleKeyMap = "us";

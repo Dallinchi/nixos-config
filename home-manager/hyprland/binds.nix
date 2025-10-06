@@ -3,7 +3,6 @@ let
   inherit
     (import ../../hosts/${host}/variables.nix)
     browser
-    terminal
     ;
 in
 {
@@ -94,7 +93,7 @@ in
       "$modifier SHIFT, down, resizeactive,0 50"
 
       # Запуск софта
-      "$modifier, RETURN, exec, alacritty"
+      "$modifier, RETURN, exec, ~/.config/hypr/scripts/execonmonitor 2 alacritty"
       "$modifier CTRL, C, exec, code-oss"
       "$modifier CTRL, B, exec, ${browser}"
       "$modifier CTRL, R, exec, krita"

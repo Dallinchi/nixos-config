@@ -25,6 +25,7 @@
     obsidian # Notes
     hyprshot # Screenshots
     peaclock # cli timer, stopwatch, clock
+    taskwarrior3 # cli task manager
 
     # Fonts
     nerd-fonts.symbols-only

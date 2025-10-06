@@ -27,11 +27,12 @@ Item {
         "14": "󰓓",
         "15": "",
         "16": "",
-    }
+      }
+    property int monitorId
 
     Rectangle {
         color: Theme.get.block 
-        width: 27 * Utils.HyprlandUtils.focusedmonitor_workspaces.length 
+        width: 27 *  Utils.HyprlandUtils.filterWorkspacesByMonitor(monitorId).length 
         height: Theme.get.preferredHeight 
 
         border.color: Theme.get.border
@@ -70,10 +71,10 @@ Item {
             anchors.verticalCenter: parent.verticalCenter 
 
             Repeater {
-                model: Utils.HyprlandUtils.focusedmonitor_workspaces
+                model:  Utils.HyprlandUtils.filterWorkspacesByMonitor(monitorId)
                 Item {
                     required property int index
-                    property bool isActive: Hyprland.focusedMonitor?.activeWorkspace?.id === Utils.HyprlandUtils.focusedmonitor_workspaces[index].id
+                    property bool isActive: Hyprland.focusedMonitor?.activeWorkspace?.id === Utils.HyprlandUtils.filterWorkspacesByMonitor(monitorId)[index].id
                     
                     width: 25  
                     height: Theme.get.preferredHeight
@@ -84,14 +85,14 @@ Item {
                         Icon {
                           anchors.centerIn: parent
                           color: isActive ? Theme.get.symbol : Theme.get.symbolEmpty // Цвет текста в зависимости от активности
-                          symbol: workspaceTextMap[Utils.HyprlandUtils.focusedmonitor_workspaces[index].id.toString()]
+                          symbol: workspaceTextMap[Utils.HyprlandUtils.filterWorkspacesByMonitor(monitorId)[index].id.toString()]
                           pointSize: 11
                         }
                         
                        MouseArea {
                           anchors.fill: parent
                           hoverEnabled: true
-                          onClicked: Utils.HyprlandUtils.switchWorkspace(Utils.HyprlandUtils.focusedmonitor_workspaces[index].id)
+                          onClicked: Utils.HyprlandUtils.switchWorkspace(Utils.HyprlandUtils.filterWorkspacesByMonitor(monitorId)[index].id)
                         }
                     }
                 }
