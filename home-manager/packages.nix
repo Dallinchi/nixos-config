@@ -5,7 +5,6 @@
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
-    ranger # File manager
     btop # System monitor
     firefox # Browser
     brightnessctl # For Screen Brightness Control

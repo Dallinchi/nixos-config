@@ -7,6 +7,8 @@
     ./hyprland
     ./quickshell
     ./rofi
+    ./yazi
+    ./zen
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix

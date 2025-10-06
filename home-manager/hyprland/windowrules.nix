@@ -45,6 +45,10 @@
 	"move 5% 5%, class:Electron"
 	"size 90% 90%, class:Electron"
 
+	"float, title:Alacritty - Yazi"
+	"move 5% 5%, title:Alacritty - Yazi"
+	"size 90% 90%, title:Alacritty - Yazi"
+
 	"workspace 1, class:firefox, floating:0"
 	"nodim, class:firefox"
 	"float, class:firefox), title:Картинка в картинке)"

@@ -16,12 +16,13 @@ in
 
     bind = [
       "$modifier, F, fullscreen"
+      "$modifier, A, fullscreen, 1" 
       "$modifier, W, exec, $wallpaper"
       "$modifier, PRINT, exec, hyprshot -m region -o ~/Pictures/screenshots/"
       " 	, PRINT, exec, hyprshot -m output -o ~/Pictures/screenshots/"
       "$modifier, N, exec, [float] alacritty -t nm-wifi-menu -e nmtui"
-      "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor 0"
-      "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"
+      "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor eDP-1"
+      "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu -monitor eDP-1 | cliphist decode | wl-copy"
       "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode"
       "$modifier, F2, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"
       
@@ -99,7 +100,7 @@ in
       "$modifier CTRL, R, exec, krita"
       "$modifier CTRL, O, exec, gtk-launch obsidian"
       "$modifier CTRL, H, exec, [float] alacritty --config-file=/home/dallinchi/.config/alacritty/hestale.toml -T \"Hestale - Password Generator\" -e hestale -r"
-      "$modifier CTRL, E, exec, [float] alacritty -T \"Alacritty - Ranger\" -e 'ranger'"
+      "$modifier CTRL, E, exec, [float] alacritty -T \"Alacritty - Yazi\" -e 'yazi'"
       "$modifier CTRL, V, exec, [workspace special:minimized] alacritty -e /home/dallinchi/Documents/vpns/OpenConnect/connect"
       "$modifier CTRL, P, exec, python ~/Code/Projects/cli-timer-delay -r -a 'alert' -d 40"
       "$modifier CTRL, M, exec, yandex-music"
