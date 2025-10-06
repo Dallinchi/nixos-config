@@ -23,6 +23,8 @@
     seafile-client # Cloud
     libnotify # Notify utils
     obsidian # Notes
+    hyprshot # Screenshots
+    peaclock # cli timer, stopwatch, clock
 
     # Fonts
     nerd-fonts.symbols-only
