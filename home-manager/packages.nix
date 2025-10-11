@@ -1,7 +1,34 @@
 { pkgs, inputs, lib, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-
+  # nixpkgs.overlays = [
+  #       (final: prev: {
+  #         yandex-music = prev.yandex-music.overrideAttrs (oldAttrs: rec {
+  #           version_info = with builtins; fromJSON ''
+  #           {
+  #               "ym": {
+  #                   "version": "5.57.0",
+  #                   "exe_name": "Yandex_Music_x64_5.57.0.exe",
+  #                   "exe_link": "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.57.0.exe",
+  #                   "exe_sha256": "148afbede1f492c2922c32416f24d277f424c1dd5415cfd5149dc61276ce0fdd"
+  #               },
+  #               "electron": {
+  #                   "version": "34.5.8",
+  #                   "x64": "https://github.com/electron/electron/releases/download/v34.5.8/electron-v34.5.8-linux-x64.zip",
+  #                   "armv7l": "https://github.com/electron/electron/releases/download/v34.5.8/electron-v34.5.8-linux-armv7l.zip",
+  #                   "arm64": "https://github.com/electron/electron/releases/download/v34.5.8/electron-v34.5.8-linux-arm64.zip"
+  #               }
+  #           }
+  #           '';
+  #             src = prev.yandex-music.override.fetchurl {
+  #               url = "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.57.0.exe";
+  #               sha256 =  "148afbede1f492c2922c32416f24d277f424c1dd5415cfd5149dc61276ce0fdd";
+  #             };
+  #           });
+  #         yandex-music-custom = final.yandex-music;
+  #        })
+  #     ];
+  #
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
@@ -26,6 +53,7 @@
     hyprshot # Screenshots
     peaclock # cli timer, stopwatch, clock
     taskwarrior3 # cli task manager
+    yandex-music-custom
 
     # Fonts
     nerd-fonts.symbols-only
