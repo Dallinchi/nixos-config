@@ -13,6 +13,7 @@ in {
 
   "zen.watermark.enabled" = false;
   "zen.welcome-screen.seen" = true;
+  "zen.theme.content-element-separation" = 0;
 
   # enable custom userchrome
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;

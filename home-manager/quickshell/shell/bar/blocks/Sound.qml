@@ -42,10 +42,7 @@ Item {
       
       Text {
         id: text_content
-        text: {
-          console.log(Audio.volume)
-          return `${Math.round(Audio.volume * 100)}%`
-        }
+        text: `${Math.round(Audio.volume * 100)}%`
         font.weight: Theme.get.fontWeight
         font.pixelSize: Theme.get.fontSize
         color: Theme.get.text 
@@ -66,7 +63,7 @@ Item {
         }
 
 
-        onWheel: function(event) {
+	    onWheel: function(event) {
             if (Audio.sink.audio) {
                 Audio.setVolume(Math.max(0, Math.min(1, Audio.volume + (event.angleDelta.y / 120) * 0.05)))
             }
@@ -86,6 +83,7 @@ Item {
         visible: false
         color: "transparent" 
         anchor {
+   
             window: root.QsWindow.window
             // item: root
             edges: Edges.Bottom
