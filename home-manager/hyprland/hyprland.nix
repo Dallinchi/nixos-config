@@ -176,8 +176,10 @@ in
       };
 
       layerrule = [
-       "blur, quickshell"
-       "blur, rofi"
+        "blur, quickshell"
+        "blur, rofi"
+      #  "blur, caelestia-border-exclusion"
+      #  "blur, caelestia-drawers"
       ];
     };
 
