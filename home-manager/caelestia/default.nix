@@ -22,9 +22,9 @@
 		settings = {
       appearance = {
         transparency = {
-          enabled = false;
-          base = 0.9;
-          layers = 0.9;
+          enabled = true;
+          base = 0.7;
+          layers = 0.7;
         };
       };
 
@@ -40,7 +40,7 @@
 				enabled = true;
 
 				desktopClock = {
-					enabled = false;
+					enabled = true;
 				};
 
 				visualizer = {
@@ -100,11 +100,11 @@
 				workspaces = {
 					activeIndicator = true;
 					activeLabel = "󰮯 ";
-					activeTrail = false;
+					activeTrail = true;
 					label = "  ";
-					occupiedBg = false;
+					occupiedBg = true;
 					occupiedLabel = "󰮯 ";
-					rounded = false;
+          perMonitorWorkspaces = true; # Разделение виджета для монитора
 					showWindows = true;
 					shown = 5;
 				};
@@ -202,6 +202,21 @@
 					reboot = [ "systemctl" "reboot" ];
 				};
 			};
+
+      utilities = {
+        enabled = true;
+        maxToasts = 4;
+        toasts = {
+          audioInputChanged = true;
+          audioOutputChanged = true;
+          capsLockChanged = false;
+          chargingChanged = false;
+          configLoaded = false;
+          dndChanged = false;
+          gameModeChanged = false;
+          numLockChanged = false;
+        };
+      };
 		};
 	};
 }
