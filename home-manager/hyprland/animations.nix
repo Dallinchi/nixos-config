@@ -19,7 +19,7 @@
         "border, 1, 10, gnome"
         "fade, 1, 0.01, hyprnostretch"
         "fadeLayers, 1, 3, gnome"
-        "workspaces, 1, 1, hyprnostretch, slidefade"
+        "workspaces, 1, 1, hyprnostretch, slidefadevert"
         "specialWorkspace, 1, 5, hyprnostretch, fade"
         "layersIn, 1, 2, md3_standard, slide"
         "layersOut, 1, 2, md3_standard, slide"

@@ -106,7 +106,7 @@
 					occupiedLabel = "󰮯 ";
           perMonitorWorkspaces = true; # Разделение виджета для монитора
 					showWindows = true;
-					shown = 5;
+					shown = 8;
 				};
 
 				status = {

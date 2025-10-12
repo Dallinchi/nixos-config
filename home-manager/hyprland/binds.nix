@@ -9,7 +9,7 @@ in
   wayland.windowManager.hyprland.settings = {
     
     gesture = [
-      "3, horizontal, workspace"
+      "3, vertical, workspace"
       #"3, right, workspace, e-1"
     ];
 
