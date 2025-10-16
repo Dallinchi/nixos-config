@@ -11,6 +11,7 @@
     libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
     #audit.enable = false; # SHUTUP
+    upower.enable = true;
     gvfs.enable = true; # For Mounting USB & More
     openssh = {
       enable = false; # Enable SSH
@@ -67,7 +68,7 @@
       settings = { 
       	CPU_BOOST_ON_AC = 0;
         CPU_BOOST_ON_BAT = 0;
- 	CPU_HWP_DYN_BOOST_ON_AC = 0;
+ 	      CPU_HWP_DYN_BOOST_ON_AC = 0;
       	CPU_HWP_DYN_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
