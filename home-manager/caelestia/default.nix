@@ -22,9 +22,39 @@
 		settings = {
       appearance = {
         transparency = {
-          enabled = true;
+          enabled = false;
           base = 0.7;
-          layers = 0.7;
+          layers = 1;
+        };
+
+        font = {
+          family = {
+            clock = "Rubik";
+            material = "Material Symbols Rounded";
+            mono = "CaskaydiaCove NF";
+            sans = "Rubik";
+          };
+          size = {
+            scale = 1;
+          };
+        };
+
+        padding = {
+          scale = 0.8;
+        };
+
+        rounding = {
+          scale = 1;
+        };
+
+        spacing = {
+          scale = 1;
+        };
+
+        anim = {
+          durations = {
+            scale = 0.7;
+          };
         };
       };
 
@@ -37,10 +67,10 @@
 			};
 
 			background = {
-				enabled = true;
+				enabled = false;
 
 				desktopClock = {
-					enabled = true;
+					enabled = false;
 				};
 
 				visualizer = {
@@ -53,8 +83,8 @@
 			};
 
 			bar = {
-				persistent = true;
-				showOnHover = true;
+				persistent = false;
+				showOnHover = false;
         
         entries = [
           {
@@ -131,11 +161,11 @@
 
 			border = {
 				rounding = 10;
-				thickness = 10;
+				thickness = 5;
 			};
 
 			dashboard = {
-				enabled = true;
+				enabled = false;
 				showOnHover = true;
 
 				mediaUpdateInterval = 500;
@@ -143,7 +173,7 @@
 			};
 
 			launcher = {
-				actionPrefix = ">";
+				actionPrefix = "/";
 				dragThreshold = 50;
 				vimKeybinds = false;
 				enableDangerousActions = false;
@@ -164,7 +194,7 @@
 			};
 
 			notifs = {
-				actionOnClick = false;
+				actionOnClick = true;
 				clearThreshold = 0.3;
 				defaultExpireTimeout = 3000;
 				expandThreshold = 20;
@@ -187,7 +217,7 @@
 				useFahrenheit = false;
 				useTwelveHourClock = false;
 
-				gpuType = "AMD";
+				gpuType = "";
 
 				smartScheme = true;
 			};

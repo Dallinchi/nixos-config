@@ -27,14 +27,14 @@ configuration {
 /* ---- Window ---- */
 window {
     width:			900px;
-    height:			1060px;
+    height:			1080px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
     padding:                    2px;
     margin:                     0px; 
     border:                     0px;
-    border-color:               @border;
+    border-color:               @active-background;
     cursor:                     "default";
     location:                   east;
     anchor:                     center;
@@ -53,7 +53,7 @@ mainbox {
     padding:			8px;
     background-color:           transparent;
     children:                   [ "inputbar", "imagebox" ];
-    border-radius:              10px;
+    border-radius:              0px;
 }
 
 /* ---- Imagebox ---- */
@@ -70,9 +70,9 @@ listbox {
     orientation:                vertical;
     children:                   ["listview" ];
     padding:			5px;
-    border-radius:              5px;
+    border-radius:              0px;
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
     background-color:		    @background;
 }
 
@@ -86,12 +86,12 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    border-radius:              5px;
+    border-radius:              0px;
     border-color:               @foreground;
     background-color:		@background;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
@@ -124,13 +124,13 @@ mode-switcher{
 
 button {
     padding:                   0px 12px 0px 8px;
-    border-radius:             5px;
+    border-radius:             0px;
     height: 		       5px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
     border:                    1px;
-    border-color:              @border;
+    border-color:              @active-background;
 }
 
 button selected {
@@ -156,7 +156,7 @@ listview {
 	fixed-height:		true;
 	fixed-columns:		false;
 	background-color:	transparent;
-	border-radius:		5px;
+	border-radius:		0px;
 	border:			0px;
 }
 
@@ -167,7 +167,7 @@ element {
     margin:                     2px;
     cursor:                     pointer;
     background-color:         	transparent;
-    border-radius:              5px;
+    border-radius:              0px;
     border:                     0px;
 }
 
@@ -235,7 +235,7 @@ element-text {
 message {
     background-color:           @background;
     margin:						20px 0px 0px 0px;
-    border-radius: 				5px;
+    border-radius: 				0px;
 }
 
 textbox {
@@ -246,7 +246,7 @@ textbox {
 
 error-message {
     padding:                    15px;
-    border-radius:            	5px;
+    border-radius:            	0px;
     background-color:      		@background;
     text-color:                 @foreground;
 }

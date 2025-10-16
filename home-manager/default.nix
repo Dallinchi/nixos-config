@@ -5,11 +5,12 @@
     ./git.nix
     ./gtk.nix
     ./hyprland
-#    ./quickshell
+    # ./quickshell
     ./rofi
     ./yazi
     ./zen
     ./caelestia
+    ./dolphin
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix

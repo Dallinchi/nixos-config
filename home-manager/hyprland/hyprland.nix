@@ -128,15 +128,17 @@ in
 
       decoration = {
         rounding = 10;
+        #active_opacity = 0.9;
+        #inactive_opacity = 0.85;
         blur = {
-          enabled = true;
+          enabled = false;
           size = 4;
           passes = 3;
           #ignore_opacity = false;
           new_optimizations = true;
         };
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 10;
           render_power = 2;
           #color = "rgba(000214aa)";

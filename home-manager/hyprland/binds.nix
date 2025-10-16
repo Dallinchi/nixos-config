@@ -23,6 +23,7 @@ in
       "$modifier, D, exec, pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor eDP-1"
       # "$modifier, D, exec, caelestia shell drawers toggle launcher"
       "$modifier, V, exec, pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu -monitor eDP-1 | cliphist decode | wl-copy"
+      "$modifier, I, exec, caelestia shell drawers toggle sidebar"
       "$modifier, F1, exec, ~/.config/hypr/scripts/gamemode"
       "$modifier, F2, exec, ~/.config/hypr/scripts/monitors/toggle_mouselock_monitor"
       

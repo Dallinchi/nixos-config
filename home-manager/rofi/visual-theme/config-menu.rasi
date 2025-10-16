@@ -3,14 +3,14 @@
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "dmenu";
+    modi:                       "drun,window,games";
     font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
     display-run:                "";
     display-filebrowser:        "";
-    display-games:              "";
     display-window:             "󱂬";
+    display-games:              "";
     drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
@@ -26,15 +26,15 @@ configuration {
 //@import "~/.cache/wal/colors-rofi-dark.rasi"
 /* ---- Window ---- */
 window {
-    width:			900px;
-    height:			1060px;
+    width:                			400px;
+    height:		                	1060px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
     padding:                    2px;
     margin:                     0px; 
     border:                     0px;
-    border-color:               @border;
+    border-color:               @active-background;
     cursor:                     "default";
     location:                   east;
     anchor:                     center;
@@ -70,9 +70,9 @@ listbox {
     orientation:                vertical;
     children:                   ["listview" ];
     padding:			5px;
-    border-radius:              5px;
+    border-radius:              0 5px 5px 0;
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
     background-color:		    @background;
 }
 
@@ -91,7 +91,7 @@ inputbar {
     background-color:		@background;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
@@ -108,7 +108,7 @@ entry {
     padding:			6px 0px 0px 0px;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search history";
+    placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
     background-color:		transparent;
 }
@@ -116,7 +116,7 @@ entry {
 /* ---- Mode Switcher ---- */
 mode-switcher{
     orientation:		vertical;
-    enabled:                    false;
+    enabled:                    true;
     spacing:                    5px;
     background-color:          	transparent;
     text-color:                 @foreground;
@@ -124,13 +124,13 @@ mode-switcher{
 
 button {
     padding:                   0px 12px 0px 8px;
-    border-radius:             5px;
+    border-radius:             5px 0 0 5px;
     height: 		       5px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
     border:                    1px;
-    border-color:              @border;
+    border-color:              @active-background;
 }
 
 button selected {

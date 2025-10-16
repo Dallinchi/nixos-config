@@ -19,7 +19,8 @@
         "border, 1, 10, gnome"
         "fade, 1, 0.01, hyprnostretch"
         "fadeLayers, 1, 3, gnome"
-        "workspaces, 1, 1, hyprnostretch, slidefadevert"
+        "workspaces, 1, 0.001, hyprnostretch, slidefadevert" # Хотел бы выключить, но хочется вертикальные столы при использовании тачпада
+        # "workspaces, 1, 1, hyprnostretch, slidefadevert"
         "specialWorkspace, 1, 5, hyprnostretch, fade"
         "layersIn, 1, 2, md3_standard, slide"
         "layersOut, 1, 2, md3_standard, slide"

@@ -54,6 +54,7 @@
     peaclock # cli timer, stopwatch, clock
     taskwarrior3 # cli task manager
     yandex-music-custom
+    # libsForQt5.dolphin # File Browser
 
     # Fonts
     nerd-fonts.symbols-only

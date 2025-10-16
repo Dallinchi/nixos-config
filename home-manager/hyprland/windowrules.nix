@@ -126,44 +126,44 @@
 	"size 90% 90%, class:org.gnome.Nautilus"
 
 
-	"opacity 0.90 0.90,class:Alacritty"
-	"opacity 0.90 0.90,class:Vivaldi-stable"
-	"opacity 0.85 0.85,class:firefox"
-	"opacity 0.85 0.85,class:zen-twilight"
-	"opacity 0.95 0.95,class:waterfox"
-	"opacity 0.80 0.80,class:Steam"
-	"opacity 0.80 0.80,class:steam"
-	"opacity 0.80 0.80,class:steamwebhelper"
-	"opacity 0.70 0.70,class:Spotify"
-	"opacity 0.70 0.70,class:yandex-music"
-	"opacity 0.90 0.90,class:Code - OSS"
-	"opacity 0.90 0.90,class:jetbrains-idea-ce"
-	"opacity 0.80 0.80,class:kitty"
-	"opacity 0.80 0.80,class:org.kde.dolphin"
-	"opacity 0.80 0.80,class:org.gnome.Nautilus"
-	"opacity 0.80 0.80,class:org.kde.ark"
-	"opacity 0.80 0.80,class:nwg-look"
-	"opacity 0.80 0.80,class:qt5ct"
-	"opacity 0.80 0.80,class:org.telegram.desktop"
-
-	"opacity 0.90 0.90,class:com.github.rafostar.Clapper" #Clapper-Gtk
-	"opacity 0.80 0.80,class:com.github.tchx84.Flatseal" #Flatseal-Gtk
-	"opacity 0.80 0.8:0,class:hu.kramo.Cartridges" #Cartridges-Gtk
-	"opacity 0.80 0.80,class:com.obsproject.Studio" #Obs-Qt
-	"opacity 0.80 0.80,class:gnome-boxes" #Boxes-Gtk
-	"opacity 0.80 0.80,class:discord" #Discord-Electron
-	"opacity 0.80 0.80,class:WebCord" #WebCord-Electron
-	"opacity 0.80 0.80,class:app.drey.Warp" #Warp-Gtk
-	"opacity 0.80 0.80,class:net.davidotek.pupgui2" #ProtonUp-Qt
-	"opacity 0.80 0.80,class:yad" #Protontricks-Gtk
-	"opacity 0.80 0.80,class:koodo-reader"
-
-	"opacity 0.80 0.70,class:pavucontrol"
-	"opacity 0.80 0.70,class:blueman-manager"
-	"opacity 0.80 0.70,class:nm-applet"
-	"opacity 0.80 0.70,class:nm-connection-editor"
-	"opacity 0.80 0.70,class:lxqt-policykit-agent"
-	"opacity 1 1,class:vlc"
+	# "opacity 0.90 0.90,class:Alacritty"
+	# "opacity 0.90 0.90,class:Vivaldi-stable"
+	# "opacity 0.85 0.85,class:firefox"
+	# "opacity 0.85 0.85,class:zen-twilight"
+	# "opacity 0.95 0.95,class:waterfox"
+	# "opacity 0.80 0.80,class:Steam"
+	# "opacity 0.80 0.80,class:steam"
+	# "opacity 0.80 0.80,class:steamwebhelper"
+	# "opacity 0.70 0.70,class:Spotify"
+	# "opacity 0.70 0.70,class:yandex-music"
+	# "opacity 0.90 0.90,class:Code - OSS"
+	# "opacity 0.90 0.90,class:jetbrains-idea-ce"
+	# "opacity 0.80 0.80,class:kitty"
+	# "opacity 0.80 0.80,class:org.kde.dolphin"
+	# "opacity 0.80 0.80,class:org.gnome.Nautilus"
+	# "opacity 0.80 0.80,class:org.kde.ark"
+	# "opacity 0.80 0.80,class:nwg-look"
+	# "opacity 0.80 0.80,class:qt5ct"
+	# "opacity 0.80 0.80,class:org.telegram.desktop"
+	#
+	# "opacity 0.90 0.90,class:com.github.rafostar.Clapper" #Clapper-Gtk
+	# "opacity 0.80 0.80,class:com.github.tchx84.Flatseal" #Flatseal-Gtk
+	# "opacity 0.80 0.8:0,class:hu.kramo.Cartridges" #Cartridges-Gtk
+	# "opacity 0.80 0.80,class:com.obsproject.Studio" #Obs-Qt
+	# "opacity 0.80 0.80,class:gnome-boxes" #Boxes-Gtk
+	# "opacity 0.80 0.80,class:discord" #Discord-Electron
+	# "opacity 0.80 0.80,class:WebCord" #WebCord-Electron
+	# "opacity 0.80 0.80,class:app.drey.Warp" #Warp-Gtk
+	# "opacity 0.80 0.80,class:net.davidotek.pupgui2" #ProtonUp-Qt
+	# "opacity 0.80 0.80,class:yad" #Protontricks-Gtk
+	# "opacity 0.80 0.80,class:koodo-reader"
+	#
+	# "opacity 0.80 0.70,class:pavucontrol"
+	# "opacity 0.80 0.70,class:blueman-manager"
+	# "opacity 0.80 0.70,class:nm-applet"
+	# "opacity 0.80 0.70,class:nm-connection-editor"
+	# "opacity 0.80 0.70,class:lxqt-policykit-agent"
+	# "opacity 1 1,class:vlc"
 
 	"float,class:org.kde.ark"
 	"float,class:com.github.rafostar.Clapper" #Clapper-Gtk

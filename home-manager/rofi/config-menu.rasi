@@ -34,7 +34,7 @@ window {
     padding:                    2px;
     margin:                     0px; 
     border:                     0px;
-    border-color:               @active-background;
+    border-color:               @border;
     cursor:                     "default";
     location:                   east;
     anchor:                     center;
@@ -72,7 +72,7 @@ listbox {
     padding:			5px;
     border-radius:              0 5px 5px 0;
     border:                     1px;
-    border-color:               @active-background;
+    border-color:               @border;
     background-color:		    @background;
 }
 
@@ -91,7 +91,7 @@ inputbar {
     background-color:		@background;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
-    border-color:               @active-background;
+    border-color:               @border;
 }
 
 textbox-prompt-colon {
@@ -125,20 +125,19 @@ mode-switcher{
 button {
     padding:                   0px 12px 0px 8px;
     border-radius:             5px 0 0 5px;
-    height: 		       5px;
+    height:          		       5px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
-    border:                    1px;
-    border-color:              @active-background;
+    border:                    1px 0px 1px 1px;
+    border-color:              @border;
 }
 
 button selected {
     background-color:          @background-alt;
     text-color:                @selected;
-    border:                    1px;
-    border-color:              @background;
-	
+    border:                    1px 0px 1px 1px;
+    border-color:              @border;
 }
 
 /* ---- Listview ---- */

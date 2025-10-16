@@ -34,7 +34,7 @@ window {
     padding:                    2px;
     margin:                     0px; 
     border:                     0px;
-    border-color:               @border;
+    border-color:               @active-background;
     cursor:                     "default";
     location:                   east;
     anchor:                     center;
@@ -72,7 +72,7 @@ listbox {
     padding:			5px;
     border-radius:              5px;
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
     background-color:		    @background;
 }
 
@@ -91,7 +91,7 @@ inputbar {
     background-color:		@background;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
-    border-color:               @border;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
@@ -130,7 +130,7 @@ button {
     text-color:                inherit;
     cursor:                    pointer;
     border:                    1px;
-    border-color:              @border;
+    border-color:              @active-background;
 }
 
 button selected {

@@ -11,7 +11,7 @@ in
       "wl-paste --type text --watch cliphist store" # Saves text
       "wl-paste --type image --watch cliphist store" # Saves images
 #      "quickshell -c ~/.config/quickshell/lacrity-space"
- #     "swaybg -i $(find ~/Pictures/Wallpapers | shuf -n 1) -m fill"
+      "swaybg -i $(find ~/Pictures/Wallpapers | shuf -n 1) -m fill"
       "~/.config/hypr/scripts/monitors/orientation_keeper"
 #      "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 #      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
