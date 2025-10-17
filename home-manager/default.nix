@@ -10,7 +10,6 @@
     ./yazi
     ./zen
     ./caelestia
-    ./dolphin
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix
