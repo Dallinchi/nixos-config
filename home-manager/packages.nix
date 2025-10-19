@@ -1,7 +1,5 @@
 { pkgs, inputs, lib, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     pulseaudio # For pactl
     filezilla # FTP Client
@@ -26,7 +24,7 @@
     hyprshot # Screenshots
     peaclock # cli timer, stopwatch, clock
     taskwarrior3 # cli task manager
-    yandex-music-custom
+    yandex-music
     nautilus
 
     # Fonts
