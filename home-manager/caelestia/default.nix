@@ -165,7 +165,7 @@
 			};
 
 			dashboard = {
-				enabled = false;
+				enabled = true;
 				showOnHover = true;
 
 				mediaUpdateInterval = 500;
@@ -202,7 +202,9 @@
 			};
 
 			osd = {
-				hideDelay = 2000;
+				hideDelay = 500;
+        enableBrightness = false;
+        enableMicrophone = false;
 			};
 
 			paths = {
@@ -212,7 +214,7 @@
 			};
 
 			services = {
-				weatherLocation = "";
+				weatherLocation = "Kazan";
 
 				useFahrenheit = false;
 				useTwelveHourClock = false;

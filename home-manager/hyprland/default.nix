@@ -49,7 +49,7 @@ in
     plugins = [
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
     ];
 
     settings = {
@@ -130,7 +130,7 @@ in
 
       general = {
         "$modifier" = "SUPER";
-        layout = "scrolling";
+        layout = "master";
         gaps_in = 6;
         gaps_out = 8;
         border_size = 1;
@@ -177,6 +177,11 @@ in
         };
       };
 
+      render = {
+        new_render_scheduling = true;
+        cm_auto_hdr = 1;
+      };
+
       ecosystem = {
         no_donation_nag = true;
         no_update_news = false;
@@ -187,7 +192,10 @@ in
         no_hardware_cursors = 2; # change to 1 if want to disable
         enable_hyprcursor = false;
         warp_on_change_workspace = 1;
-        no_warps = true;
+        no_warps = false;
+        hide_on_key_press = true;
+        inactive_timeout = 5;
+        hotspot_padding = 3;
       };
 
       # Ensure Xwayland windows render at integer scale; compositor scales them
@@ -395,7 +403,7 @@ in
 
       bind = [
         "$modifier, F, fullscreen"
-        # "$modifier, A, fullscreen, 1" 
+        "$modifier, A, fullscreen, 1" 
         "$modifier, W, exec, $wallpaper"
         "$modifier, PRINT, exec, hyprshot -m region -o ~/Pictures/screenshots/"
         " 	, PRINT, exec, hyprshot -m output -o ~/Pictures/screenshots/"
@@ -413,19 +421,22 @@ in
         "$modifier, mouse_up, workspace, e-1"
 
         # Управлени фокусом
-        # "$modifier, H, movefocus, l"
-        # "$modifier, L, movefocus, r"
-        # "$modifier, K, movefocus, u"
-        # "$modifier, J, movefocus, d"
-        
-        "$modifier, H, layoutmsg, move -col"
-        "$modifier, L, layoutmsg, move +col"
+        "$modifier, H, movefocus, l"
+        "$modifier, L, movefocus, r"
         "$modifier, K, movefocus, u"
         "$modifier, J, movefocus, d"
+        
+        # "$modifier, H, layoutmsg, move -col"
+        # "$modifier, L, layoutmsg, move +col"
+        # "$modifier, K, movefocus, u"
+        # "$modifier, J, movefocus, d"
 
         "$modifier, C, cyclenext"
         "$modifier, R, focusmonitor, +1"
-       
+
+        "$modifier, equal, exec, hyprctl keyword cursor:zoom_factor $(awk \"BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep 'float:' | awk '{print $2}') + 0.5}\")"
+        "$modifier, minus, exec, hyprctl keyword cursor:zoom_factor $(awk \"BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep 'float:' | awk '{print $2}') - 0.5}\")"
+
         # Переключение воркспейсов
         "$modifier, 1, exec, ~/.config/hypr/scripts/toworkspace 1 8"
         "$modifier, 2, exec, ~/.config/hypr/scripts/toworkspace 2 8"
@@ -459,14 +470,14 @@ in
         "$modifier SHIFT, D, layoutmsg, removemaster"	        # master
         "$modifier SHIFT, S, layoutmsg, swapwithmaster"       # master
 
-        "$modifier, minus, layoutmsg, colresize -conf"        # scrolling
-        "$modifier, equal, layoutmsg, colresize +conf"        # scrolling
-        "$modifier SHIFT, A, layoutmsg, togglefit" 	          # scrolling
-        "$modifier SHIFT, T, layoutmsg, promote"              # scrolling
-        "$modifier SHIFT, S, layoutmsg, swapcol r"            # scrolling
-        "$modifier SHIFT, F, layoutmsg, fit active"	          # scrolling
-        "$modifier SHIFT, D, layoutmsg, fit all"	            # scrolling
-        
+        # "$modifier, minus, layoutmsg, colresize -conf"        # scrolling
+        # "$modifier, equal, layoutmsg, colresize +conf"        # scrolling
+        # "$modifier SHIFT, A, layoutmsg, togglefit" 	          # scrolling
+        # "$modifier SHIFT, T, layoutmsg, promote"              # scrolling
+        # "$modifier SHIFT, S, layoutmsg, swapcol r"            # scrolling
+        # "$modifier SHIFT, F, layoutmsg, fit active"	          # scrolling
+        # "$modifier SHIFT, D, layoutmsg, fit all"	            # scrolling
+        #
         "$modifier SHIFT, SPACE, togglefloating"
         "$modifier SHIFT, P, pin"
         "$modifier SHIFT, Q, killactive," 
@@ -493,6 +504,7 @@ in
 
         # Запуск софта
         "$modifier, RETURN, exec, ~/.config/hypr/scripts/execonmonitor 2 alacritty"
+        # "$modifier, RETURN, exec, alacritty"
         "$modifier CTRL, C, exec, code-oss"
         "$modifier CTRL, B, exec, zen-twilight"
         "$modifier CTRL, R, exec, krita"
@@ -556,13 +568,13 @@ in
           gesture_positive = true;
         };
 
-        hyprscrolling = {
-          # column_default_width = "onehalf";
-          # column_widths = "onehalf one";
-          fullscreen_on_one_column = true;
-          focus_fit_method = 1;
-          follow_focus = true;
-        };
+        # hyprscrolling = {
+        #   # column_default_width = "onehalf";
+        #   # column_widths = "onehalf one";
+        #   fullscreen_on_one_column = true;
+        #   focus_fit_method = 1;
+        #   follow_focus = true;
+        # };
       };
     };
   };
