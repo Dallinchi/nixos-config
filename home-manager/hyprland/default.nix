@@ -189,10 +189,6 @@ in
 
       cursor = {
         sync_gsettings_theme = true;
-        no_hardware_cursors = 2; # change to 1 if want to disable
-        enable_hyprcursor = false;
-        warp_on_change_workspace = 1;
-        no_warps = false;
         hide_on_key_press = true;
         inactive_timeout = 5;
         hotspot_padding = 3;
