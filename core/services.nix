@@ -4,8 +4,12 @@
   ... }:
 {
   # Services to start
-#  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
   systemd.services.audit.enable = false;
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "3G";
+    MemoryMax = "4G";
+  };
 
   services = {
     libinput.enable = true; # Input Handling
@@ -13,6 +17,7 @@
     #audit.enable = false; # SHUTUP
     upower.enable = true;
     gvfs.enable = true; # For Mounting USB & More
+    preload.enable = true; # Caching
     openssh = {
       enable = false; # Enable SSH
       settings = {
