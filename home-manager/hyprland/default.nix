@@ -62,8 +62,9 @@ in
       exec-once = [
         "wl-paste --type text --watch cliphist store" # Saves text
         "wl-paste --type image --watch cliphist store" # Saves images
+        "caelestia shell -d"
         # "quickshell -c ~/.config/quickshell/lacrity-space"
-        "swaybg -i $(find ~/Pictures/Wallpapers | shuf -n 1) -m fill"
+        # "swaybg -i $(find ~/Pictures/Wallpapers | shuf -n 1) -m fill"
         "~/.config/hypr/scripts/monitors/orientation_keeper"
       ];
 

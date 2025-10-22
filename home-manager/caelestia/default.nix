@@ -4,11 +4,15 @@
 		inputs.caelestia-shell.homeManagerModules.default
 	];
 
+  home.packages = with pkgs; [
+    gpu-screen-recorder
+  ];
+
 	programs.caelestia = {
 		enable = true;
 	
 		systemd = {
-			enable = true;
+			enable = false;
 			target = "graphical-session.target";
 			environment = [];
 		};
@@ -35,7 +39,7 @@
             sans = "Rubik";
           };
           size = {
-            scale = 1;
+            scale = 0.9;
           };
         };
 
@@ -45,6 +49,10 @@
 
         rounding = {
           scale = 1;
+          small = 10;
+          normal = 10;
+          large = 10;
+          full = 8;
         };
 
         spacing = {
@@ -64,21 +72,33 @@
 					audio = [ "pavucontrol" ];
 					explorer = [ "thunar" ];
 				};
+
+        idle = {
+          lockBeforeSleep = true;
+          inhibitWhenAudio = true;
+          timeouts = [
+            {
+              timeout = 180;
+              idleAction = "lock";
+            }
+            {
+              timeout = 300;
+              idleAction = "dpms off";
+              returnAction = "dpms on";
+            }
+            {
+              timeout = 1200;
+              idleAction = ["systemctl" "suspend-then-hibernate"];
+            }
+          ];
+        };
 			};
 
 			background = {
-				enabled = false;
+				enabled = true;
 
 				desktopClock = {
-					enabled = false;
-				};
-
-				visualizer = {
-					enabled = false;
-
-					autoHide = true;
-					rounding = 1;
-					spacing = 1;
+					enabled = true;
 				};
 			};
 
@@ -86,6 +106,14 @@
 				persistent = false;
 				showOnHover = false;
         
+        sizes = {
+          innerWidth = 29;
+          windowPreviewSize = 300;
+          trayMenuWidth = 300;
+          batteryWidth = 250;
+          networkWidth = 320;
+        };
+
         entries = [
           {
             id = "logo";
@@ -165,7 +193,7 @@
 			};
 
 			dashboard = {
-				enabled = true;
+				enabled = false;
 				showOnHover = true;
 
 				mediaUpdateInterval = 500;
@@ -173,6 +201,7 @@
 			};
 
 			launcher = {
+				enabled = false;
 				actionPrefix = "/";
 				dragThreshold = 50;
 				vimKeybinds = false;

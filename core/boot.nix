@@ -3,6 +3,7 @@
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [ "video=eDP-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60" ];
     # kernelModules = [ "v4l2loopback" ];
     # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = { 

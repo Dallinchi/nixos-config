@@ -5,6 +5,7 @@
     ./git.nix
     ./gtk.nix
     ./hyprland
+    ./niri
     # ./quickshell
     ./rofi
     ./yazi

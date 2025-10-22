@@ -12,11 +12,11 @@
   };
 
   services = {
-    libinput.enable = true; # Input Handling
+    # libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
     #audit.enable = false; # SHUTUP
     upower.enable = true;
-    gvfs.enable = true; # For Mounting USB & More
+    # gvfs.enable = true; # For Mounting USB & More
     preload.enable = true; # Caching
     openssh = {
       enable = false; # Enable SSH
@@ -28,14 +28,14 @@
       ports = [ 22 ];
     };
     journald.extraConfig = "SystemMaxUser=50m"; # Max weight logs
-    blueman.enable = true; # Bluetooth Support
-    tumbler.enable = true; # Image/video preview
+    # blueman.enable = true; # Bluetooth Support
+    # tumbler.enable = true; # Image/video preview
     gnome.gnome-keyring.enable = true;
 
-    smartd = {
-      enable = true;
-      autodetect = true;
-    };
+    # smartd = {
+    #   enable = true;
+    #   autodetect = true;
+    # };
     pipewire = {
       enable = true;
       alsa.enable = true;
