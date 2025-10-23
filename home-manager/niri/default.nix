@@ -19,310 +19,342 @@ in
   systemd.user.targets.niri-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
-  
+
   programs.niri = {
-    enable = false;
-    
-    config = ''
-      // This config is in the KDL format: https://kdl.dev
-      // "/-" comments out the following node.
-      //
-      // For configuration documentation see https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
-      //
-      // For examples see https://github.com/YaLTeR/niri/blob/main/resources/default-config.kdl
+    enable = true;
+    settings = {
+      prefer-no-csd = true;
+      hotkey-overlay.skip-at-startup = true;
+      screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
+      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-      input {
-          keyboard {
-              xkb {
-                  layout "ru, us"
-                  // variant "dvorak"
-                  options "grp:alt_shift_toggle"
-              }
-          }
+      environment = {
+        ELM_DISPLAY = "wl";
+        GDK_BACKEND = "wayland,x11";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        SDL_VIDEODRIVER = "wayland,x11";
+        CLUTTER_BACKEND = "wayland";
+        NIXOS_OZONE_WL = "1";
+        XDG_CURRENT_DESKTOP = "Niri";
+        XDG_SESSION_TYPE = "wayland";
+        XDG_SESSION_DESKTOP = "Niri";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+        MOZ_ENABLE_WAYLAND = "1";
+        # This is to make electron apps start in wayland
+        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+        # Disabling this by default as it can result in inop cfg
+        # Added card2 in case this gets enabled. For better coverage
+        # This is mostly needed by Hybrid laptops.
+        # but if you have multiple discrete GPUs this will set order
+        #"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1:/dev/card2"
+        GDK_SCALE = "1";
+        QT_SCALE_FACTOR = "1";
+        EDITOR = "nvim";
+        # Set terminal and xdg_terminal_emulator to kitty
+        # To provent yazi from starting xterm when run from rofi menu
+        # You can set to your preferred terminal if you you like
+        # ToDo: Pull default terminal from config
+        TERMINAL = "alacritty";
+        XDG_TERMINAL_EMULATOR = "alacritty";
 
-          touchpad {
-              tap
-              natural-scroll
-          }
+      };
 
-          mouse { }
+      # spawn-at-startup =
+      #   let
+      #     sh = [
+      #       "sh"
+      #       "-c"
+      #     ];
+      #   in
+      #   [
+      #     { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
+      #     { command = sh ++ [ "cliphist wipe" ]; }
+      #     { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
+      #     { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
+      #     { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
+      #     { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+      #     { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
+      #     { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+      #     { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
+      #     { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
+      #     { command = sh ++ [ "id=0" ]; }
+      #     { command = [ "swayosd-server" ]; }
+      #     { command = [ "nm-applet" ]; }
+      #   ];
+      outputs."HDMI-A-1" = {
+        mode = {
+          height = 900;
+          width = 1440;
+          refresh = 59.901;
+        };
+        transform = {
+          rotation = 90;
+        };
+        position = {
+         x = -1920;
+         y = -360;
+        };
+      };
+      input = {
+        power-key-handling.enable = false;
+        warp-mouse-to-focus.enable = true;
 
-          tablet {
-              map-to-output "eDP-1"
-          }
+        mouse = {
+          accel-speed = 0;
+        };
 
-          touch {
-              map-to-output "eDP-1"
-          }
-      }
+        touchpad = {
+          accel-speed = 0;
+          scroll-factor = 0.4;
+        };
 
-      // External screen
-      output "DP-1" {
-          scale 1
-          variable-refresh-rate
-          background-color "#363a4f" // Catppuccin surface0
-      }
+        keyboard = {
+          xkb.layout = keyboardLayout;
+          xkb.options = "grp:alt_shift_toggle";
+          track-layout = "window";
+          repeat-delay = 250;
+      	  repeat-rate = 65; 
+        };
 
-      // Laptop screen
-      output "eDP-1" {
-          scale 1.0
-          background-color "#363a4f" // Catppuccin surface0
-          // transform "180"
-      }
+        focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "95%";
+        };
+      };
 
-      layout {
-          focus-ring {
-              width 4
-              active-color "#b7bdf8" // Lavender from Catppuccin Macchiato theme
-              inactive-color "#6e738d" // Overlay0 from Catppuccin Macchiato theme
-              urgent-color "#f5a97f" // Catppuccin peach
-          }
+      cursor = {
+        hide-after-inactive-ms = 1500;
+        hide-when-typing = true;
+      };
 
-          shadow {
-              softness 10
-              offset x=0 y=0
-          }
+      binds =
+        with config.lib.niri.actions;
+        let
+          sh = spawn "sh" "-c";
+        in
+        {
+          "Super+Tab".action = toggle-overview;
+          "Super+L".action = focus-column-or-monitor-right;
+          "Super+H".action = focus-column-or-monitor-left;
+          "Super+K".action = focus-window-or-workspace-up;
+          "Super+J".action = focus-window-or-workspace-down;
+          "Super+F".action = fullscreen-window;
+          "Super+A".action = maximize-column;
+          "Super+S".action = expand-column-to-available-width;
+          "Super+D".action = sh "pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor eDP-1"; # launcher
+          "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu -monitor eDP-1 | cliphist decode | wl-copy"; # clipboard history
+           # "Super+L".action = sh "loginctl lock-session"; # lock screen
+          "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
+          "Super+Y".action = sh "swaync-client -t"; # notification hub
+          "Super+Return".action = spawn "alacritty"; # terminal
+          "Super+C".action = spawn "qalculate-gtk"; # calculator
+          "Super+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
+          
+          "Super+Shift+Space".action = toggle-window-floating;
+          "Super+Shift+L".action = consume-or-expel-window-right;
+          "Super+Shift+H".action = consume-or-expel-window-left;
+          "Super+Shift+K".action = move-window-up-or-to-workspace-up;
+          "Super+Shift+J".action = move-window-down-or-to-workspace-down;
+          "Super+Shift+grave".action = move-window-to-monitor-next;
+          "Super+Shift+R".action = switch-preset-column-width;
+          "Super+Shift+A".action = switch-preset-window-height;
+          "Super+Shift+Tab".action = toggle-column-tabbed-display;
+          "Super+Shift+Q".action = close-window;
+          
+          "Super+grave".action = focus-monitor-next;
+          "Super+1".action = focus-workspace 1;
+          "Super+2".action = focus-workspace 2;
+          "Super+3".action = focus-workspace 3;
+          "Super+4".action = focus-workspace 4;
+          "Super+5".action = focus-workspace 5;
+          "Super+6".action = focus-workspace 6;
+          "Super+7".action = focus-workspace 7;
+          "Super+8".action = focus-workspace 8;
+          
+          # "Print".action = screenshot;
+          "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
+          "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+          "XF86AudioPlay".action = sh "playerctl play-pause";
+          "XF86AudioPrev".action = sh "playerctl previous";
+          "XF86AudioNext".action = sh "playerctl next";
+          "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
+          "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
+          "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
+          "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+        };
 
-          insert-hint {
-              color "#f5a97f80" // Peach from Catppuccin with reduced opacity
-          }
+      gestures.hot-corners.enable = false;
+     
+      layout = {
+        gaps = 8;
+        default-column-width.proportion = 0.5;
+        always-center-single-column = true;
+        insert-hint.display = {
+          color = "rgba(224, 224, 224, 30%)";
+        };
 
-          preset-column-widths {
-              proportion 0.25
-              proportion 0.33333
-              proportion 0.5
-              proportion 0.66667
-              proportion 0.75
-          }
+        preset-column-widths = [
+          { proportion = 1.0 / 3.0; }
+          { proportion = 0.5; }
+          { proportion = 2.0 / 3.0; }
+        ];
 
-          // default-column-width { proportion 0.5; }
-          // If you leave the brackets empty, the windows themselves will decide their initial width.
-          default-column-width {}
+        preset-window-heights = [
+          { proportion = 1.0 / 3.0; }
+          { proportion = 0.5; }
+          { proportion = 2.0 / 3.0; }
+          { proportion = 1.0; }
+        ];
 
-          gaps 8
-          center-focused-column "never"
+        border.enable = false;
 
-          default-column-display "normal"
+        focus-ring = {
+          enable = true;
+          width = 2;
+          active = {
+            color = "#e0e0e0ff";
+          };
+          inactive = {
+            color = "#00000000";
+          };
+        };
 
-          tab-indicator {
-              width 6
-              corner-radius 3
-              gaps-between-tabs 6
-              active-color "#f4dbd6" // rosewater
-              urgent-color "#f5a97f" // Catppuccin peach
-              gap 8
-              place-within-column
-              hide-when-single-tab
-          }
-      }
+        tab-indicator = {
+          enable = true;
+          place-within-column = true;
+          width = 8;
+          corner-radius = 8;
+          gap = 8;
+          gaps-between-tabs = 8;
+          position = "top";
+          active = {
+            color = "rgba(224, 224, 224, 100%)";
+          };
+          inactive = {
+            color = "rgba(224, 224, 224, 30%)";
+          };
+          length.total-proportion = 1.0;
+        };
+      };
 
-      overview {
-          backdrop-color "#1e2030" // Catppuccin mantle
-      }
+      overview.backdrop-color = "#0f0f0f";
+      
+      workspaces = {
+        # "2-docs" = {
+        #   name = "docs";
+        #   open-on-output = "HDMI-A-1";
+        # };
+        "4-chat" = {
+          name = "chat";
+          open-on-output = "HDMI-A-1";
+        };
 
-      cursor {
-          hide-when-typing
+        "1-media" = {
+          name = "media";
+          open-on-output = "eDP-1";
+        };
+        "3-code" = {
+          name = "code";
+          open-on-output = "eDP-1";
+        };
+        "5-game" = {
+          name = "game";
+          open-on-output = "eDP-1";
+        };
+      };
+      
+      window-rules = [
+        {
+          # Decoration
+          geometry-corner-radius =
+            let
+              radius = 8.0;
+            in
+            {
+              bottom-left = radius;
+              bottom-right = radius;
+              top-left = radius;
+              top-right = radius;
+            };
+          clip-to-geometry = true;
+          draw-border-with-background = false;
+        }
+        {
+          # Open in media workspace
+          matches = [
+            { app-id = "zen-twilight"; }
+            { app-id = "yandex-music"; }
+          ];
+          open-on-workspace = "media";
+        }
+        {
+          # Open in code workspace
+          matches = [
+            { app-id = "Alacritty"; }
+          ];
+          open-on-workspace = "code";
+        }
+        {
+          # Open in game workspace
+          matches = [
+            { app-id = "steam"; }
+          ];
+          open-on-workspace = "game";
+        }
+        # {
+          # Open in docs workspace
+          # matches = [
+            # { app-id = "zen-twilight"; title = "(?i)github"; }
+          # ];
+          # open-on-workspace = "docs";
+        # }
+        {
+          # Open in chat workspace
+          matches = [
+            { app-id = "com.chatterino."; }
+            { app-id = "org.telegram.desktop"; }
+          ];
+          open-on-workspace = "chat";
+        }
+        {
+          # Floating
+          matches = [
+            { app-id = ".blueman-manager-wrapped"; }
+            { app-id = "nm-connection-editor"; }
+            { app-id = "com.saivert.pwvucontrol"; }
+            { app-id = "org.pipewire.Helvum"; }
+            { app-id = "com.github.wwmm.easyeffects"; }
+            { app-id = "wdisplays"; }
+            { app-id = "qalculate-gtk"; }
+            { title = "Syncthing Tray"; }
+          ];
+          open-floating = true;
+        }
+        {
+          matches = [
+            { is-window-cast-target = true; }
+          ];
 
-          // After upgrading to NixOS 25.05 and Niri v25.05 I stopped seeing the
-          // cursor change shape until I set a theme here explicitly. I was seeing the
-          // arrow all the time - the cursor wouldn't change to, e.g., a beam or hand.
-          xcursor-size 34
-          xcursor-theme "Adwaita"
-      }
+          focus-ring = {
+            active = {
+              color = "rgba(224, 53, 53, 100%)";
+            };
+            inactive = {
+              color = "rgba(224, 53, 53, 30%)";
+            };
+          };
 
-      // The path is formatted with strftime(3) to give you the screenshot date and time.
-      screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-      hotkey-overlay {
-          // Uncomment this line if you don't want to see the hotkey help at niri startup.
-          skip-at-startup
-      }
-
-      window-rule {
-          geometry-corner-radius 2
-      }
-
-      window-rule {
-          match is-window-cast-target=true
-          focus-ring {
-              active-color "#dd7878" // Maroon from Catppuccin Macchiato theme
-          }
-          shadow {
-              on
-              color "#dd7878" // Maroon from Catppuccin Macchiato theme
-          }
-      }
-
-      window-rule {
-          match is-urgent=true
-          shadow {
-              on
-              color "#f5a97f" // Catppuccin peach
-          }
-      }
-
-      window-rule {
-          match app-id="firefox"
-          default-column-width { proportion 0.5; }
-      }
-
-      window-rule {
-          match app-id="kitty"
-          default-column-width { proportion 0.25; }
-      }
-
-      window-rule {
-          match app-id="neovide"
-          default-column-width { proportion 0.75; }
-      }
-
-      window-rule {
-          match app-id="1Password"
-          default-column-width { proportion 0.33; }
-          block-out-from "screen-capture"
-      }
-
-      window-rule {
-          match app-id="gamescope"
-          open-fullscreen true
-      }
-
-      layer-rule {
-          match namespace="notification"
-          match namespace="swaync-control-center"
-          block-out-from "screencast"
-      }
-
-      binds {
-          Mod+Shift+Slash { show-hotkey-overlay; }
-
-          Mod+Return hotkey-overlay-title="Spawn Terminal" { spawn "kitty"; }
-          Mod+V hotkey-overlay-title="Launch apps or switch to open windows" { spawn "rofi" "-show" "combi" "-combi-modes" "window,drun"; }
-          Mod+Ctrl+L hotkey-overlay-title="Lock Session" { spawn "loginctl" "lock-session"; }
-          Mod+Slash hotkey-overlay-title="Show Notification Center" { spawn "swaync-client" "-t"; }
-          Mod+O repeat=false { toggle-overview; }
-
-          XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
-          XF86AudioNext         { spawn "playerctl" "next"; }
-          XF86AudioPrev         { spawn "playerctl" "previous"; }
-          XF86AudioRaiseVolume  { spawn "swayosd-client" "--output-volume" "1"; }
-          XF86AudioLowerVolume  { spawn "swayosd-client" "--output-volume" "-1"; }
-          XF86AudioMute         { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-          XF86MonBrightnessUp   { spawn "swayosd-client" "--brightness" "+5"; }
-          XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "-5"; }
-
-          Mod+Delete { close-window; }
-
-          Mod+Left  { focus-column-left; }
-          Mod+Down  { focus-window-down; }
-          Mod+Up    { focus-window-up; }
-          Mod+Right { focus-column-right; }
-
-          Mod+Shift+Left  { move-column-left; }
-          Mod+Shift+Down  { move-window-down; }
-          Mod+Shift+Up    { move-window-up; }
-          Mod+Shift+Right { move-column-right; }
-
-          Mod+T { switch-focus-between-floating-and-tiling; }
-          Mod+Shift+T { toggle-window-floating; }
-
-          Mod+Home { focus-column-first; }
-          Mod+End  { focus-column-last; }
-          Mod+Shift+Home { move-column-to-first; }
-          Mod+Shift+End  { move-column-to-last; }
-
-          Mod+Page_Down      { focus-workspace-down; }
-          Mod+Page_Up        { focus-workspace-up; }
-          Mod+Shift+Page_Down { move-column-to-workspace-down; }
-          Mod+Shift+Page_Up   { move-column-to-workspace-up; }
-
-          Mod+Shift+Ctrl+Page_Down { move-workspace-down; }
-          Mod+Shift+Ctrl+Page_Up   { move-workspace-up; }
-
-          Mod+Ctrl+1 { focus-workspace 1; }
-          Mod+Ctrl+2 { focus-workspace 2; }
-          Mod+Ctrl+3 { focus-workspace 3; }
-          Mod+Ctrl+4 { focus-workspace 4; }
-          Mod+Ctrl+5 { focus-workspace 5; }
-          Mod+Ctrl+6 { focus-workspace 6; }
-          Mod+Ctrl+7 { focus-workspace 7; }
-          Mod+Ctrl+8 { focus-workspace 8; }
-          Mod+Ctrl+9 { focus-workspace 9; }
-          Mod+Shift+1 { move-column-to-workspace 1; }
-          Mod+Shift+2 { move-column-to-workspace 2; }
-          Mod+Shift+3 { move-column-to-workspace 3; }
-          Mod+Shift+4 { move-column-to-workspace 4; }
-          Mod+Shift+5 { move-column-to-workspace 5; }
-          Mod+Shift+6 { move-column-to-workspace 6; }
-          Mod+Shift+7 { move-column-to-workspace 7; }
-          Mod+Shift+8 { move-column-to-workspace 8; }
-          Mod+Shift+9 { move-column-to-workspace 9; }
-
-          // The following binds move the focused window in and out of a column.
-          // If the window is alone, they will consume it into the nearby column to the side.
-          // If the window is already in a column, they will expel it out.
-          Mod+BracketLeft  { consume-or-expel-window-left; }
-          Mod+BracketRight { consume-or-expel-window-right; }
-
-          Mod+W { toggle-column-tabbed-display; }
-
-          Mod+R { switch-preset-column-width; }
-          Mod+F { maximize-column; }
-          Mod+Shift+F { fullscreen-window; }
-          Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
-          Mod+M { center-column; }
-
-          Mod+4 { set-column-width "25%"; }
-          Mod+3 { set-column-width "33.333%"; }
-          Mod+2 { set-column-width "50%"; }
-          Mod+6 { set-column-width "66.666%"; }
-          Mod+7 { set-column-width "75%"; }
-
-          Mod+Minus { set-column-width "-10%"; }
-          Mod+Equal { set-column-width "+10%"; }
-
-          Mod+Shift+Minus { set-window-height "-10%"; }
-          Mod+Shift+Equal { set-window-height "+10%"; }
-
-          Print { screenshot; }
-          Ctrl+Print { screenshot-screen; }
-          Alt+Print { screenshot-window; }
-
-          Mod+C { set-dynamic-cast-window; }
-          Mod+Shift+C { clear-dynamic-cast-target; }
-
-          Mod+Shift+E { quit; }
-          Mod+Shift+P { power-off-monitors; }
-
-          Mod+Shift+Ctrl+T { toggle-debug-tint; }
-      }
-
-      // Settings for debugging. Not meant for normal use.
-      // These can change or stop working at any point with little notice.
-      debug {
-          // Make niri take over its DBus services even if it's not running as a session.
-          // Useful for testing screen recording changes without having to relogin.
-          // The main niri instance will *not* currently take back the services; so you will
-          // need to relogin in the end.
-          // dbus-interfaces-in-non-session-instances
-
-          // Wait until every frame is done rendering before handing it over to DRM.
-          // wait-for-frame-completion-before-queueing
-
-          // Enable direct scanout into overlay planes.
-          // May cause frame drops during some animations on some hardware.
-          // enable-overlay-planes
-
-          // Disable the use of the cursor plane.
-          // The cursor will be rendered together with the rest of the frame.
-          // disable-cursor-plane
-
-          // Slow down animations by this factor.
-          // animation-slowdown 3.0
-
-          // Override the DRM device that niri will use for all rendering.
-          // render-drm-device "/dev/dri/renderD129"
-      }
-    '';
+          tab-indicator = {
+            active = {
+              color = "rgba(224, 53, 53, 100%)";
+            };
+            inactive = {
+              color = "rgba(224, 53, 53, 30%)";
+            };
+          };
+        }
+      ];
+    };
   };
 }
