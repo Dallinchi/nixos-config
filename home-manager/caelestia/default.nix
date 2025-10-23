@@ -234,6 +234,10 @@
 				hideDelay = 500;
         enableBrightness = false;
         enableMicrophone = false;
+        sizes = {
+          sliderHeight = 300;
+          sliderWidth = 25;
+        };
 			};
 
 			paths = {
