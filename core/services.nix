@@ -16,7 +16,8 @@
     fstrim.enable = true; # SSD Optimizer
     #audit.enable = false; # SHUTUP
     upower.enable = true;
-    # gvfs.enable = true; # For Mounting USB & More
+    gvfs.enable = true; # For Mounting USB & More
+    udisks2.enable = true;
     preload.enable = true; # Caching
     openssh = {
       enable = false; # Enable SSH
@@ -32,10 +33,10 @@
     # tumbler.enable = true; # Image/video preview
     gnome.gnome-keyring.enable = true;
 
-    # smartd = {
-    #   enable = true;
-    #   autodetect = true;
-    # };
+    smartd = {
+      enable = true;
+      autodetect = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
