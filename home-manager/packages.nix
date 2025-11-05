@@ -26,7 +26,9 @@
     taskwarrior3 # cli task manager
     yandex-music
     nautilus
-
+    wineWowPackages.stable # support both 32-bit and 64-bit applications
+    winetricks # winetricks (all versions)
+    
     # Fonts
     nerd-fonts.symbols-only
     nerd-fonts.agave

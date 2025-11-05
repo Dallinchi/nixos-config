@@ -26,7 +26,8 @@
     python3
     screen
     openconnect # Vpn client
-    
+    jq
+
     # Graphical support
     mesa
     libGL
