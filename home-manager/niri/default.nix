@@ -19,6 +19,10 @@ in
   systemd.user.targets.niri-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
+  
+  home.packages = with pkgs; [
+    # swayosd
+  ];
 
   programs.niri = {
     enable = true;
@@ -35,9 +39,9 @@ in
         SDL_VIDEODRIVER = "wayland,x11";
         CLUTTER_BACKEND = "wayland";
         NIXOS_OZONE_WL = "1";
-        XDG_CURRENT_DESKTOP = "Niri";
+        XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
-        XDG_SESSION_DESKTOP = "Niri";
+        XDG_SESSION_DESKTOP = "niri";
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         MOZ_ENABLE_WAYLAND = "1";
@@ -134,9 +138,10 @@ in
           sh = spawn "sh" "-c";
         in
         {
+          "Super+Tab".repeat = false;
           "Super+Tab".action = toggle-overview;
-          "Super+L".action = focus-column-or-monitor-right;
-          "Super+H".action = focus-column-or-monitor-left;
+          "Super+L".action = focus-column-right;
+          "Super+H".action = focus-column-left;
           "Super+K".action = focus-window-or-workspace-up;
           "Super+J".action = focus-window-or-workspace-down;
           "Super+F".action = fullscreen-window;
@@ -161,6 +166,8 @@ in
           "Super+Shift+A".action = switch-preset-window-height;
           "Super+Shift+Tab".action = toggle-column-tabbed-display;
           "Super+Shift+Q".action = close-window;
+          "Super+Shift+V".action = sh "niri msg output \"HDMI-A-1\" transform 90";
+          "Super+Shift+N".action = sh "niri msg output \"HDMI-A-1\" transform normal";
           
           "Super+grave".action = focus-monitor-next;
           "Super+1".action = focus-workspace 1;
@@ -172,27 +179,40 @@ in
           "Super+7".action = focus-workspace 7;
           "Super+8".action = focus-workspace 8;
           
-          # "Print".action = screenshot;
+          "Print".action.screenshot = [];
           "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
-          "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+          "XF86AudioMute".action = sh "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMicMute".action = sh "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           "XF86AudioPlay".action = sh "playerctl play-pause";
           "XF86AudioPrev".action = sh "playerctl previous";
           "XF86AudioNext".action = sh "playerctl next";
-          "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
-          "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
-          "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
-          "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+          "XF86AudioRaiseVolume".action = sh "pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume".action = sh "pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86MonBrightnessUp".action = sh "brightnessctl set 25%+";
+          "XF86MonBrightnessDown".action = sh "brightnessctl set 25%-";
+
+          "Super+Ctrl+C".action = sh "alacritty -e nvim";
+          "Super+Ctrl+B".action = spawn "zen-twilight";
+          "Super+Ctrl+O".action = spawn "obsidian";
+          "Super+Ctrl+E".action = sh "alacritty -e yazi";
+          "Super+Ctrl+M".action = spawn "yandex-music";
+          "Super+Ctrl+T".action = spawn "telegram-desktop";
+          
+          "Super+Alt+N".action = sh "playerctl next";
+          "Super+Alt+P".action = sh "playerctl previous";
+          "Super+Alt+K".action = sh "playerctl play-pause";
         };
 
       gestures.hot-corners.enable = false;
      
       layout = {
-        gaps = 8;
+        gaps = 12;
         default-column-width.proportion = 0.5;
         always-center-single-column = true;
         insert-hint.display = {
           color = "rgba(224, 224, 224, 30%)";
         };
+        background-color = "#242936";
 
         preset-column-widths = [
           { proportion = 1.0 / 3.0; }
@@ -213,7 +233,7 @@ in
           enable = true;
           width = 2;
           active = {
-            color = "#e0e0e0ff";
+            color = "#6c738066";
           };
           inactive = {
             color = "#00000000";
@@ -238,7 +258,9 @@ in
         };
       };
 
-      overview.backdrop-color = "#0f0f0f";
+      overview.backdrop-color = "#11151c";
+      # overview.zoom = 0.4;
+      overview.workspace-shadow.enable = false;
       
       workspaces = {
         # "2-docs" = {
@@ -263,13 +285,31 @@ in
           open-on-output = "eDP-1";
         };
       };
-      
+
+      layer-rules = [
+        {
+          geometry-corner-radius = {
+            bottom-left = 10.0;
+            bottom-right = 10.0;
+            top-left = 10.0;
+            top-right = 10.0;
+          };
+        }
+        {
+          matches = [
+            { namespace="waybar"; }
+            { namespace="way-edges-widget"; }
+          ];
+          place-within-backdrop = true;
+        }
+      ];
+
       window-rules = [
         {
           # Decoration
           geometry-corner-radius =
             let
-              radius = 8.0;
+              radius = 10.0;
             in
             {
               bottom-left = radius;
@@ -330,6 +370,24 @@ in
             { title = "Syncthing Tray"; }
           ];
           open-floating = true;
+        }
+        {
+          # Fullscreen
+          matches = [
+            { app-id = "yandex-music"; }
+            { app-id = "steam"; }
+          ];
+          open-fullscreen = true;
+        }
+        {
+          # Maximized
+          matches = [
+            { app-id = "yandex-music"; }
+            { app-id = "steam"; }
+            { app-id = "zen-twilight"; }
+            { app-id = "org.telegram.desktop"; }
+          ];
+          open-maximized = true;
         }
         {
           matches = [
