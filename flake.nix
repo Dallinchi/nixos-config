@@ -40,6 +40,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Widgets
+    way-edges = {
+      url = "github:way-edges/way-edges";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";

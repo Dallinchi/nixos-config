@@ -7,10 +7,12 @@
     ./hyprland
     ./niri
     # ./quickshell
+    ./way-edges
     ./rofi
     ./yazi
     ./zen
     ./caelestia
+    ./fish
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix

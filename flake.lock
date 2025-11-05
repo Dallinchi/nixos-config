@@ -915,7 +915,29 @@
         "quickshell": "quickshell_2",
         "split-monitor-workspaces": "split-monitor-workspaces",
         "stylix": "stylix",
+        "way-edges": "way-edges",
         "zen-browser": "zen-browser"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "way-edges",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761878277,
+        "narHash": "sha256-6fCtyVdTzoQejwoextAu7dCLoy5fyD3WVh+Qm7t2Nhg=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "6604534e44090c917db714faa58d47861657690c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "split-monitor-workspaces": {
@@ -1117,6 +1139,27 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "way-edges": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1761923945,
+        "narHash": "sha256-AVV4vzZto6ftds6W6KNmz44ENaPs4HY6lWLT1Maq7lU=",
+        "owner": "way-edges",
+        "repo": "way-edges",
+        "rev": "dcdc1ae1fd1d5c6fc4bc26078211a703be51cd99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "way-edges",
+        "repo": "way-edges",
         "type": "github"
       }
     },
