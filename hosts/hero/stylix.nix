@@ -33,7 +33,8 @@
       base0E = "#D2A6FF";
       base0F = "#E6B673";
     };
-   cursor = {
+    
+    cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
       size = 23;
