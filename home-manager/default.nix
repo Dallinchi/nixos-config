@@ -8,6 +8,7 @@
     ./niri
     # ./quickshell
     ./way-edges
+    ./waybar
     ./rofi
     ./yazi
     ./zen
