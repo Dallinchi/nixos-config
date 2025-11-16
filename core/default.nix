@@ -10,6 +10,7 @@
     ./network.nix
     ./packages.nix
     ./services.nix
+    ./secrets.nix
     ./system.nix
     ./user.nix
     ./scripts

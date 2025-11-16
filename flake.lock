@@ -140,6 +140,30 @@
         "type": "github"
       }
     },
+    "caelestia-cli_2": {
+      "inputs": {
+        "caelestia-shell": [
+          "niri-caelestia-shell"
+        ],
+        "nixpkgs": [
+          "niri-caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762480719,
+        "narHash": "sha256-TjTMNmndJJIxP/N6owC/CoAPiRuM99fNaQbZqHDtwLw=",
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "rev": "9323fbf1b497204e17dff103cf412daf04a5c723",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
     "caelestia-shell": {
       "inputs": {
         "caelestia-cli": "caelestia-cli",
@@ -644,6 +668,28 @@
         "type": "github"
       }
     },
+    "niri-caelestia-shell": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli_2",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "quickshell": "quickshell_2"
+      },
+      "locked": {
+        "lastModified": 1762652355,
+        "narHash": "sha256-IdUWwuS/MQnNtwNMuDpsyMBzkgtnxjKUDHHivmAkacM=",
+        "owner": "jutraim",
+        "repo": "niri-caelestia-shell",
+        "rev": "d71983c2f8c0a0d60000c97bceb9fb4ea0ffb9e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jutraim",
+        "repo": "niri-caelestia-shell",
+        "type": "github"
+      }
+    },
     "niri-stable": {
       "flake": false,
       "locked": {
@@ -884,6 +930,27 @@
     "quickshell_2": {
       "inputs": {
         "nixpkgs": [
+          "niri-caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761897390,
+        "narHash": "sha256-er4gYrIoThYLjlsOMTysoRfn67d1Gci+ZpqDrtQxrA0=",
+        "ref": "refs/heads/master",
+        "rev": "fc704e6b5d445899a1565955268c91942a4f263f",
+        "revCount": 700,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
+    "quickshell_3": {
+      "inputs": {
+        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -909,10 +976,12 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "niri": "niri",
+        "niri-caelestia-shell": "niri-caelestia-shell",
         "nix4nvchad": "nix4nvchad",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "quickshell": "quickshell_2",
+        "quickshell": "quickshell_3",
+        "sops-nix": "sops-nix",
         "split-monitor-workspaces": "split-monitor-workspaces",
         "stylix": "stylix",
         "way-edges": "way-edges",
@@ -937,6 +1006,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763264763,
+        "narHash": "sha256-N0BEoJIlJ+M6sWZJ8nnfAjGY9VLvM6MXMitRenmhBkY=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "882e56c8293e44d57d882b800a82f8b2ee7a858f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },
