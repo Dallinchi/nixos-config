@@ -14,10 +14,9 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gotham.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     
-    # gotham + auy-dark
     base16Scheme = {
-      base00 = "#0c1014";
-      base01 = "#131721";
+      base00 = "#1a2026";
+      base01 = "#3e4b59";
       base02 = "#272D38";
       base03 = "#3E4B59";
       base04 = "#BFBDB6";
