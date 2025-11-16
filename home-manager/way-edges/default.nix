@@ -20,6 +20,7 @@
           type = "wrap-box";
           edge = "top";
           gap = 30;
+          position = "top";
           items = [
             {
               "fg-color" = "#FFFFFF";
@@ -48,10 +49,56 @@
           };
           monitor = "eDP-1";
           namespace = "time";
-          position = "right";
           "preview-size" = "100%";
         }
 
+        {
+          # other basic configs omitted in original JSON — reproduced only provided fields
+          type = "wrap-box";
+          edge = "top";
+          position = "right";
+          gap = 30;
+          "preview-size" = "100%";
+          items = [
+            {
+              # index = [-1 -1];
+              type = "tray";
+              "font-family" = "monospace";
+              "grid-align" = "bottom-center";
+              "icon-theme" = "breeze";
+              "icon-size" = 20;
+              "tray-gap" = 5;
+              "header-draw-config" = {
+                "text-color" = "#00000000";
+                "font-pixel-height" = 15;
+              };
+              "header-menu-align" = "right";
+              "header-menu-stack" = "menu-top";
+              "menu-draw-config" = {
+                "border-color" = "#00000000";
+                "text-color" = "#00000000";
+                "marker-color" = "#00000000";
+                "font-pixel-height" = 22;
+                "icon-size" = 20;
+                "marker-size" = 20;
+                "separator-height" = 5;
+                margin = [ 12 12 ];
+              };
+            }
+          ];
+          outlook = {
+            type = "window";
+            "border-width" = 2;
+            "border-radius" = 5;
+            color = "#222222";
+            margins = {
+              bottom = 2;
+              left = 10;
+              right = 10;
+              top = 4;
+            };
+          };
+        }
         {
           "bg-color" = "#0000";
           "bg-text-color" = "#fffa";
@@ -72,39 +119,6 @@
           "redraw-only-on-internal-update" = true;
           thickness = 25;
           type = "slider";
-        }
-
-        {
-          # other basic configs omitted in original JSON — reproduced only provided fields
-          type = "wrap-box";
-          "preview-size" = "100%";
-          items = [
-            {
-              # index = [-1 -1];
-              type = "tray";
-              "font-family" = "monospace";
-              "grid-align" = "bottom-center";
-              "icon-theme" = "breeze";
-              "icon-size" = 20;
-              "tray-gap" = 2;
-              "header-draw-config" = {
-                "text-color" = "#00000000";
-                "font-pixel-height" = 20;
-              };
-              "header-menu-align" = "right";
-              "header-menu-stack" = "menu-top";
-              "menu-draw-config" = {
-                "border-color" = "#00000000";
-                "text-color" = "#00000000";
-                "marker-color" = "#00000000";
-                "font-pixel-height" = 22;
-                "icon-size" = 20;
-                "marker-size" = 20;
-                "separator-height" = 5;
-                margin = [ 12 12 ];
-              };
-            }
-          ];
         }
       ];
     };

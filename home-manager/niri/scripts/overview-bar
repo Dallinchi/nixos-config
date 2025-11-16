@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+niri msg --json event-stream | while read -r event; do
+event_type=$(echo "$event" | jq -r 'keys[0]')
+if [[ "$event_type" == "OverviewOpenedOrClosed" ]]; then
+    is_open=$(echo "$event" | jq -r '.OverviewOpenedOrClosed.is_open')   
+    case "$is_open" in
+        "true")
+            pkill -SIGUSR1 waybar
+            # waybar &
+            # way-edges &
+            ;;
+        "false")
+            # pkill way-edges
+            pkill rofi
+            # pkill waybar
+            pkill -SIGUSR2 waybar
+            ;;
+    esac
+fi
+done

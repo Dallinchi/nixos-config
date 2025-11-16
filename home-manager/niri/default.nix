@@ -24,6 +24,14 @@ in
     # swayosd
   ];
 
+  # Shell scripts
+  xdg.configFile = {
+    "niri/scripts" = {
+      source = ./scripts;
+      recursive = true;
+    };
+  };
+
   programs.niri = {
     enable = true;
     settings = {
@@ -64,40 +72,45 @@ in
 
       };
 
-      # spawn-at-startup =
-      #   let
-      #     sh = [
-      #       "sh"
-      #       "-c"
-      #     ];
-      #   in
-      #   [
-      #     { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
-      #     { command = sh ++ [ "cliphist wipe" ]; }
-      #     { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
-      #     { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
-      #     { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
-      #     { command = sh ++ [ "systemctl --user start waybar.service" ]; }
-      #     { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
-      #     { command = sh ++ [ "systemctl --user start swaync.service" ]; }
-      #     { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-      #     { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
-      #     { command = sh ++ [ "id=0" ]; }
-      #     { command = [ "swayosd-server" ]; }
-      #     { command = [ "nm-applet" ]; }
-      #   ];
+      spawn-at-startup =
+        let
+          sh = [
+            "sh"
+            "-c"
+          ];
+        in
+        [
+
+          { command = sh ++ [ "wl-paste --type text --watch cliphist store" ]; }
+          { command = sh ++ [ "wl-paste --type image --watch cliphist store" ]; }
+          { command = sh ++ [ "~/.config/niri/scripts/overview-bar" ]; }
+          { command = sh ++ [ "waybar" ]; }
+          # { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
+          # { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
+          # { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
+          # { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+          # { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
+          # { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+          # { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
+          # { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
+          # { command = sh ++ [ "id=0" ]; }
+          # { command = [ "swayosd-server" ]; }
+          # { command = [ "nm-applet" ]; }
+        ];
+        
       outputs."HDMI-A-1" = {
         mode = {
-          height = 900;
-          width = 1440;
-          refresh = 59.901;
+          height = 1080;
+          width = 1920;
+          refresh = 120.0;
         };
         transform = {
           rotation = 90;
         };
         position = {
          x = -1920;
-         y = -360;
+         y = 0;
+         # y = -360;
         };
       };
       input = {
@@ -147,8 +160,9 @@ in
           "Super+F".action = fullscreen-window;
           "Super+A".action = maximize-column;
           "Super+S".action = expand-column-to-available-width;
-          "Super+D".action = sh "pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun -monitor eDP-1"; # launcher
-          "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu -monitor eDP-1 | cliphist decode | wl-copy"; # clipboard history
+          # "Super+D".action = sh "pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"; # launcher 
+          "Super+D".action = sh "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview"; # launcher
+          "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; # clipboard history
            # "Super+L".action = sh "loginctl lock-session"; # lock screen
           "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
           "Super+Y".action = sh "swaync-client -t"; # notification hub
@@ -233,7 +247,7 @@ in
           enable = true;
           width = 2;
           active = {
-            color = "#6c738066";
+            color = "#6c7380";
           };
           inactive = {
             color = "#00000000";
@@ -269,36 +283,45 @@ in
         # };
         "4-chat" = {
           name = "chat";
-          open-on-output = "HDMI-A-1";
+          # open-on-output = "HDMI-A-1";
+          open-on-output = "eDP-1";
         };
 
         "1-media" = {
           name = "media";
-          open-on-output = "eDP-1";
+          # open-on-output = "eDP-1";
+          open-on-output = "HDMI-A-1";
         };
         "3-code" = {
           name = "code";
-          open-on-output = "eDP-1";
+          # open-on-output = "eDP-1";
+          open-on-output = "HDMI-A-1";
         };
         "5-game" = {
           name = "game";
-          open-on-output = "eDP-1";
+          # open-on-output = "eDP-1";
+          open-on-output = "HDMI-A-1";
         };
       };
 
       layer-rules = [
         {
-          geometry-corner-radius = {
-            bottom-left = 10.0;
-            bottom-right = 10.0;
-            top-left = 10.0;
-            top-right = 10.0;
-          };
+          geometry-corner-radius =
+            let
+              radius = 10.0;
+            in
+            {
+              bottom-left = radius;
+              bottom-right = radius;
+              top-left = radius;
+              top-right = radius;
+            };
         }
         {
           matches = [
             { namespace="waybar"; }
             { namespace="way-edges-widget"; }
+            { namespace="wallpaper"; }
           ];
           place-within-backdrop = true;
         }
@@ -306,7 +329,7 @@ in
 
       window-rules = [
         {
-          # Decoration
+          # For all
           geometry-corner-radius =
             let
               radius = 10.0;
@@ -319,6 +342,7 @@ in
             };
           clip-to-geometry = true;
           draw-border-with-background = false;
+          open-focused = true;
         }
         {
           # Open in media workspace

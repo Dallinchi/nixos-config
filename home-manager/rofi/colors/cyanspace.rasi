@@ -19,7 +19,7 @@
     background:     #0c1014; 
     background-alt: #11151c;
 
-    border:         #091f2e;
+    border:         #6c7380;
 
     foreground:     #d3ebe9;
     selected:       #558cab;
