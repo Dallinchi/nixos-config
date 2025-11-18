@@ -83,7 +83,7 @@
   outputs = { self, nixpkgs, ... }@inputs:
   let
     system = "x86_64-linux";
-    host = "hero";
+    # host = "hero";
     username = "dallinchi";
 
     pkgs = import nixpkgs { 
@@ -92,22 +92,26 @@
     };
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-    mkNixosConfig = nixpkgs.lib.nixosSystem {
+    mkNixosConfig = hostname: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit inputs;
         inherit username;
-        inherit host;
+        host = hostname;
       };
       modules = [
-        ./hosts/${host}
+        ./hosts/${hostname}
         ./overlays
       ];
     };
       
   in {
     nixosConfigurations = {
-      hero = mkNixosConfig;
+      # Argument passed during assembly
+      # hero -> hosts/hero
+      # example: sudo nixos-rebuild switch --flake path/to/flake/#hero
+      hero = mkNixosConfig "hero";
+      hero-pro = mkNixosConfig "hero-pro";
     };
   };
 }
