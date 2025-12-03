@@ -6,6 +6,7 @@
     ./gtk.nix
     ./hyprland
     ./niri
+    # ./mango
     # ./quickshell
     ./way-edges
     ./waybar
@@ -14,6 +15,7 @@
     ./zen
     ./caelestia
     ./fish
+    ./swayosd
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix

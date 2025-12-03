@@ -55,8 +55,8 @@ in
     settings = {
 
       monitor = [
-        "eDP-1, 1920x1080, 900x360, 1"
-        "HDMI-A-1, 1440x900, 0x0, 1, transform, 1"
+        "DVI-D-1, 1440x900, 0x0, 1, transform, 1"
+        "HDMI-A-1, 1920x1080@200, 960x360, 1, transform, 0"
       ];        
 
       exec-once = [
