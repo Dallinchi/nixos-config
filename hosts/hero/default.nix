@@ -44,9 +44,7 @@ in
   };
   
   environment.variables = {
-#    NIXOS_OZONE_WL = "1";
-#    AETERNUMOS_VERSION = "0.2";
-#    AETERNUMOS = "true";
+    VPN_NAMESPACE_INTERFACE = "wlp2s0"; # for start-vpn-namespace script
   };
   
   console.keyMap = "${consoleKeyMap}";
@@ -245,7 +243,7 @@ in
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri"; # start Hyprland with a TUI login manager
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
         };
       };
     };
