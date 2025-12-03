@@ -27,6 +27,7 @@
     screen
     openconnect # Vpn client
     jq
+    acpi
 
     # Graphical support
     mesa
