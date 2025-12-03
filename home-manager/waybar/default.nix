@@ -6,10 +6,27 @@
 , ...
 }:
 {
+  
+  # Waybar service for Niri (only when barChoice is waybar)
+  systemd.user.services.waybar-niri = {
+    Unit = {
+      Description = "Waybar status bar (Niri session)";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      # ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+    };
+    Service = {
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
   programs.waybar = {
   enable = true;
   systemd = {
-    enable = false;
+    enable = true;
     target = "graphical-session.target";
   };
   settings = [
@@ -36,7 +53,7 @@
       modules-left = ["clock"];
       # modules-center = ["clock" "custom/notification"];
       # modules-center = ["idle_inhibitor" "clock"];
-      modules-right = ["tray" "pulseaudio" "pulseaudio#microphone" "battery"];
+      modules-right = ["mpris" "tray" "pulseaudio" "pulseaudio#microphone"];
 
       # "custom/notification" = {
       #   tooltip = false;
@@ -93,26 +110,27 @@
       #   exec = "echo ' '";
       #   format = "{}";
       # };
-      # "mpris" = {
-      #   format = "{player_icon} {title} - {artist}";
-      #   format-paused = "{status_icon} <i>{title} - {artist}</i>";
-      #   player-icons = {
-      #     default = "▶";
-      #     spotify = "";
-      #     mpv = "󰐹";
-      #     vlc = "󰕼";
-      #     firefox = "";
-      #     chromium = "";
-      #     kdeconnect = "";
-      #     mopidy = "";
-      #   };
-      #   status-icons = {
-      #     paused = "⏸";
-      #     playing = "";
-      #   };
-      #   ignored-players = ["firefox" "chromium"];
-      #   max-length = 30;
-      # };
+      "mpris" = {
+        format = "{player_icon} {title} - {artist}";
+        format-paused = "{status_icon} {title} - {artist}";
+        player-icons = {
+          default = "▶";
+          spotify = "";
+          mpv = "󰐹";
+          vlc = "󰕼";
+          firefox = "";
+          # chromium = "";
+          chromium = "";
+          kdeconnect = "";
+          mopidy = "";
+        };
+        status-icons = {
+          paused = "";
+          playing = "";
+        };
+        ignored-players = ["firefox"];
+        max-length = 35;
+      };
       # "temperature" = {
       #   hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
       #   critical-threshold = 83;
@@ -236,7 +254,7 @@
       "pulseaudio" = {
         format = "{icon}  {volume}%";
         format-muted = " ";
-        on-click = "pavucontrol -t 3";
+        on-click = "pavucontrol";
         tooltip-format = "{icon} {desc} // {volume}%";
         scroll-step = 4;
         format-icons = {
@@ -379,6 +397,7 @@
 #network,
 #workspaces,
 #tray,
+#mpris,
 #backlight {
         transition: .4s;
         background: rgba(0, 0, 0, 0.375);
@@ -389,6 +408,11 @@
         /* margin-top: 10px; */
         color: #d2fffd;
     }
+
+#mpris {
+  border-radius: 5px;
+  margin-right: 10px;
+}
 
 #tray {
         border-radius: 5px;
@@ -455,7 +479,9 @@
     }
 
 #pulseaudio.microphone {
-        border-radius:0;
+        border-radius: 0 5px 5px 0;
+        margin-right: 10px;
+        border-left: 0px;
     }
 
 #battery {
