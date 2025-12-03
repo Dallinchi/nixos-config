@@ -20,10 +20,6 @@ in
     "xdg-desktop-autostart.target"
   ];
   
-  home.packages = with pkgs; [
-    # swayosd
-  ];
-
   # Shell scripts
   xdg.configFile = {
     "niri/scripts" = {
@@ -85,6 +81,9 @@ in
           { command = sh ++ [ "wl-paste --type image --watch cliphist store" ]; }
           { command = sh ++ [ "~/.config/niri/scripts/overview-bar" ]; }
           { command = sh ++ [ "waybar" ]; }
+          { command = sh ++ [ "swaybg -i $(find ~/Pictures/Wallpapers/* | shuf -n 1) -m fill" ]; }
+          { command = [ "swayosd-server" ]; }
+          { command = [ "dunst" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
           # { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
@@ -94,23 +93,37 @@ in
           # { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
           # { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
           # { command = sh ++ [ "id=0" ]; }
-          # { command = [ "swayosd-server" ]; }
           # { command = [ "nm-applet" ]; }
         ];
         
       outputs."HDMI-A-1" = {
         mode = {
-          height = 1080;
           width = 1920;
-          refresh = 120.0;
+          height = 1080;
+          refresh = 200.0;
+        };
+        # transform = {
+          # rotation = 90;
+        # };
+        position = {
+         x = 1920;
+         y = 0;
+         # y = -360;
+        };
+      };
+      outputs."DVI-D-1" = {
+        mode = {
+          width = 1440;
+          height = 900;
+          refresh = 74.984;
         };
         transform = {
           rotation = 90;
         };
         position = {
-         x = -1920;
+         x = 0;
+         # y = 0;
          y = 0;
-         # y = -360;
         };
       };
       input = {
@@ -163,12 +176,12 @@ in
           # "Super+D".action = sh "pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"; # launcher 
           "Super+D".action = sh "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview"; # launcher
           "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; # clipboard history
+          "Super+F2".action = sh "~/.config/niri/scripts/toggle_mouselock_monitor"; # toggle monitor mouse lock
            # "Super+L".action = sh "loginctl lock-session"; # lock screen
-          "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
-          "Super+Y".action = sh "swaync-client -t"; # notification hub
           "Super+Return".action = spawn "alacritty"; # terminal
-          "Super+C".action = spawn "qalculate-gtk"; # calculator
-          "Super+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
+          "Super+N".action = sh "alacritty -T \"Nmtui\" -e nmtui";
+          "Super+B".action = sh "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
+          "Super+R".action = sh "pavucontrol";
           
           "Super+Shift+Space".action = toggle-window-floating;
           "Super+Shift+L".action = consume-or-expel-window-right;
@@ -180,8 +193,8 @@ in
           "Super+Shift+A".action = switch-preset-window-height;
           "Super+Shift+Tab".action = toggle-column-tabbed-display;
           "Super+Shift+Q".action = close-window;
-          "Super+Shift+V".action = sh "niri msg output \"HDMI-A-1\" transform 90";
-          "Super+Shift+N".action = sh "niri msg output \"HDMI-A-1\" transform normal";
+          "Super+Shift+V".action = sh "niri msg output \"DVI-D-1\" transform 90";
+          "Super+Shift+N".action = sh "niri msg output \"DVI-D-1\" transform normal";
           
           "Super+grave".action = focus-monitor-next;
           "Super+1".action = focus-workspace 1;
@@ -194,16 +207,15 @@ in
           "Super+8".action = focus-workspace 8;
           
           "Print".action.screenshot = [];
-          "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
-          "XF86AudioMute".action = sh "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioMicMute".action = sh "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          "XF86AudioPlay".action = sh "playerctl play-pause";
+          "XF86AudioMute".action = sh "swayosd-client --output-volume mute-toggle";
+          "XF86AudioMicMute".action = sh "swayosd-client --input-volume mute-toggle";
+          "XF86AudioPlay".action = sh "swayosd-client --playerctl play-pause";
           "XF86AudioPrev".action = sh "playerctl previous";
           "XF86AudioNext".action = sh "playerctl next";
-          "XF86AudioRaiseVolume".action = sh "pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume".action = sh "pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86MonBrightnessUp".action = sh "brightnessctl set 25%+";
-          "XF86MonBrightnessDown".action = sh "brightnessctl set 25%-";
+          "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume +5";
+          "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume -5";
+          "XF86MonBrightnessUp".action = sh "swayosd-client --brightness +25";
+          "XF86MonBrightnessDown".action = sh "swayosd-client --brightness -25";
 
           "Super+Ctrl+C".action = sh "alacritty -e nvim";
           "Super+Ctrl+B".action = spawn "zen-twilight";
@@ -214,7 +226,7 @@ in
           
           "Super+Alt+N".action = sh "playerctl next";
           "Super+Alt+P".action = sh "playerctl previous";
-          "Super+Alt+K".action = sh "playerctl play-pause";
+          "Super+Alt+K".action = sh "swayosd-client --playerctl play-pause";
         };
 
       gestures.hot-corners.enable = false;
@@ -223,11 +235,12 @@ in
         gaps = 12;
         default-column-width.proportion = 0.5;
         always-center-single-column = true;
+        center-focused-column = "never"; # one of "never", "always", "on-overflow"
         insert-hint.display = {
           color = "rgba(224, 224, 224, 30%)";
         };
-        background-color = "#242936";
-
+        # background-color = "#242936";
+        background-color = "transparent";
         preset-column-widths = [
           { proportion = 1.0 / 3.0; }
           { proportion = 0.5; }
@@ -343,6 +356,15 @@ in
           clip-to-geometry = true;
           draw-border-with-background = false;
           open-focused = true;
+        }
+        {
+          # Open in float
+          matches = [
+            { app-id = "Alacritty"; title = "Bluetoothctl"; }
+            { app-id = "Alacritty"; title = "Nmtui"; }
+            { app-id = "org.pulseaudio.pavucontrol"; title = "Volume Control"; }
+          ];
+          open-floating = true;
         }
         {
           # Open in media workspace
