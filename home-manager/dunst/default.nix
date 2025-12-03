@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 { 
   services.dunst = {
-    enable = false;
+    enable = true;
        # iconTheme = {
        #   name = "Papirus-Dark";
        ##   package = pkgs.papirus-icon-theme;
@@ -69,11 +69,11 @@
 
 
 
-            frame_color = "#00000022";
+            # frame_color = "#00000022";
             separator_color = "frame";
-            highlight = "#89b4fa";
+            # highlight = "#89b4fa";
             rounded = "yes";
-            origin = "top-center";
+            origin = "bottom-right";
             alignment = "left";
             vertical_alignment = "center";
             width = "(0, 300)";
@@ -81,7 +81,7 @@
             scale = 0;
             gap_size = 0;
             progress_bar = true;
-            transparency = 5;
+            transparency = 0;
             text_icon_padding = 0;
             sort = "yes";
             idle_threshold = 120;
@@ -99,7 +99,7 @@
             font = "DejaVu Sans Mono 11";
             format = "<b>%s</b>\\n%b"; #format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b"
             frame_width = 1;
-            offset = "10x3";
+            offset = "10x10";
             horizontal_padding = 10;
             icon_position = "left";
             indicate_hidden = "yes";
@@ -121,25 +121,25 @@
 
  #         fullscreen_delay_everything = {fullscreen = "delay";};
 
-          urgency_critical = lib.mkForce {
-            background = "#000000AA";
-            foreground = "#f5cb42";
-            frame_color = "#f5cb42";
+          urgency_critical = {
+            # background = "#000000AA";
+            # foreground = "#f5cb42";
+            # frame_color = "#f5cb42";
             timeout = "0";
 	    icon = "${./images/notification.png}";
           };
-          urgency_low = lib.mkForce {
-            background = "#000000AA";
-            foreground = "#dadada";
+          urgency_low = {
+            # background = "#000000AA";
+            # foreground = "#dadada";
             timeout = "3";
-	    frame_color = "#2c2c2c";
+	    # frame_color = "#2c2c2c";
 	    icon = "${./images/notification.png}";
           };
-          urgency_normal = lib.mkForce {
-            background = "#000000AA";
-            foreground = "#70e6e0";
+          urgency_normal = {
+            # background = "#000000AA";
+            # foreground = "#70e6e0";
             timeout = "8";
-	    frame_color = "#70e6e0";
+	    # frame_color = "#70e6e0";
 	    icon = "${./images/notification.png}";
           };
       };
