@@ -15,9 +15,21 @@ in
     inputs.home-manager.nixosModules.home-manager 
   ];
 
-  environment.systemPackages = with pkgs; [
-    lact
-  ];
+  fileSystems."/mnt/storage0" = {
+    device = "/dev/disk/by-uuid/87d935d9-cfb4-410c-8f76-f95d4a0031d9";
+    options = [ "nofail" ];
+  };
+
+  environment = {
+    shells = with pkgs; [
+      fish
+      bash
+    ];
+
+    systemPackages = with pkgs; [
+      lact
+    ];
+  };
 
   nix = {
     settings = {
@@ -57,7 +69,7 @@ in
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 150;
+    memoryPercent = 50;
   };
   
   xdg.portal = {
@@ -110,7 +122,7 @@ in
     "i915.fastboot=1"
     "mem_sleep_default=deep"
     "nvme.noacpi=1"
-    "video=DVI-D-1:1440x9000@60" "video=HDMI-A-1:1920x1080@200"
+    "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
       ];
     # kernelParams = [ "video=eDP-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60" ];
     # kernelModules = [ "v4l2loopback" ];
@@ -148,11 +160,13 @@ in
 
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
+        # amdvlk # Removed in 25.11
         libvdpau-va-gl
-        vaapiVdpau
+        # vaapiVdpau # Ranamed
+        libva-vdpau-driver
         intel-media-driver
-        vaapiIntel
+        # vaapiInte # Ranamed
+        intel-vaapi-driver
         libvdpau-va-gl
       ];
     }; # OpenGL
@@ -203,7 +217,11 @@ in
 
   services = {
     
-    xserver.videoDrivers = [ "amdgpu" ];
+    xserver = {
+      enable = true;
+      videoDrivers = [ "amdgpu" ];
+      xkb.options = "model:pc86";
+    };
     
     # libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
@@ -212,9 +230,9 @@ in
     upower.enable = true;
     gvfs.enable = true; # For Mounting USB & More
     udisks2.enable = true;
-    preload.enable = true; # Caching
+    # preload.enable = true; # Caching # Removed in 25.11
     openssh = {
-      enable = false; # Enable SSH
+      enable = true; # Enable SSH
       settings = {
         PermitRootLogin = "no"; # Prevent root from SSH login
         PasswordAuthentication = true; #Users can SSH using kb and password
@@ -237,12 +255,51 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-      extraConfig.pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 256;
-          "default.clock.min-quantum" = 256;
-          "default.clock.max-quantum" = 256;
+      extraConfig.pipewire = {
+        "92-low-latency" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 256;
+            "default.clock.min-quantum" = 256;
+            "default.clock.max-quantum" = 256;
+          };
+        };
+
+        "99-input-denoising" = {
+          "context.modules" = [
+            {
+              name = "libpipewire-module-filter-chain";
+              args = {
+                "node.description" = "Noise Canceling source";
+                "media.name" = "Noise Canceling source";
+                "filter.graph" = {
+                  nodes = [
+                    {
+                      type = "ladspa";
+                      name = "rnnoise";
+                      plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                      label = "noise_suppressor_mono";
+                      control = {
+                        "VAD Threshold (%)" = 50.0;
+                        "VAD Grace Period (ms)" = 200;
+                        "Retroactive VAD Grace (ms)" = 0;
+                      };
+                    }
+                  ];
+                };
+                "capture.props" = {
+                  "node.name" = "capture.rnnoise_source";
+                  "node.passive" = true;
+                  "audio.rate" = 48000;
+                };
+                "playback.props" = {
+                  "node.name" = "rnnoise_source";
+                  "media.class" = "Audio/Source";
+                  "audio.rate" = 48000;
+                };
+              };
+            }
+          ];
         };
       };
       extraConfig.pipewire-pulse."92-low-latency" = {
@@ -265,7 +322,7 @@ in
     power-profiles-daemon.enable = true;
     greetd = {
       enable = true;
-      vt = 3;
+      # vt = 3; Removed in 25.11
       settings = {
         default_session = {
           user = username;
