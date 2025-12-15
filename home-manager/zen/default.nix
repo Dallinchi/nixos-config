@@ -5,6 +5,8 @@
   ...
 }: {
   imports = [inputs.zen-browser.homeModules.twilight];
+  
+  # stylix.targets.zen.enable = false;
 
   programs.zen-browser = {
     enable = true;

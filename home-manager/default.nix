@@ -17,6 +17,7 @@
     ./fish
     ./swayosd
     ./easyeffects
+    ./stylix
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix

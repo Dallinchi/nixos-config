@@ -8,7 +8,6 @@ in
   imports = [
     ./hardware.nix
     ./host-packages.nix
-    ./stylix.nix
     ../../modules
     
     inputs.sops-nix.nixosModules.sops
@@ -98,7 +97,7 @@ in
 
   home-manager = {
     useUserPackages = true;
-    useGlobalPkgs = true;
+    useGlobalPkgs = false;
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs username host pkgs; };
     users.${username} = {
@@ -326,7 +325,7 @@ in
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
         };
       };
     };

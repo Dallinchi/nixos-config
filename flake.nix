@@ -83,7 +83,6 @@
   outputs = { self, nixpkgs, ... }@inputs:
   let
     system = "x86_64-linux";
-    # host = "hero";
     username = "dallinchi";
 
     pkgs = import nixpkgs { 
@@ -91,17 +90,16 @@
       config.allowUnfree = true;
     };
 
-    # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = hostname: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs;
-        inherit username;
+        inherit inputs username;
         host = hostname;
       };
       modules = [
         ./hosts/${hostname}
         ./overlays
+        # inputs.stylix.homeModules.stylix
       ];
     };
       

@@ -11,7 +11,7 @@
   };
 
   home.packages = with pkgs; [
-    inputs.quickshell.packages.${pkgs.system}.default
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Qt6 related kits（for slove Qt5Compat problem）
     qt6.qt5compat

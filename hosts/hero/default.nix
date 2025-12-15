@@ -8,7 +8,6 @@ in
   imports = [
     ./hardware.nix
     ./host-packages.nix
-    ./stylix.nix
     ../../modules
     
     inputs.sops-nix.nixosModules.sops
@@ -243,7 +242,7 @@ in
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
         };
       };
     };

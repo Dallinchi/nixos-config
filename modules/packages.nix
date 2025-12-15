@@ -13,7 +13,7 @@
     cliphist # Clipboard manager using rofi menu
     # glxinfo # needed for inxi diag util Renamed in 25.11
     mesa-demos # needed for inxi diag util 
-    greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
     lm_sensors # Used For Getting Hardware Temps

@@ -14,7 +14,7 @@
       # });
 
       unstable = import inputs.nixpkgs-unstable {
-        system = final.system;
+        stdenv.hostPlatform.system = final.system;
         config.allowUnfree = true;
       };
     })
