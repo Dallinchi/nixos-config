@@ -3,10 +3,10 @@
 {
   programs.rofi = {
         enable = true;
-        package = pkgs.rofi-wayland;
+        package = pkgs.rofi;
         #terminal = "${getExe pkgs}";
         plugins = with pkgs; [
-          rofi-emoji-wayland # https://github.com/Mange/rofi-emoji 🤯
+          rofi-emoji # https://github.com/Mange/rofi-emoji 🤯
           rofi-games # https://github.com/Rolv-Apneseth/rofi-games 🎮
         ];
       };

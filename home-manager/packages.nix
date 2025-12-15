@@ -28,12 +28,12 @@
     nautilus
     wineWowPackages.stable # support both 32-bit and 64-bit applications
     winetricks # winetricks (all versions)
-    vscode
-    xwayland-satellite
-    
-    # flatpak
-    # gnome-software
-    
+    vscode # Text editor
+    xwayland-satellite # Xwayland for niri 
+    chatterino7 # Twitch chat
+
+    gparted
+
     # Fonts
     nerd-fonts.symbols-only
     nerd-fonts.agave

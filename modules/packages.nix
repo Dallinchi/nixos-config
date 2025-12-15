@@ -11,7 +11,8 @@
     dconf
     appimage-run # Needed For AppImage Support
     cliphist # Clipboard manager using rofi menu
-    glxinfo # needed for inxi diag util
+    # glxinfo # needed for inxi diag util Renamed in 25.11
+    mesa-demos # needed for inxi diag util 
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
@@ -28,6 +29,8 @@
     openconnect # Vpn client
     jq
     acpi
+    via
+    dhcpcd
 
     # Graphical support
     mesa
