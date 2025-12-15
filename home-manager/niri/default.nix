@@ -103,36 +103,68 @@ in
           # { command = [ "nm-applet" ]; }
         ];
 
-      outputs."HDMI-A-1" = {
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 200.0;
-        };
-        # transform = {
-          # rotation = 90;
-        # };
-        position = {
-         x = 1920;
-         y = 0;
-         # y = -360;
-        };
-      };
-      outputs."DVI-D-1" = {
-        mode = {
-          width = 1440;
-          height = 900;
-          refresh = 74.984;
-        };
-        transform = {
-          rotation = 90;
-        };
-        position = {
-         x = 0;
-         # y = 0;
-         y = 0;
-        };
-      };
+      outputs =
+        if host == "hero-pro" then {
+          "HDMI-A-1" = {
+            mode = {
+              width = 1920;
+              height = 1080;
+              refresh = 200.0;
+            };
+            # transform = {
+            #   rotation = 90;
+            # };
+            position = {
+              x = 1920;
+              y = 0;
+            };
+          };
+
+          "DVI-D-1" = {
+            mode = {
+              width = 1440;
+              height = 900;
+              refresh = 74.984;
+            };
+            transform = {
+              rotation = 90;
+            };
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
+
+        } else if host == "hero" then {
+          "HDMI-A-1" = {
+            mode = {
+              width = 1920;
+              height = 1080;
+              refresh = 120.0;
+            };
+            transform = {
+              rotation = 90;
+            };
+            position = {
+              x = -1920;
+              y = 0;
+            };
+          };
+
+          "eDP-1" = {
+            mode = {
+              width = 1920;
+              height = 1080;
+              refresh = 60.027;
+            };
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
+
+        } else {};
+
       input = {
         power-key-handling.enable = false;
         warp-mouse-to-focus.enable = true;
