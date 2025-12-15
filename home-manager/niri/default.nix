@@ -26,10 +26,17 @@ in
       source = ./scripts;
       recursive = true;
     };
+    # "niri/config.kdl" = {
+      # source = ./config.kdl;
+    # };
   };
-
+  
+  # nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  # niri-flake.cache.enable = false;
+  
   programs.niri = {
     enable = true;
+    package = pkgs.niri-unstable;
     settings = {
       prefer-no-csd = true;
       hotkey-overlay.skip-at-startup = true;
@@ -95,7 +102,7 @@ in
           # { command = sh ++ [ "id=0" ]; }
           # { command = [ "nm-applet" ]; }
         ];
-        
+
       outputs."HDMI-A-1" = {
         mode = {
           width = 1920;
@@ -142,6 +149,7 @@ in
         keyboard = {
           xkb.layout = keyboardLayout;
           xkb.options = "grp:alt_shift_toggle";
+          xkb.model = "pc86";
           track-layout = "window";
           repeat-delay = 250;
       	  repeat-rate = 65; 
@@ -182,7 +190,7 @@ in
           "Super+N".action = sh "alacritty -T \"Nmtui\" -e nmtui";
           "Super+B".action = sh "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
           "Super+R".action = sh "pavucontrol";
-          
+
           "Super+Shift+Space".action = toggle-window-floating;
           "Super+Shift+L".action = consume-or-expel-window-right;
           "Super+Shift+H".action = consume-or-expel-window-left;
@@ -195,7 +203,7 @@ in
           "Super+Shift+Q".action = close-window;
           "Super+Shift+V".action = sh "niri msg output \"DVI-D-1\" transform 90";
           "Super+Shift+N".action = sh "niri msg output \"DVI-D-1\" transform normal";
-          
+
           "Super+grave".action = focus-monitor-next;
           "Super+1".action = focus-workspace 1;
           "Super+2".action = focus-workspace 2;
@@ -205,7 +213,7 @@ in
           "Super+6".action = focus-workspace 6;
           "Super+7".action = focus-workspace 7;
           "Super+8".action = focus-workspace 8;
-          
+
           "Print".action.screenshot = [];
           "XF86AudioMute".action = sh "swayosd-client --output-volume mute-toggle";
           "XF86AudioMicMute".action = sh "swayosd-client --input-volume mute-toggle";
@@ -222,15 +230,15 @@ in
           "Super+Ctrl+O".action = spawn "obsidian";
           "Super+Ctrl+E".action = sh "alacritty -e yazi";
           "Super+Ctrl+M".action = spawn "yandex-music";
-          "Super+Ctrl+T".action = spawn "telegram-desktop";
-          
+          "Super+Ctrl+T".action = spawn "Telegram";
+
           "Super+Alt+N".action = sh "playerctl next";
           "Super+Alt+P".action = sh "playerctl previous";
           "Super+Alt+K".action = sh "swayosd-client --playerctl play-pause";
         };
 
       gestures.hot-corners.enable = false;
-     
+
       layout = {
         gaps = 12;
         default-column-width.proportion = 0.5;
@@ -255,10 +263,9 @@ in
         ];
 
         border.enable = false;
-
         focus-ring = {
           enable = true;
-          width = 2;
+          width = 1;
           active = {
             color = "#6c7380";
           };
@@ -288,16 +295,16 @@ in
       overview.backdrop-color = "#11151c";
       # overview.zoom = 0.4;
       overview.workspace-shadow.enable = false;
-      
+
       workspaces = {
-        # "2-docs" = {
-        #   name = "docs";
-        #   open-on-output = "HDMI-A-1";
-        # };
+        "2-docs" = {
+          name = "docs";
+          open-on-output = "DVI-D-1";
+        };
         "4-chat" = {
           name = "chat";
           # open-on-output = "HDMI-A-1";
-          open-on-output = "eDP-1";
+          open-on-output = "DVI-D-1";
         };
 
         "1-media" = {
@@ -321,7 +328,7 @@ in
         {
           geometry-corner-radius =
             let
-              radius = 10.0;
+              radius = 5.0;
             in
             {
               bottom-left = radius;
@@ -345,7 +352,7 @@ in
           # For all
           geometry-corner-radius =
             let
-              radius = 10.0;
+              radius = 5.0;
             in
             {
               bottom-left = radius;
@@ -356,6 +363,21 @@ in
           clip-to-geometry = true;
           draw-border-with-background = false;
           open-focused = true;
+        }
+          # Active window
+        {
+          matches = [
+            { is-active = true; }
+          ];
+
+          shadow = {
+            enable = true;
+            softness = 5;
+            spread = 5;
+            offset.x = 0;
+            offset.y = 0;
+          };
+
         }
         {
           # Open in float
@@ -400,6 +422,7 @@ in
           matches = [
             { app-id = "com.chatterino."; }
             { app-id = "org.telegram.desktop"; }
+            { app-id = "discord"; }
           ];
           open-on-workspace = "chat";
         }
@@ -420,15 +443,14 @@ in
         {
           # Fullscreen
           matches = [
-            { app-id = "yandex-music"; }
             { app-id = "steam"; }
+            { app-id = "com.chatterino"; }
           ];
           open-fullscreen = true;
         }
         {
           # Maximized
           matches = [
-            { app-id = "yandex-music"; }
             { app-id = "steam"; }
             { app-id = "zen-twilight"; }
             { app-id = "org.telegram.desktop"; }
@@ -457,6 +479,13 @@ in
               color = "rgba(224, 53, 53, 30%)";
             };
           };
+        }
+        {
+          matches = [
+            { app-id = "yandex-music"; }
+          ];
+          
+          default-column-width.proportion = 0.2;
         }
       ];
     };
