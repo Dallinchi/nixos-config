@@ -16,6 +16,7 @@
     ./caelestia
     ./fish
     ./swayosd
+    ./easyeffects
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix
