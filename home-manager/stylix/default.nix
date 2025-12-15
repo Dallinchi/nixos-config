@@ -6,8 +6,11 @@
 }:
 {
   imports = [
-    inputs.stylix.nixosModules.stylix
+  #   inputs.stylix.nixosModules.stylix
+    inputs.stylix.homeModules.stylix
   ];
+  # programs.dconf.enable = true;
+
   stylix = {
     enable = true;
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
@@ -42,18 +45,20 @@
 
     polarity = "dark";
 
-#    fonts = {
-#      monospace = {
-#        package = pkgs.nerd-fonts.jetbrains-mono;
-#        name = "JetBrains Mono";
-#      };
-#      sizes = {
-#        applications = 12;
-#        terminal = 15;
-#        desktop = 11;
-#        popups = 12;
-#      };
-#    };
+    targets.zen-browser.profileNames = [ "default" "darkside"];
+
+   fonts = {
+     # monospace = {
+     #   package = pkgs.nerd-fonts.jetbrains-mono;
+     #   name = "JetBrains Mono";
+     # };
+     sizes = {
+       # applications = 12;
+       terminal = 12;
+       # desktop = 11;
+       # popups = 12;
+     };
+   };
   };
 }
 
