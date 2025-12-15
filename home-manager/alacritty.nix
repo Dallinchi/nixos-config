@@ -5,7 +5,7 @@
     settings = {
 
       font = lib.mkForce {
-        size = 12.0;
+        size = 9.0;
         normal = {
           family = "Fira Code";
           style = "Regular";
