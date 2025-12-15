@@ -4,6 +4,6 @@
 }:
 {
   imports = [
-    ./vpn.nix
+    ./network-namespaces.nix
   ];
 }
