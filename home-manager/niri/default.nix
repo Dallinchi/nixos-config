@@ -171,6 +171,7 @@ in
 
         mouse = {
           accel-speed = 0;
+          accel-profile = "flat";
         };
 
         touchpad = {
