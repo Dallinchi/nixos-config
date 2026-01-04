@@ -188,11 +188,17 @@ in
         #22
         #80
         #443
-        #8080
+        8000
+        21 # FTP
       ];
       allowedUDPPorts = [
-        #59010
-        #59011
+        # 59010
+        # 59011
+      ];
+
+      allowedTCPPortRanges = [
+        # FTP passive
+        { from = 30000; to = 31000; }
       ];
     };
   };
@@ -220,6 +226,19 @@ in
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.options = "model:pc86";
+    };
+
+    # FTP server
+    vsftpd = {
+      enable = true;
+      writeEnable = true;
+      localUsers = true;
+      anonymousUser = false;
+      extraConfig = ''
+        pasv_enable=YES
+        pasv_min_port=30000
+        pasv_max_port=31000
+      '';
     };
     
     # libinput.enable = true; # Input Handling
