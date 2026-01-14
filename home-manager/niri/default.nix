@@ -91,6 +91,7 @@ in
           { command = sh ++ [ "swaybg -i $(find ~/Pictures/Wallpapers/* | shuf -n 1) -m fill" ]; }
           { command = [ "swayosd-server" ]; }
           { command = [ "dunst" ]; }
+          { command = [ "xwayland-satellite" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
           # { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
@@ -413,6 +414,13 @@ in
 
         }
         {
+          # Open silince
+          matches = [
+            { app-id = "steam"; }
+          ];
+          open-focused = false;
+        }
+        {
           # Open in float
           matches = [
             { app-id = "Alacritty"; title = "Bluetoothctl"; }
@@ -478,6 +486,7 @@ in
           matches = [
             { app-id = "steam"; }
             { app-id = "com.chatterino"; }
+            { app-id = "discord"; }
           ];
           open-fullscreen = true;
         }
