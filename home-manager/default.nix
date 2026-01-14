@@ -4,7 +4,7 @@
   imports = [
     ./git.nix
     ./gtk.nix
-    ./hyprland
+    # ./hyprland
     ./niri
     # ./mango
     # ./quickshell
@@ -13,7 +13,7 @@
     ./rofi
     ./yazi
     ./zen
-    ./caelestia
+    # ./caelestia
     ./fish
     ./swayosd
     ./easyeffects
