@@ -190,10 +190,12 @@ in
         #443
         8000
         21 # FTP
+        2456 # Valheim
       ];
       allowedUDPPorts = [
         # 59010
         # 59011
+        2456 # Valheim
       ];
 
       allowedTCPPortRanges = [
@@ -228,6 +230,10 @@ in
       xkb.options = "model:pc86";
     };
 
+    # desktopManager.plasma6.enable = true;
+    # displayManager.sddm.enable = true;
+    # displayManager.sddm.wayland.enable = true;
+    
     # FTP server
     vsftpd = {
       enable = true;
