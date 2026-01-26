@@ -11,6 +11,9 @@
   keyboardLayout = "us, ru";
   consoleKeyMap = "us";
 
+  # Desktop | niri | hyprland |
+  desktop = "niri";
+
   # Set network hostId if required (needed for zfs)
   # Otherwise leave as-is
   hostId = "5ab03f50";
