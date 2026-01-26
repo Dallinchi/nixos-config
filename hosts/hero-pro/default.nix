@@ -190,12 +190,10 @@ in
         #443
         8000
         21 # FTP
-        2456 # Valheim
       ];
       allowedUDPPorts = [
         # 59010
         # 59011
-        2456 # Valheim
       ];
 
       allowedTCPPortRanges = [
