@@ -31,15 +31,15 @@
       url = "github:jutraim/niri-caelestia-shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    
+
     # Caelestia shell for hyprland
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    
+
     hyprland.url = "github:hyprwm/Hyprland";
-    
+
     # Hyprland split-monitor-workspaces plugin
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
@@ -50,7 +50,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    
+
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
