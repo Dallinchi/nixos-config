@@ -15,6 +15,7 @@
     tofi # Launch menu
     swaybg # Wallpaper
     fastfetch # System info
+    wl-clipboard # Clipboard
     telegram-desktop # Chat
     discord # Voice chat
     nsxiv # Image viewer

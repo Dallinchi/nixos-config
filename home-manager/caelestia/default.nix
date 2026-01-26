@@ -9,7 +9,7 @@
   ];
 
 	programs.caelestia = {
-		enable = true;
+		enable = false;
 	
 		systemd = {
 			enable = false;

@@ -8,21 +8,21 @@
 {
   
   # Waybar service for Niri (only when barChoice is waybar)
-  systemd.user.services.waybar-niri = {
-    Unit = {
-      Description = "Waybar status bar (Niri session)";
-      PartOf = "graphical-session.target";
-      After = "graphical-session.target";
-      # ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-    };
-    Service = {
-      ExecStart = "${pkgs.waybar}/bin/waybar";
-      Restart = "on-failure";
-      RestartSec = "1s";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
-
+  # systemd.user.services.waybar-niri = {
+  #   Unit = {
+  #     Description = "Waybar status bar (Niri session)";
+  #     PartOf = "graphical-session.target";
+  #     After = "graphical-session.target";
+  #     ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+  #   };
+  #   Service = {
+  #     ExecStart = "${pkgs.waybar}/bin/waybar";
+  #     Restart = "on-failure";
+  #     RestartSec = "1s";
+  #   };
+  #   Install.WantedBy = [ "graphical-session.target" ];
+  # };
+  #
   programs.waybar = {
   enable = true;
   systemd = {
@@ -332,10 +332,9 @@
       /* base0F: "#E6B673" */
 
     window#waybar {
-        background: #0F1419;
+        background: none;
         color: #cdd6f4;
         transition: .3s;
-        border-bottom: 2px solid #131721;
     }
     window#waybar.empty {
         background: rgba(21, 18, 27, 0);
@@ -400,13 +399,14 @@
 #mpris,
 #backlight {
         transition: .4s;
-        background: rgba(0, 0, 0, 0.375);
+        background: #0F1419;
         padding: 3px 10px;
-        margin: 5px 0px;
+        margin: 2px 0px;
         /* line-height: 24px; */
         /* height: 24px; */
         /* margin-top: 10px; */
         color: #d2fffd;
+        border:1px solid #6c7380;
     }
 
 #mpris {
@@ -457,8 +457,7 @@
 
 #clock {
         border-radius: 5px;
-        margin-left: 5px;
-        border-right: 0px;
+        margin-left: 20px;
     }
 
 #network {
@@ -468,20 +467,15 @@
 
 #pulseaudio {
         border-radius: 5px 0px 0px 5px;
-        border-left: 0px;
-        border-right: 0px;
     }
 
 #wireplumber {
         border-radius: 5px 0px 0px 5px;
-        border-left: 0px;
-        border-right: 0px;
     }
 
 #pulseaudio.microphone {
         border-radius: 0 5px 5px 0;
-        margin-right: 10px;
-        border-left: 0px;
+        margin-right: 20px;
     }
 
 #battery {

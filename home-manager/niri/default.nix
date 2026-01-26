@@ -87,11 +87,11 @@ in
           { command = sh ++ [ "wl-paste --type text --watch cliphist store" ]; }
           { command = sh ++ [ "wl-paste --type image --watch cliphist store" ]; }
           { command = sh ++ [ "~/.config/niri/scripts/overview-bar" ]; }
-          { command = sh ++ [ "waybar" ]; }
+          # { command = sh ++ [ "waybar" ]; }
           { command = sh ++ [ "swaybg -i $(find ~/Pictures/Wallpapers/* | shuf -n 1) -m fill" ]; }
-          { command = [ "swayosd-server" ]; }
-          { command = [ "dunst" ]; }
-          { command = [ "xwayland-satellite" ]; }
+          # { command = [ "swayosd-server" ]; }
+          # { command = [ "dunst" ]; }
+          # { command = [ "xwayland-satellite" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
           # { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
           # { command = sh ++ [ "systemctl --user start hypridle.service" ]; }

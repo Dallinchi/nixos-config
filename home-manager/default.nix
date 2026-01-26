@@ -8,7 +8,7 @@
     ./niri
     # ./mango
     # ./quickshell
-    ./way-edges
+    # ./way-edges
     ./waybar
     ./rofi
     ./yazi
