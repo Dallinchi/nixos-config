@@ -17,7 +17,7 @@ in
   nix = {
     settings = {
       download-buffer-size = 200000000;
-      auto-optimise-store = true;
+      # auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -53,6 +53,11 @@ in
     enable = true;
     algorithm = "zstd";
     memoryPercent = 150;
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
   };
 
   users.mutableUsers = true;
@@ -169,7 +174,6 @@ in
     upower.enable = true;
     gvfs.enable = true; # For Mounting USB & More
     udisks2.enable = true;
-    preload.enable = true; # Caching
     openssh = {
       enable = false; # Enable SSH
       settings = {
@@ -238,7 +242,6 @@ in
 
     greetd = {
       enable = true;
-      vt = 3;
       settings = {
         default_session = {
           user = username;
