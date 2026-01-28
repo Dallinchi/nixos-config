@@ -31,6 +31,7 @@
     acpi
     via
     dhcpcd
+    docker-compose # Podman compose compatable
 
     # Graphical support
     mesa

@@ -82,7 +82,7 @@ in
     description = "${gitUsername}";
     extraGroups = [
      # "adbusers"
-     # "docker" #access to docker as non-root
+     "podman" #access to podman as non-root
      # "libvirtd" #Virt manager/QEMU access
      # "lp"
       "networkmanager"
@@ -107,6 +107,16 @@ in
         homeDirectory = "/home/${username}";
         stateVersion = "25.05";
       };
+    };
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
     };
   };
 
@@ -189,6 +199,7 @@ in
         #80
         #443
         8000
+        8080 # Seafile
         21 # FTP
       ];
       allowedUDPPorts = [
