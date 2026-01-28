@@ -1,0 +1,161 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "exclusive": false,
+  "passthrough": false,
+  "gtk-layer-shell": false,
+  "start_hidden": true,
+  "height": 0,
+
+  "on-sigusr1": "show",
+  "on-sigusr2": "hide",
+
+  "modules-left": ["network", "custom/netns", "custom/bluetooth"],
+  "modules-right": [ "cpu", "memory"],
+
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "{status_icon} {title} - {artist}",
+    "player-icons": {
+      "default": "▶",
+      "spotify": "",
+      "mpv": "󰐹",
+      "vlc": "󰕼",
+      "firefox": "",
+      "chromium": "",
+      "kdeconnect": "",
+      "mopidy": ""
+    },
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "ignored-players": ["firefox"],
+    "max-length": 35
+  },
+
+  "clock": {
+    "format": "{:%a %d %b %R}",
+    "format-alt": "{:%I:%M %p}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/bottom/scripts/bluetooth-status.sh",
+    "interval": 5,
+    "on-click": "alacritty -T \"Bluetoothctl\" -e bluetoothctl",
+    "tooltip": true,
+    "tooltip-format": "{output}"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " ",
+    "on-click": "pavucontrol",
+    "tooltip-format": "{icon} {desc} // {volume}%",
+    "scroll-step": 4,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "on-click": "pavucontrol -t 4",
+    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+    "scroll-step": 5
+  },
+
+  "tray": {
+    "icon-size": 12,
+    "spacing": 5
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "󰍛 {usage}%",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": "󰾆 {percentage}%",
+    "format-alt": "󰾅 {used}GB",
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": " {used:.1f}GB/{total:.1f}GB"
+  },
+
+  "network": {
+    "interval": 2,
+    "on-click": "nm-connection-editor",
+
+    "format-wifi": "󰤨 {ifname} {ipaddr}/{cidr} {essid} ({signalStrength}%) ",
+    "format-ethernet": "󱘖 {ifname} {ipaddr}/{cidr} ",
+
+    "format-linked": "󱘖 {ifname} (No IP)",
+    "format-disconnected": "󰤮 Disconnected",
+
+    "format-alt": " {bandwidthDownBits}  {bandwidthUpBits}",
+
+    "tooltip-format": "{ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
+  },
+
+  "custom/netns": {
+    "exec": "bash -c 'ip netns list 2>/dev/null | awk \"{print $1}\" | paste -sd \" | \" -'",
+    "interval": 10,
+    "return-type": "text"
+  }
+}
+

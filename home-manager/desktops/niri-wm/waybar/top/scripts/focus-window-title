@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+niri msg --json event-stream | while read -r event; do
+    event_type=$(echo "$event" | jq -r 'keys[0]')
+
+    case "$event_type" in
+        WorkspaceActiv*|WindowFocusChanged)
+        window_id=$(echo "$event" | jq -r '.WorkspaceActiveWindowChanged.active_window_id')
+        
+        # in overview
+        niri msg --json windows | jq -r --argjson id "$window_id" \
+            '.[] | select(.id == $id) | .title'
+
+        # in normal
+        niri msg --json windows | jq -r '.[] | select(.is_focused == true) | .title'
+            ;;
+    esac
+    
+done

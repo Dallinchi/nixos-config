@@ -1,0 +1,222 @@
+* {
+    border: none;
+    border-radius: 0;
+    /* font-family: "Agave Nerd Font", "Symbols Nerd Font"; */
+    font-family: "Symbols Nerd Font";
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+/* base00: "#0F1419" */
+/* base01: "#131721" */
+/* base02: "#272D38" */
+/* base03: "#3E4B59" */
+/* base04: "#BFBDB6" */
+/* base05: "#E6E1CF" */
+/* base06: "#E6E1CF" */
+/* base07: "#F3F4F5" */
+/* base08: "#F07178" */
+/* base09: "#FF8F40" */
+/* base0A: "#FFB454" */
+/* base0B: "#B8CC52" */
+/* base0C: "#95E6CB" */
+/* base0D: "#59C2FF" */
+/* base0E: "#D2A6FF" */
+/* base0F: "#E6B673" */
+
+window#waybar {
+    background: none;
+    color: #cdd6f4;
+    transition: .3s;
+}
+
+window#waybar.empty {
+    background: rgba(21, 18, 27, 0);
+}
+
+window#waybar.solo {
+    background: rgba(21, 18, 27, 0.719);
+}
+
+window#waybar.floating {
+    background: rgba(21, 18, 27, 0);
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #9c9c9c;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #70e6e0;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    border: none;
+}
+
+#language,
+#custom-hestale,
+#custom-player,
+#custom-caffeine,
+#custom-weather,
+#custom-window-title,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#wireplumber,
+#network,
+#workspaces,
+#tray,
+#mpris,
+#backlight {
+    transition: .4s;
+    background: #0F1419;
+    padding: 3px 10px;
+    margin: 4px 0px;
+    color: #d2fffd;
+    border: 1px solid #6c7380;
+}
+
+#mpris {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#tray {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#tray.passive {
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+#workspaces {
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#custom-player {
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#language {
+    border-left: 0px;
+    border-right: 0px;
+    min-width: 18px;
+}
+
+#custom-hestale {
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#window {
+    border-radius: 5px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#clock {
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+#network {
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#pulseaudio {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#wireplumber {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#pulseaudio.microphone {
+    border-radius: 0 5px 5px 0;
+    margin-right: 20px;
+}
+
+#battery {
+    border-radius: 0 5px 5px 0;
+    margin-right: 10px;
+    border-left: 0px;
+}
+
+#custom-weather {
+    border-radius: 0px 5px 5px 0px;
+    border-right: 0px;
+    margin-left: 0px;
+}
+
+#custom-window-title {
+  border-radius: 5px;
+}
+
+window#waybar.empty #language,
+window#waybar.empty #custom-hestale,
+window#waybar.empty #custom-player,
+window#waybar.empty #custom-caffeine,
+window#waybar.empty #custom-weather,
+window#waybar.empty #window,
+window#waybar.empty #clock,
+window#waybar.empty #battery,
+window#waybar.empty #pulseaudio,
+window#waybar.empty #wireplumber,
+window#waybar.empty #network,
+window#waybar.empty #workspaces,
+window#waybar.empty #tray,
+window#waybar.empty #backlight {
+    background: rgba(61, 61, 61, 0.26);
+    color: #adadad;
+    text-shadow: 0px 0px 1px rgb(4, 187, 187);
+}
+
+window#waybar.empty #window {
+    background: none;
+}
+
+window#waybar.empty #workspaces button {
+    color: #adadad;
+    text-shadow: 0px 0px 1px rgb(4, 187, 187);
+}
+
+window#waybar.empty #workspaces button.active {
+    color: #ffffff;
+}
+
