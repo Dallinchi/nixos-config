@@ -76,7 +76,7 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": " ",
+    "format-muted": " {volume}%",
     "on-click": "pavucontrol",
     "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 4,
