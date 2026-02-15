@@ -1,4 +1,5 @@
 { host
+, system
 , config
 , pkgs
 , inputs
@@ -6,15 +7,33 @@
 , ...
 }:
 let
-  inherit
-    (import ../../../../hosts/${host}/variables.nix)
-    keyboardLayout
-    ;
+  inherit (import ../../../../hosts/${host}/variables.nix) keyboardLayout;
+  inherit (inputs.nfsm-flake.packages.${pkgs.stdenv.hostPlatform.system}) nfsm nfsm-cli;
+
+  mkMenu = menu: let
+    configFile = pkgs.writeText "config.yaml"
+      (pkgs.lib.generators.toYAML {} {
+        anchor = "bottom";
+        color = "#d3ebe9";
+        border = "#6c7380";
+        border_width = 1;
+        corner_r = 5;
+        padding = 5;
+        margin_bottom = 5;
+        background = "#11151c";
+        rows_per_column = 5;
+        column_padding = 25; # Defaults to padding
+        inherit menu;
+      });
+    in
+      pkgs.writeShellScriptBin "my-menu" ''
+        exec ${pkgs.lib.getExe pkgs.wlr-which-key} ${configFile}
+      '';
 in
 {
 	imports = [
 		inputs.niri.homeModules.niri
-	];
+  ];
 
   systemd.user.targets.niri-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
@@ -31,9 +50,11 @@ in
     # };
   };
   
+  home.packages = [ nfsm nfsm-cli ]; 
+  
   # nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   # niri-flake.cache.enable = false;
-  
+
   programs.niri = {
     enable = true;
     package = pkgs.niri-unstable;
@@ -83,25 +104,11 @@ in
           ];
         in
         [
-
           { command = sh ++ [ "wl-paste --type text --watch cliphist store" ]; }
           { command = sh ++ [ "wl-paste --type image --watch cliphist store" ]; }
           { command = sh ++ [ "~/.config/niri/scripts/overview-bar" ]; }
-          # { command = sh ++ [ "waybar" ]; }
           { command = sh ++ [ "swaybg -i $(find ~/Pictures/Wallpapers/* | shuf -n 1) -m fill" ]; }
-          # { command = [ "swayosd-server" ]; }
-          # { command = [ "dunst" ]; }
-          # { command = [ "xwayland-satellite" ]; }
-          # { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
-          # { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
-          # { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
-          # { command = sh ++ [ "systemctl --user start waybar.service" ]; }
-          # { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
-          # { command = sh ++ [ "systemctl --user start swaync.service" ]; }
-          # { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-          # { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
-          # { command = sh ++ [ "id=0" ]; }
-          # { command = [ "nm-applet" ]; }
+          { command = sh ++ [ "nfsm" ]; }
         ];
 
       outputs =
@@ -212,20 +219,126 @@ in
           "Super+H".action = focus-column-left;
           "Super+K".action = focus-window-or-workspace-up;
           "Super+J".action = focus-window-or-workspace-down;
-          "Super+F".action = fullscreen-window;
+          "Super+F".action = spawn "nfsm-cli";
           "Super+A".action = maximize-column;
           "Super+S".action = expand-column-to-available-width;
-          # "Super+D".action = sh "pkill rofi || rofi -config ~/.config/rofi/config-menu.rasi -show drun"; # launcher 
-          "Super+D".action = sh "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview"; # launcher
           "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; # clipboard history
           "Super+F2".action = sh "~/.config/niri/scripts/toggle_mouselock_monitor"; # toggle monitor mouse lock
-           # "Super+L".action = sh "loginctl lock-session"; # lock screen
           "Super+Return".action = spawn "alacritty"; # terminal
-          "Super+N".action = sh "alacritty -T \"Nmtui\" -e nmtui";
-          "Super+B".action = sh "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
-          "Super+R".action = sh "pavucontrol";
+          # "Super+N".action = sh "alacritty -T \"Nmtui\" -e nmtui";
+          # "Super+B".action = sh "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
+          # "Super+R".action = sh "pavucontrol";
+          
 
+          "Super+D".action = sh "pkill wlr-which-key || ${(lib.getExe (mkMenu [
+            {
+              key = "d";
+              desc = "Launcher";
+              cmd = "sh -c pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview";
+            }
+            {
+              key = "c";
+              desc = "CLI | TUI";
+              submenu = [
+                {
+                  key = "t";
+                  desc = "Terminal";
+                  cmd = "alacritty";
+                }
+                {
+                  key = "e";
+                  desc = "Files";
+                  cmd = "alacritty -e yazi";
+                }
+                {
+                  key = "b";
+                  desc = "Bluetoothctl";
+                  cmd = "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
+                }
+                {
+                  key = "n";
+                  desc = "Network";
+                  cmd = "alacritty -T \"Nmtui\" -e nmtui";
+                }
+                {
+                  key = "h";
+                  desc = "Btop";
+                  cmd = "alacritty -e btop";
+                }
+                {
+                  key = "c";
+                  desc = "Neovim";
+                  cmd =  "alacritty -e sh -c \"cd ${config.home.homeDirectory}/Documents/quotes && exec nvim\"";
+                }
+              ];
+            }
+            {
+              key = "g";
+              desc = "GUI";
+              submenu = [
+                {
+                  key = "e";
+                  desc = "Files";
+                  cmd = "nautilus";
+                }
+                {
+                  key = "b";
+                  desc = "Browser";
+                  submenu = [
+                    {
+                      key = "b";
+                      desc = "Default browser";
+                      cmd = "zen";
+                    }
+                    {
+                      key = "v";
+                      desc = "Default VPN browser";
+                      cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn zen -P darkside";
+                    }
+                  ];
+                }
+                {
+                  key = "s";
+                  desc = "Steam";
+                  cmd = "steam";
+                }
+                {
+                  key = "r";
+                  desc = "Sound Control";
+                  cmd = "pavucontrol";
+                }
+                {
+                  key = "o";
+                  desc = "Obsidian";
+                  cmd = "obsidian";
+                }
+                {
+                  key = "t";
+                  desc = "Telegram";
+                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn Telegram";
+                }
+                {
+                  key = "d";
+                  desc = "Discord";
+                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn discord";
+                }
+                {
+                  key = "c";
+                  desc = "Chatterino";
+                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn chatterino";
+                }
+                {
+                  key = "m";
+                  desc = "Yandex Music";
+                  cmd = "yandex-music";
+                }
+              ];
+            }
+
+          ]))}";
+          
           "Super+Shift+Space".action = toggle-window-floating;
+          "Super+Shift+T".action = switch-focus-between-floating-and-tiling;
           "Super+Shift+L".action = consume-or-expel-window-right;
           "Super+Shift+H".action = consume-or-expel-window-left;
           "Super+Shift+K".action = move-window-up-or-to-workspace-up;
@@ -259,12 +372,13 @@ in
           "XF86MonBrightnessUp".action = sh "swayosd-client --brightness +25";
           "XF86MonBrightnessDown".action = sh "swayosd-client --brightness -25";
 
-          "Super+Ctrl+C".action = sh "alacritty -e nvim";
-          "Super+Ctrl+B".action = spawn "zen-twilight";
-          "Super+Ctrl+O".action = spawn "obsidian";
-          "Super+Ctrl+E".action = sh "alacritty -e yazi";
-          "Super+Ctrl+M".action = spawn "yandex-music";
-          "Super+Ctrl+T".action = spawn "Telegram";
+          # "Super+Ctrl+C".action = sh "alacritty -e nvim";
+          # "Super+CTRL+D".action = sh "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview"; # launcher
+          # "Super+Ctrl+B".action = spawn "zen-twilight";
+          # "Super+Ctrl+O".action = spawn "obsidian";
+          # "Super+Ctrl+E".action = sh "alacritty -e yazi";
+          # "Super+Ctrl+M".action = spawn "yandex-music";
+          # "Super+Ctrl+T".action = spawn "Telegram";
 
           "Super+Alt+N".action = sh "playerctl next";
           "Super+Alt+P".action = sh "playerctl previous";
@@ -376,6 +490,7 @@ in
             { namespace="waybar"; }
             { namespace="way-edges-widget"; }
             { namespace="wallpaper"; }
+            { namespace="mpvpaper"; }
           ];
           place-within-backdrop = true;
         }
@@ -425,6 +540,7 @@ in
           matches = [
             { app-id = "Alacritty"; title = "Bluetoothctl"; }
             { app-id = "Alacritty"; title = "Nmtui"; }
+            { app-id = "Alacritty"; title = "Password to enter the namespace"; }
             { app-id = "org.pulseaudio.pavucontrol"; title = "Volume Control"; }
           ];
           open-floating = true;

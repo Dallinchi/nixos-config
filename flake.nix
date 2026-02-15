@@ -56,6 +56,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Niri fullscreen manager
+    nfsm-flake = {
+      url = "github:gvolpe/nfsm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Widgets
     way-edges = {
       url = "github:way-edges/way-edges";
