@@ -30,6 +30,22 @@
       enable = true;
       enableFishIntegration = true;
     };
+    
+    # Enchanced "cd"
+    zoxide = {
+      enable = true;
+      enableFishIntegration= true;
+      options = [
+        "--cmd cd"
+      ];
+    };
+
+    # Enchanced "ls"
+    eza = {
+      enable = true;
+      icons = "always";
+      enableFishIntegration = true;
+    };
   };
 }
 
