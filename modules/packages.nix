@@ -32,13 +32,5 @@
     via
     dhcpcd
     docker-compose # Podman compose compatable
-
-    # Graphical support
-    mesa
-    libGL
-    vulkan-tools
-    vulkan-headers
-    vulkan-loader
-    vulkan-validation-layers
   ];
 }

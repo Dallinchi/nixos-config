@@ -14,9 +14,18 @@ in
     inputs.home-manager.nixosModules.home-manager 
   ];
 
-  fileSystems."/mnt/storage0" = {
-    device = "/dev/disk/by-uuid/87d935d9-cfb4-410c-8f76-f95d4a0031d9";
-    options = [ "nofail" ];
+  fileSystems = {
+    "/mnt/storage0" = {
+      device = "/dev/disk/by-uuid/87d935d9-cfb4-410c-8f76-f95d4a0031d9";
+      fsType = "btrfs";
+      options = [ "nofail" ];
+    };
+
+    "/" = {
+      device = "/dev/disk/by-uuid/0aeb1b66-486b-46f9-8768-254f86738623";
+      fsType = "btrfs";
+      options = [ "compress=zstd" "noatime" ];
+    };
   };
 
   environment = {
@@ -121,24 +130,22 @@ in
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
-    "intel_pstate=active"
-    "i915.enable_guc=2"
-    "i915.enable_psr1"
-    "i915.enable_fbc=1"
-    "i915.enable_dc=2"
-    "i915.fastboot=1"
-    "mem_sleep_default=deep"
-    "nvme.noacpi=1"
-    "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
-      ];
+      "sched_migration_cost_ns=5000000"
+      "cgroup_no_v1=all"
+      "mem_sleep_default=deep"
+      "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
+    ];
     # kernelParams = [ "video=eDP-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60" ];
     # kernelModules = [ "v4l2loopback" ];
     # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = { 
-      "vm.max_map_count" = 65530;
+      "vm.max_map_count" = 262144;
       "kernel.pid_max" = 32768;
+      "vm.swappiness" = 10;
+      "vm.vfs_cache_pressure" = 50;
+      "kernel.sched_autogroup_enabled" = 1;
     };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -169,14 +176,9 @@ in
 
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # amdvlk # Removed in 25.11
-        libvdpau-va-gl
-        # vaapiVdpau # Ranamed
-        libva-vdpau-driver
-        intel-media-driver
-        # vaapiInte # Ranamed
-        intel-vaapi-driver
-        libvdpau-va-gl
+        mesa
+        vulkan-loader
+        vulkan-validation-layers
       ];
     }; # OpenGL
     # enableRedistributableFirmware = true;
@@ -350,8 +352,6 @@ in
         ];
       };
     };
-    system76-scheduler.settings.cfsProfiles.enable = true;   # Better scheduling for CPU cycles - thanks System76!!!
-    thermald.enable = true;                                  # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
     power-profiles-daemon.enable = true;
     greetd = {
       enable = true;
