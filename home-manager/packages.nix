@@ -24,7 +24,7 @@
     obsidian # Notes
     hyprshot # Screenshots
     peaclock # cli timer, stopwatch, clock
-    taskwarrior3 # cli task manager
+    # taskwarrior3 # cli task manager
     yandex-music
     nautilus
     wineWowPackages.stable # support both 32-bit and 64-bit applications

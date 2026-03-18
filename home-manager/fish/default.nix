@@ -17,6 +17,7 @@
 
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
+        task active # Show active task
       '';
       
       loginShellInit = ''

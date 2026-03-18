@@ -9,6 +9,8 @@
     ./fish
     ./easyeffects
     ./stylix
+    ./taskwarrior
+    ./zellij
     ./obs-studio.nix
     ./qt.nix
     ./xdg.nix
