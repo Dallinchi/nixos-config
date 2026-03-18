@@ -3,8 +3,8 @@
     border-radius: 0;
     /* font-family: "Agave Nerd Font", "Symbols Nerd Font"; */
     font-family: "Symbols Nerd Font";
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -73,33 +73,34 @@ tooltip {
 #bluetooth{
     transition: .4s;
     background: #0F1419;
-    padding: 3px 10px;
-    margin: 4px 0px;
+    padding: 2px 7px;
+    margin: 0px 0px;
     color: #d2fffd;
     border: 1px solid #6c7380;
+    border-bottom: none;
 }
 
 
 #network {
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 0px;
   margin-left: 20px;
 }
 
 #custom-netns {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 0px 0;
   margin-right: 10px;
 }
 
 #custom-bluetooth {
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
 }
 
 #cpu {
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 0px;
 }
 
 #memory {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 0px 0;
   margin-right: 20px;
 }
 

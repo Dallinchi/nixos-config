@@ -3,8 +3,8 @@
     border-radius: 0;
     /* font-family: "Agave Nerd Font", "Symbols Nerd Font"; */
     font-family: "Symbols Nerd Font";
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -96,19 +96,20 @@ tooltip {
 #backlight {
     transition: .4s;
     background: #0F1419;
-    padding: 3px 10px;
-    margin: 4px 0px;
+    padding: 2px 7px;
+    margin: 0px 0px;
     color: #d2fffd;
     border: 1px solid #6c7380;
+    border-top: 0;
 }
 
 #mpris {
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     margin-right: 10px;
 }
 
 #tray {
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     margin-right: 10px;
 }
 
@@ -126,7 +127,7 @@ tooltip {
 }
 
 #custom-player {
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -140,17 +141,17 @@ tooltip {
 #custom-hestale {
     border-left: 0px;
     border-right: 0px;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0px 0px 0px 5px;
 }
 
 #window {
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     margin-left: 60px;
     margin-right: 60px;
 }
 
 #clock {
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     margin-left: 20px;
 }
 
@@ -160,32 +161,32 @@ tooltip {
 }
 
 #pulseaudio {
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0px 0px 0px 5px;
 }
 
 #wireplumber {
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0px 0px 0px 5px;
 }
 
 #pulseaudio.microphone {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 0 5px 0;
     margin-right: 20px;
 }
 
 #battery {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 0 5px 0;
     margin-right: 10px;
     border-left: 0px;
 }
 
 #custom-weather {
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 0 5px 0px;
     border-right: 0px;
     margin-left: 0px;
 }
 
 #custom-window-title {
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
 }
 
 window#waybar.empty #language,

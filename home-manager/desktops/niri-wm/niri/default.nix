@@ -109,6 +109,9 @@ in
           { command = sh ++ [ "~/.config/niri/scripts/overview-bar" ]; }
           { command = sh ++ [ "swaybg -i $(find ~/Pictures/Wallpapers/* | shuf -n 1) -m fill" ]; }
           { command = sh ++ [ "nfsm" ]; }
+          { command = ["yandex-music"]; }
+          { command = ["zen"]; }
+          { command = ["steam"]; }
         ];
 
       outputs =
@@ -224,6 +227,7 @@ in
           "Super+S".action = expand-column-to-available-width;
           "Super+V".action = sh "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; # clipboard history
           "Super+F2".action = sh "~/.config/niri/scripts/toggle_mouselock_monitor"; # toggle monitor mouse lock
+          "Super+Return".repeat = false;
           "Super+Return".action = spawn "alacritty"; # terminal
           # "Super+N".action = sh "alacritty -T \"Nmtui\" -e nmtui";
           # "Super+B".action = sh "alacritty -T \"Bluetoothctl\" -e bluetoothctl";
@@ -513,8 +517,8 @@ in
           draw-border-with-background = false;
           open-focused = true;
         }
-          # Active window
         {
+          # Active window
           matches = [
             { is-active = true; }
           ];
@@ -529,9 +533,9 @@ in
 
         }
         {
-          # Open silince
+          # Open silince at startup
           matches = [
-            { app-id = "steam"; }
+            { at-startup = true; }
           ];
           open-focused = false;
         }
@@ -600,7 +604,6 @@ in
         {
           # Fullscreen
           matches = [
-            { app-id = "steam"; }
             { app-id = "com.chatterino"; }
             { app-id = "discord"; }
           ];
@@ -609,13 +612,23 @@ in
         {
           # Maximized
           matches = [
-            { app-id = "steam"; }
+            { app-id = "steam"; title = "Steam"; }
             { app-id = "zen-twilight"; }
             { app-id = "org.telegram.desktop"; }
           ];
           open-maximized = true;
         }
         {
+          # 0.3 width
+          matches = [
+            { app-id = "yandex-music"; }
+            { app-id = "steam"; title = "Список друзей"; }
+          ];
+          
+          default-column-width.proportion = 0.3;
+        }
+        {
+          # Decoration
           matches = [
             { is-window-cast-target = true; }
           ];
@@ -637,13 +650,6 @@ in
               color = "rgba(224, 53, 53, 30%)";
             };
           };
-        }
-        {
-          matches = [
-            { app-id = "yandex-music"; }
-          ];
-          
-          default-column-width.proportion = 0.2;
         }
       ];
     };

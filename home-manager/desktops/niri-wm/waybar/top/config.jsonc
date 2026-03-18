@@ -6,7 +6,8 @@
   "gtk-layer-shell": false,
   "start_hidden": true,
   "height": 0,
-
+  "output": "HDMI-A-1",
+  
   "on-sigusr1": "show",
   "on-sigusr2": "hide",
 
