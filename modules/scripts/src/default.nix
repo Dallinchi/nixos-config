@@ -1,14 +1,5 @@
-
 {
-  host,
-  ...
-}:
-{
-  environment.etc."xdg/dallinchi-sfx".source = ./sfx;
-  # xdg.configFile = {
-  #   "dallinchi-sfx/" = {
-  #     source = ./sfx;
-  #     recursive = true;
-  #   };
-  # };
+  flake.modules.nixos.scripts = {...}: {
+    environment.etc."xdg/dallinchi-sfx".source = ./sfx;
+  };
 }
