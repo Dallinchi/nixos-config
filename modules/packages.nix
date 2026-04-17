@@ -1,36 +1,44 @@
-{
-  pkgs,  
-  inputs,
-  system,
-  ...
-}:
-{
-  nixpkgs.config.allowUnfree = true;
+{inputs, ...}: {
+  flake.modules.home.home-manager = {pkgs, ...}:
+  {
+    home.packages = with pkgs; [
+      pulseaudio # For pactl
+      filezilla # FTP Client
+      btop # System monitor
+      #firefox # Browser
+      brightnessctl # For Screen Brightness Control
+      ffmpeg # Terminal Video / Audio Editing
+      mpv # Incredible Video Player
+      pavucontrol # For Editing Audio Levels & Devices
+      playerctl # Allows Changing Media Volume Through Scripts
+      usbutils # Good Tools For USB Devices
+      v4l-utils # Used For Things Like OBS Virtual Camera
+      tofi # Launch menu
+      swaybg # Wallpaper
+      fastfetch # System info
+      wl-clipboard # Clipboard
+      cliphist
+      telegram-desktop # Chat
+      discord # Voice chat
+      nsxiv # Image viewer
+      seafile-client # Cloud
+      libnotify # Notify utils
+      obsidian # Notes
+      hyprshot # Screenshots
+      peaclock # cli timer, stopwatch, clock
+      # taskwarrior3 # cli task manager
+      yandex-music
+      nautilus
+      wineWow64Packages.stable # support both 32-bit and 64-bit applications
+      winetricks # winetricks (all versions)
+      vscode # Text editor
+      xwayland-satellite # Xwayland for niri 
+      chatterino7 # Twitch chat
 
-  environment.systemPackages = with pkgs; [
-    dconf
-    appimage-run # Needed For AppImage Support
-    cliphist # Clipboard manager using rofi menu
-    # glxinfo # needed for inxi diag util Renamed in 25.11
-    mesa-demos # needed for inxi diag util 
-    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
-    inxi # CLI System Information Tool
-    killall # For Killing All Instances Of Programs
-    lm_sensors # Used For Getting Hardware Temps
-    pciutils # Collection Of Tools For Inspecting PCI Devices
-    pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
-    unrar # Tool For Handling .rar Files
-    unzip # Tool For Handling .zip Files
-    uwsm # Universal Wayland Session Manager (optional must be enabled)
-    v4l-utils # Used For Things Like OBS Virtual Camera
-    wget # Tool For Fetching Files With Links
-    python3
-    screen
-    openconnect # Vpn client
-    jq
-    acpi
-    via
-    dhcpcd
-    docker-compose # Podman compose compatable
-  ];
+      gparted
+      alsa-utils
+
+    ];
+
+  };
 }
