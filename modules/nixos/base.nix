@@ -4,6 +4,8 @@
       self.modules.nixos.shell
     ];
 
+    users.mutableUsers = false;
+    
     nixpkgs = {
       config.allowUnfree = true;
       overlays = builtins.attrValues self.overlays;
