@@ -8,7 +8,6 @@ let
 in
 { 
   imports = [
-
     inputs.home-manager.flakeModules.home-manager
   ];
   options.flake = {
