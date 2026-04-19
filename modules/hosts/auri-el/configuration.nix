@@ -18,6 +18,8 @@
       self.modules.nixos.scripts
       # self.modules.nixos.desktop 
       self.modules.nixos.stylix 
+
+      self.modules.nixos.b4-container
     ];
 
     environment.variables = {
@@ -77,7 +79,6 @@
 
     networking = {
       hostName = "auri-el";
-      hostId = hostId;
       networkmanager.enable = true;
       dhcpcd.wait = "background";
       dhcpcd.extraConfig = "noarp";
@@ -185,7 +186,7 @@
         enable = true;
         settings = {
           default_session = {
-            user = username;
+            user = "dallinchi";
             command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
           };
         };
