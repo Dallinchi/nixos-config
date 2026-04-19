@@ -1,0 +1,16 @@
+{
+  "gosuslugi.ru": {
+    "tls": {
+      "timestamp": "2026-03-12T12:54:40.840102659Z",
+      "size": 660,
+      "filepath": "tls_gosuslugi_ru.bin"
+    }
+  },
+  "max.ru": {
+    "tls": {
+      "timestamp": "2026-03-14T11:45:21.821720122Z",
+      "size": 654,
+      "filepath": "tls_max_ru.bin"
+    }
+  }
+}
