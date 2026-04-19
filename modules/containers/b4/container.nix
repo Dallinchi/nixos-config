@@ -9,7 +9,8 @@
       backend = "podman";
 
       containers.b4 = {
-        image = "lavrushin/b4:latest";
+        # image = "lavrushin/b4:latest";
+        image = "lavrushin/b4:1.48.1";
 
         extraOptions = [
           "--network=host"
