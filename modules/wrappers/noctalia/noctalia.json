@@ -6,7 +6,8 @@
       "position": "left",
       "monitors": [
         "HDMI-A-1",
-        "DP-1"
+        "DP-1",
+        "eDP-1"
       ],
       "density": "default",
       "showOutline": false,
