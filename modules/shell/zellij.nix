@@ -10,7 +10,19 @@
 
           show_startup_tips = false;
           default_layout = "compact";
+
         };
+
+        extraConfig = ''
+          keybinds {
+            locked {
+            bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+            bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+            bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+            bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+            }
+          }
+        '';
 
         themes.stylix = {
           themes = with config.lib.stylix.colors.withHashtag; {
