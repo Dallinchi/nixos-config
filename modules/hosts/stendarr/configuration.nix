@@ -20,6 +20,8 @@
       self.modules.nixos.stylix 
 
       self.modules.nixos.b4-container
+      self.modules.nixos.minecraft-servers
+      self.modules.nixos.prismlauncher
     ];
 
     fileSystems = {
@@ -127,11 +129,15 @@
           #443
           8000
           8080 # Seafile
+          
+          53149 # Minecraft
+
           21 # FTP
         ];
         allowedUDPPorts = [
           # 59010
           # 59011
+          53149 # Minecraft
         ];
 
         allowedTCPPortRanges = [
