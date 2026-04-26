@@ -1,25 +1,26 @@
-{ inputs, system, config, ... }: {
+{inputs, ...}: {
 
-  perSystem = { system, ... }: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
+  flake.overlays = {
+    # from inputs
+    # niri-unstable = inputs.niri.overlays.niri;
+    # nix-minecraft = inputs.nix-minecraft.overlay;
 
-      config.allowUnfree = true;
-      
-      overlays = [
-        # inputs.foo.overlays.default
-        inputs.niri.overlays.niri
-        (final: prev: {
+    # my overlays
+    # modifications = final: prev: {
+    #   obsidian = prev.obsidian.overrideAttrs (oldAttrs: {
+    #     postInstall = (oldAttrs.postInstall or "") + ''
+    #       wrapProgram $out/bin/obsidian \
+    #         --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
+    #     '';
+    #   });
+    # };
 
-          stable = import inputs.nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-
-          # ... things you need to patch ...
-        })
-      ];
-      config = { };
+    stable-packages = final: _prev: {
+      stable = import inputs.nixpkgs-stable {
+        inherit (final.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
     };
   };
 }
+

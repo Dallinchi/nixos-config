@@ -35,7 +35,9 @@
     imports = [
       inputs.niri.homeModules.niri
     ];
-
+    
+    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+    
     systemd.user.targets.niri-session.Unit.Wants = [
       "xdg-desktop-autostart.target"
     ];
@@ -371,7 +373,7 @@
           gaps = 12;
           default-column-width.proportion = 0.5;
           always-center-single-column = true;
-          center-focused-column = "never"; # one of "never", "always", "on-overflow"
+          center-focused-column = "always"; # one of "never", "always", "on-overflow"
           insert-hint.display = {
             color = "rgba(224, 224, 224, 30%)";
           };

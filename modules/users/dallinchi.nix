@@ -23,8 +23,17 @@ in
 
   flake.homeConfigurations = {
     dallinchi = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = withSystem system ({ pkgs, ... }: pkgs);
+      pkgs = withSystem system ({ system, ... }:
+        import inputs.nixpkgs {
+          inherit system;
 
+          config.allowUnfree = true;
+
+          overlays = [
+            self.overlays.stable-packages
+          ];
+        }
+      );
       modules = [
         self.modules.home.home-manager
         self.modules.home.desktop
@@ -33,6 +42,7 @@ in
         self.modules.home.alacritty
         self.modules.home.kitty
         self.modules.home.stylix
+        self.modules.home.obs-studio
 
         {
           home.username = "dallinchi";

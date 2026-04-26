@@ -25,12 +25,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
+    # Impove firefox
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;
     };
-
+    
+    # firefox-based browser
     zen-browser = {
       # url = "github:0xc000022070/zen-browser-flake?ref=1.20t-1772605766";
       url = "github:0xc000022070/zen-browser-flake?rev=869e4ed0c5b6962d0e344a89542257f383440b9e";
@@ -44,7 +46,8 @@
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };    
-
+    
+    # Window manager
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +57,15 @@
     nfsm-flake = {
       url = "github:gvolpe/nfsm";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Minecraft server
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+    };
+
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher?ref=9.3";
     };
 
   };
