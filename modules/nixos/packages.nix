@@ -23,6 +23,7 @@
       via
       dhcpcd
       docker-compose # Podman compose compatable
+      git
 
       steam
 
