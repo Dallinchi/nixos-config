@@ -17,7 +17,8 @@
       self.modules.nixos.shell
       self.modules.nixos.scripts
       # self.modules.nixos.desktop 
-      self.modules.nixos.stylix 
+      self.modules.nixos.stylix
+      self.modules.nixos.gaming
 
       self.modules.nixos.b4-container
     ];

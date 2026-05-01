@@ -22,6 +22,7 @@
       self.modules.nixos.b4-container
       self.modules.nixos.minecraft-servers
       self.modules.nixos.prismlauncher
+      self.modules.nixos.gaming
 
       self.modules.nixos.dallinchi
     ];

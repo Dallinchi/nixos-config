@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.nixos.dallinchi = {pkgs, ...}: {
-
+    
     users.users.dallinchi = {
       isNormalUser = true;
       description = "Dallinchi";
