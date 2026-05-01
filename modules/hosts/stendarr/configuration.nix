@@ -22,6 +22,8 @@
       self.modules.nixos.b4-container
       self.modules.nixos.minecraft-servers
       self.modules.nixos.prismlauncher
+
+      self.modules.nixos.dallinchi
     ];
 
     fileSystems = {
@@ -218,73 +220,10 @@
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = true;
-   
-        extraConfig.pipewire = {
-          "92-low-latency" = {
-            "context.properties" = {
-              "default.clock.rate" = 48000;
-              "default.clock.quantum" = 256;
-              "default.clock.min-quantum" = 256;
-              "default.clock.max-quantum" = 256;
-            };
-          };
-
-          "99-input-denoising" = {
-            "context.modules" = [
-              
-              {
-                name = "libpipewire-module-filter-chain";
-                args = {
-                  "node.description" = "Noise Canceling source";
-                  "media.name" = "Noise Canceling source";
-                  "filter.graph" = {
-                    nodes = [
-                    {
-                      type = "ladspa";
-                      name = "rnnoise";
-                      plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
-                      label = "noise_suppressor_mono";
-                      control = {
-                        "VAD Threshold (%)" = 50.0;
-                        "VAD Grace Period (ms)" = 200;
-                        "Retroactive VAD Grace (ms)" = 0;
-                      };
-                    }
-                    ];
-                  };
-                  "capture.props" = {
-                    "node.name" = "capture.rnnoise_source";
-                    "node.passive" = true;
-                    "audio.rate" = 48000;
-                  };
-                  "playback.props" = {
-                    "node.name" = "rnnoise_source";
-                    "media.class" = "Audio/Source";
-                    "audio.rate" = 48000;
-                  };
-                };
-              }
-
-            ];
-          };
-        };
-        
-        extraConfig.pipewire-pulse."92-low-latency" = {
-          context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "256/48000";
-              pulse.default.req = "256/48000";
-              pulse.max.req = "256/48000";
-              pulse.min.quantum = "256/48000";
-              pulse.max.quantum = "256/48000";
-            };
-          }
-          ];
-        };
+        wireplumber.enable = true;
       };
+
+      v2raya.enable = true;
 
       power-profiles-daemon.enable = true;
       

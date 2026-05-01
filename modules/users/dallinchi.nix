@@ -3,7 +3,7 @@ let
   system = "x86_64-linux";
 in
 {
-  flake.modules.nixos.nixos = {pkgs, ...}: {
+  flake.modules.nixos.dallinchi = {pkgs, ...}: {
 
     users.users.dallinchi = {
       isNormalUser = true;
