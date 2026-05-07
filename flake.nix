@@ -7,7 +7,10 @@
     import-tree.url = "github:vic/import-tree";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-    wrappers.url = "github:Lassulus/wrappers";
+    wrappers = {
+      url = "github:Lassulus/wrappers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # System colors 
     stylix = {
@@ -66,6 +69,7 @@
 
     prismlauncher = {
       url = "github:PrismLauncher/PrismLauncher?ref=9.3";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
   };
