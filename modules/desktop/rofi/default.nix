@@ -1,5 +1,5 @@
 {
-  flake.modules.home.desktop = { pkgs, lib, ... }: {
+  flake.modules.home.rofi = { pkgs, lib, ... }: {
     programs.rofi = {
           enable = true;
           package = pkgs.rofi;

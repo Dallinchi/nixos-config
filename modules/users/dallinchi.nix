@@ -37,12 +37,7 @@ in
       modules = [
         self.modules.home.home-manager
         self.modules.home.desktop
-        self.modules.home.zen-browser
         self.modules.home.shell
-        self.modules.home.alacritty
-        self.modules.home.kitty
-        self.modules.home.stylix
-        self.modules.home.obs-studio
 
         {
           home.username = "dallinchi";

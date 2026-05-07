@@ -1,21 +1,26 @@
 {self, ...}: {
-  flake.modules.nixos.desktop = {pkgs, ...}: let
+  flake.modules.home.desktop = {pkgs, ...}: let
     selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
   in {
     imports = [
+      self.modules.home.swayosd
+      self.modules.home.rofi
+
+      self.modules.home.alacritty
+      self.modules.home.zen-browser
+      self.modules.home.kitty
+      self.modules.home.stylix
+      self.modules.home.obs-studio
+      self.modules.home.discord
     ];
 
-    programs.niri.enable = true;
-    programs.niri.package = selfpkgs.niri;
+    systemd.user.targets.niri-session.Unit.Wants = [
+      "xdg-desktop-autostart.target"
+    ];
 
-    environment.systemPackages = [
-      # selfpkgs.terminal
-      # pkgs.pcmanfm
+    home.packages = [
       selfpkgs.noctalia-shell
-    ];
-
-    fonts.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+      selfpkgs.niri
     ];
   };
 }

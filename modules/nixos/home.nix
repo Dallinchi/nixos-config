@@ -22,7 +22,6 @@
       wl-clipboard # Clipboard
       cliphist
       telegram-desktop # Chat
-      discord # Voice chat
       nsxiv # Image viewer
       seafile-client # Cloud
       libnotify # Notify utils

@@ -1,5 +1,5 @@
 {
-  flake.modules.home.desktop = { pkgs, lib, ... }: {
+  flake.modules.home.swayosd = { pkgs, lib, ... }: {
     services.swayosd = {
           enable = true;
           # package = pkgs.swayosd;
