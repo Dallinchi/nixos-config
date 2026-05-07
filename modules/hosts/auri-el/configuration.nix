@@ -14,13 +14,15 @@
     # import any other modules from here
     imports = [
       self.modules.nixos.nixos 
-      self.modules.nixos.shell
       self.modules.nixos.scripts
       # self.modules.nixos.desktop 
       self.modules.nixos.stylix
       self.modules.nixos.gaming
 
       self.modules.nixos.b4-container
+
+      self.modules.nixos.dallinchi
+
     ];
 
     environment.variables = {
@@ -188,7 +190,7 @@
         settings = {
           default_session = {
             user = "dallinchi";
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri"; # start Hyprland with a TUI login manager
           };
         };
       };

@@ -13,8 +13,7 @@
   flake.hosts.stendarr = {pkgs, lib, options, ...}: {
     # import any other modules from here
     imports = [
-      self.modules.nixos.nixos 
-      self.modules.nixos.shell
+      self.modules.nixos.nixos
       self.modules.nixos.scripts
       # self.modules.nixos.desktop 
       self.modules.nixos.stylix 
@@ -233,7 +232,7 @@
         settings = {
           default_session = {
             user = "dallinchi";
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session"; # start Hyprland with a TUI login manager
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri"; # start Hyprland with a TUI login manager
           };
         };
       };
