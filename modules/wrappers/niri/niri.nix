@@ -39,6 +39,16 @@
       pkgs.writeTextFile {
         name = "niri-config.kdl";
         text = ''
+        
+        spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
+        spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
+        spawn-at-startup "sh" "-c" "${lib.getExe scriptOverviewAction}"
+        spawn-at-startup "sh" "-c" "${lib.getExe noctalia-shell}"
+        spawn-at-startup "yandex-music"
+        spawn-at-startup "zen-twilight"
+        spawn-at-startup "steam"
+        spawn-at-startup "discord"
+
         input {
           keyboard {
             xkb {
@@ -317,13 +327,6 @@
         workspace "code" { open-on-output "DP-1"; }
         workspace "chat" { open-on-output "HDMI-A-1"; }
         workspace "game" { open-on-output "DP-1"; }
-        spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
-        spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
-        spawn-at-startup "sh" "-c" "${lib.getExe scriptOverviewAction}"
-        spawn-at-startup "sh" "-c" "${lib.getExe noctalia-shell}"
-        spawn-at-startup "yandex-music"
-        spawn-at-startup "zen-twilight"
-        spawn-at-startup "steam"
 
         window-rule {
           open-focused true
