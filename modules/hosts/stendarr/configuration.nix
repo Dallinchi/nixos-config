@@ -18,10 +18,10 @@
       # self.modules.nixos.desktop 
       self.modules.nixos.stylix 
 
-      self.modules.nixos.b4-container
       self.modules.nixos.minecraft-servers
       self.modules.nixos.prismlauncher
       self.modules.nixos.gaming
+      self.modules.nixos.v2raya
 
       self.modules.nixos.dallinchi
     ];
@@ -221,10 +221,24 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         wireplumber.enable = true;
+
+        extraConfig.pipewire = {
+          "92-sample-rate" = {
+            "context.properties" = {
+              "default.clock.rate" = 48000;
+              "default.clock.allowed-rates" = [ 48000 ];
+            };
+          };
+          "92-buffer" = {
+            "context.properties" = {
+              "default.clock.quantum" = 1024;
+              "default.clock.min-quantum" = 1024;
+              "default.clock.max-quantum" = 2048;
+            };
+          };
+        };
       };
-
-      v2raya.enable = true;
-
+      
       power-profiles-daemon.enable = true;
       
       greetd = {

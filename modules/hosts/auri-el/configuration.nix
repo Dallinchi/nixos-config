@@ -19,7 +19,7 @@
       self.modules.nixos.stylix
       self.modules.nixos.gaming
 
-      self.modules.nixos.b4-container
+      self.modules.nixos.v2raya
 
       self.modules.nixos.dallinchi
 
