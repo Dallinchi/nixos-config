@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.modules.home.shell = {pkgs, ... }:
+  flake.modules.home.nvchad = {pkgs, ... }:
   {
     imports = [
       inputs.nix4nvchad.homeManagerModule
