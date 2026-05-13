@@ -54,11 +54,13 @@
         # completion
         p.blink-cmp
         p.nvim-web-devicons
-
+        p.comment-nvim
+        
         # misc
         p.snacks-nvim
         p.lualine-nvim
         p.yazi-nvim
+        p.flash-nvim
       ];
 
       specs.opt = let
