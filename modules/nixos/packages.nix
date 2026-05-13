@@ -24,6 +24,7 @@
       dhcpcd
       docker-compose # Podman compose compatable
       git
+      home-manager
     ];
   
     fonts.packages = with pkgs; [
