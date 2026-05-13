@@ -165,6 +165,8 @@
       };
       enable = true;
     };
+    
+    security.rtkit.enable = true;
 
     services = {
 
@@ -232,8 +234,8 @@
           "92-buffer" = {
             "context.properties" = {
               "default.clock.quantum" = 1024;
-              "default.clock.min-quantum" = 1024;
-              "default.clock.max-quantum" = 2048;
+              "default.clock.min-quantum" = 512;
+              "default.clock.max-quantum" = 1024;
             };
           };
         };
