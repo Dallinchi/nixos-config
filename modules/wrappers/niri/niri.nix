@@ -353,10 +353,12 @@
             spread 5
           }
         }
+        
         window-rule {
           match at-startup=true
           open-focused false
         }
+
         window-rule {
           match app-id="Alacritty" title="Bluetoothctl"
           match app-id="Alacritty" title="Nmtui"
@@ -364,26 +366,36 @@
           match app-id="org.pulseaudio.pavucontrol" title="Volume Control"
           open-floating true
         }
+
         window-rule {
           match app-id="zen-twilight"
-          match app-id="yandex-music"
+          match app-id="electron"
           open-on-workspace "media"
         }
+
         window-rule {
           match app-id="Alacritty"
           match app-id="kitty"
           open-on-workspace "code"
         }
+
         window-rule {
           match app-id="steam"
           open-on-workspace "game"
         }
+
+        window-rule {
+          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+          default-floating-position x=10 y=10 relative-to="bottom-right"
+        }
+
         window-rule {
           match app-id="com.chatterino."
           match app-id="org.telegram.desktop"
           match app-id="discord"
           open-on-workspace "chat"
         }
+
         window-rule {
           match app-id=".blueman-manager-wrapped"
           match app-id="nm-connection-editor"
@@ -395,22 +407,26 @@
           match title="Syncthing Tray"
           open-floating true
         }
+
         window-rule {
           match app-id="com.chatterino"
           match app-id="discord"
           open-fullscreen true
         }
+
         window-rule {
           match app-id="steam" title="Steam"
           match app-id="zen-twilight"
           match app-id="org.telegram.desktop"
           open-maximized true
         }
+
         window-rule {
           match app-id="yandex-music"
           match app-id="steam" title="Список друзей"
           default-column-width { proportion 0.300000; }
         }
+
         window-rule {
           match is-window-cast-target=true
           focus-ring {
@@ -422,7 +438,9 @@
             inactive-color "rgba(224, 53, 53, 30%)"
           }
         }
+        
         layer-rule { geometry-corner-radius 5.000000 5.000000 5.000000 5.000000; }
+        
         layer-rule {
           match namespace="waybar"
           match namespace="way-edges-widget"
@@ -430,6 +448,7 @@
           match namespace="mpvpaper"
           place-within-backdrop true
         }
+
         gestures { hot-corners { off; }; }
         xwayland-satellite { path "${pkgs.lib.getExe pkgs.xwayland-satellite}";}
 
