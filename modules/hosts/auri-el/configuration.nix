@@ -93,20 +93,10 @@
           #80
           #443
           #8080
-          5004 # Pipewire rtp-rec
-          4713 # Pipewire rtp-rec
-          4713 # Pipewire rtp-rec
         ];
         allowedUDPPorts = [
           #59010
           #59011
-          5004 # Pipewire rtp-rec
-          4656 # Pipewire rtp-rec
-          4713 # Pipewire rtp-rec
-          4713 # Pipewire rtp-rec
-          10001 # Roc-reciver
-          10002 # Roc-reciver
-          10003 # Roc-reciver
         ];
       };
     };
