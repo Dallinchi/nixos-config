@@ -93,10 +93,20 @@
           #80
           #443
           #8080
+          5004 # Pipewire rtp-rec
+          4713 # Pipewire rtp-rec
+          4713 # Pipewire rtp-rec
         ];
         allowedUDPPorts = [
           #59010
           #59011
+          5004 # Pipewire rtp-rec
+          4656 # Pipewire rtp-rec
+          4713 # Pipewire rtp-rec
+          4713 # Pipewire rtp-rec
+          10001 # Roc-reciver
+          10002 # Roc-reciver
+          10003 # Roc-reciver
         ];
       };
     };
@@ -108,7 +118,9 @@
       MemoryHigh = "3G";
       MemoryMax = "4G";
     };
-
+    
+    security.rtkit.enable = true;
+    
     services = {
       
       xserver.videoDrivers = [ "amdgpu" ];
@@ -120,7 +132,7 @@
       gvfs.enable = true; # For Mounting USB & More
       udisks2.enable = true;
       openssh = {
-        enable = false; # Enable SSH
+        enable = true; # Enable SSH
         settings = {
           PermitRootLogin = "no"; # Prevent root from SSH login
           PasswordAuthentication = true; #Users can SSH using kb and password
