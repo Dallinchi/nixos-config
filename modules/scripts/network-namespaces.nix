@@ -1,5 +1,24 @@
 {
   flake.modules.nixos.scripts = { pkgs, config, ... }: {
+
+    sops.secrets."openconnect/tlinmo/username" = {
+      sopsFile = ../../secrets/vpn.yaml;
+      key = "openconnect/tlinmo/username";
+      mode = "0400";
+    };
+
+    sops.secrets."openconnect/tlinmo/server" = {
+      sopsFile = ../../secrets/vpn.yaml;
+      key = "openconnect/tlinmo/server";
+      mode = "0400";
+    };
+
+    sops.secrets."openconnect/tlinmo/password" = {
+      sopsFile = ../../secrets/vpn.yaml;
+      key = "openconnect/tlinmo/password";
+      mode = "0400";
+    };
+    
     environment.systemPackages = with pkgs; [
       (writeShellScriptBin "start-vpn-namespace" ''
         set -eo pipefail

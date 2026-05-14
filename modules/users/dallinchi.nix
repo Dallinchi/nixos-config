@@ -3,7 +3,16 @@ let
   system = "x86_64-linux";
 in
 {
-  flake.modules.nixos.dallinchi = {pkgs, ...}: {
+  flake.modules.nixos.dallinchi = {pkgs, config, ...}: {
+    
+    imports = [ inputs.sops-nix.nixosModules.sops ];
+
+    sops.secrets."dallinchi-password" = {
+      sopsFile = ../../secrets/users.yaml;
+      key = "users/dallinchi/hashed";
+      neededForUsers = true;
+      mode = "0400";
+    };
     
     users.users.dallinchi = {
       isNormalUser = true;
@@ -16,7 +25,7 @@ in
         "networkmanager"
         "podman"
       ];
-      
+      hashedPasswordFile = config.sops.secrets."dallinchi-password".path;
     };
 
   };
