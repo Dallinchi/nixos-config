@@ -61,6 +61,7 @@
         p.lualine-nvim
         p.yazi-nvim
         p.flash-nvim
+        p.alpha-nvim
       ];
 
       specs.opt = let
