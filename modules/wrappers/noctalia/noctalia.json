@@ -5,8 +5,6 @@
       "barType": "simple",
       "position": "left",
       "monitors": [
-        "HDMI-A-1",
-        "DP-1",
         "eDP-1"
       ],
       "density": "default",
@@ -26,29 +24,98 @@
       "frameRadius": 12,
       "outerCorners": true,
       "hideOnOverview": false,
-      "displayMode": "non_exclusive",
+      "displayMode": "always_visible",
       "autoHideDelay": 500,
       "autoShowDelay": 150,
       "showOnWorkspaceSwitch": true,
       "widgets": {
         "left": [
           {
-            "colorizeDistroLogo": false,
-            "colorizeSystemIcon": "tertiary",
-            "customIconPath": "",
-            "enableColorization": true,
-            "icon": "noctalia",
-            "id": "ControlCenter",
-            "useDistroLogo": true
+            "iconColor": "error",
+            "id": "SessionMenu"
           },
           {
-            "hideWhenZero": false,
-            "hideWhenZeroUnread": false,
             "iconColor": "none",
-            "id": "NotificationHistory",
-            "showUnreadBadge": true,
-            "unreadBadgeColor": "primary"
+            "id": "NoctaliaPerformance"
           },
+          {
+            "compactMode": true,
+            "diskPath": "/",
+            "iconColor": "none",
+            "id": "SystemMonitor",
+            "showCpuCores": false,
+            "showCpuFreq": false,
+            "showCpuTemp": true,
+            "showCpuUsage": true,
+            "showDiskAvailable": false,
+            "showDiskUsage": false,
+            "showDiskUsageAsPercent": false,
+            "showGpuTemp": false,
+            "showLoadAverage": false,
+            "showMemoryAsPercent": false,
+            "showMemoryUsage": true,
+            "showNetworkStats": false,
+            "showSwapUsage": false,
+            "textColor": "none",
+            "useMonospaceFont": true,
+            "usePadding": false
+          },
+          {
+            "deviceNativePath": "__default__",
+            "displayMode": "graphic-clean",
+            "hideIfIdle": false,
+            "hideIfNotDetected": true,
+            "id": "Battery",
+            "showNoctaliaPerformance": false,
+            "showPowerProfiles": false
+          },
+          {
+            "colorizeSystemIcon": "primary",
+            "colorizeSystemText": "none",
+            "customIconPath": "",
+            "enableColorization": true,
+            "icon": "3d-cube-sphere",
+            "iconColor": "none",
+            "id": "Launcher",
+            "useDistroLogo": false
+          },
+          {
+            "colorizeIcons": false,
+            "hideMode": "hidden",
+            "iconScale": 0.8,
+            "id": "Taskbar",
+            "maxTaskbarWidth": 40,
+            "onlyActiveWorkspaces": true,
+            "onlySameOutput": true,
+            "showPinnedApps": true,
+            "showTitle": false,
+            "smartWidth": true,
+            "titleWidth": 120
+          },
+          {
+            "characterCount": 2,
+            "colorizeIcons": false,
+            "emptyColor": "primary",
+            "enableScrollWheel": true,
+            "focusedColor": "primary",
+            "followFocusedScreen": true,
+            "fontWeight": "regular",
+            "groupedBorderOpacity": 1,
+            "hideUnoccupied": false,
+            "iconScale": 0.8,
+            "id": "Workspace",
+            "labelMode": "none",
+            "occupiedColor": "secondary",
+            "pillSize": 0.71,
+            "showApplications": false,
+            "showApplicationsHover": false,
+            "showBadge": true,
+            "showLabelsOnlyWhenOccupied": true,
+            "unfocusedIconsOpacity": 1
+          }
+        ],
+        "center": [],
+        "right": [
           {
             "compactMode": false,
             "hideMode": "hidden",
@@ -64,28 +131,15 @@
             "textColor": "none",
             "useFixedWidth": false,
             "visualizerType": "linear"
-          }
-        ],
-        "center": [],
-        "right": [
-          {
-            "id": "Spacer",
-            "width": 20
           },
           {
-            "clockColor": "none",
+            "clockColor": "primary",
             "customFont": "FiraCode Nerd Font Mono",
             "formatHorizontal": "HH:mm ddd, MMM dd",
             "formatVertical": "HH mm - dd MM",
             "id": "Clock",
             "tooltipFormat": "HH:mm ddd, MMM dd",
             "useCustomFont": true
-          },
-          {
-            "displayMode": "onhover",
-            "iconColor": "none",
-            "id": "Bluetooth",
-            "textColor": "none"
           },
           {
             "displayMode": "onhover",
@@ -102,6 +156,20 @@
             "textColor": "none"
           },
           {
+            "displayMode": "onhover",
+            "iconColor": "none",
+            "id": "Bluetooth",
+            "textColor": "none"
+          },
+          {
+            "hideWhenZero": false,
+            "hideWhenZeroUnread": false,
+            "iconColor": "none",
+            "id": "NotificationHistory",
+            "showUnreadBadge": true,
+            "unreadBadgeColor": "primary"
+          },
+          {
             "blacklist": [],
             "chevronColor": "none",
             "colorizeIcons": false,
@@ -109,10 +177,6 @@
             "hidePassive": false,
             "id": "Tray",
             "pinned": []
-          },
-          {
-            "iconColor": "tertiary",
-            "id": "NoctaliaPerformance"
           }
         ]
       },
@@ -249,7 +313,7 @@
     },
     "general": {
       "avatarImage": "/home/dallinchi/.face",
-      "dimmerOpacity": 0.1,
+      "dimmerOpacity": 0.31,
       "showScreenCorners": true,
       "forceBlackScreenCorners": true,
       "scaleRatio": 1.1,
@@ -308,7 +372,8 @@
           "Del"
         ]
       },
-      "reverseScroll": false
+      "reverseScroll": false,
+      "smoothScrollEnabled": true
     },
     "ui": {
       "fontDefault": "DejaVu Sans",
@@ -318,8 +383,8 @@
       "tooltipsEnabled": true,
       "scrollbarAlwaysVisible": true,
       "boxBorderEnabled": true,
-      "panelBackgroundOpacity": 1,
-      "translucentWidgets": false,
+      "panelBackgroundOpacity": 0.9500000000000001,
+      "translucentWidgets": true,
       "panelsAttachedToBar": true,
       "settingsPanelMode": "attached",
       "settingsPanelSideBarCardStyle": false
@@ -328,6 +393,7 @@
       "name": "Tokyo",
       "weatherEnabled": true,
       "weatherShowEffects": true,
+      "weatherTaliaMascotAlways": false,
       "useFahrenheit": false,
       "use12hourFormat": false,
       "showWeekNumberInCalendar": false,
@@ -336,7 +402,8 @@
       "analogClockInCalendar": false,
       "firstDayOfWeek": -1,
       "hideWeatherTimezone": true,
-      "hideWeatherCityName": true
+      "hideWeatherCityName": true,
+      "autoLocate": false
     },
     "calendar": {
       "cards": [
@@ -374,6 +441,7 @@
       "showHiddenFiles": false,
       "viewMode": "single",
       "setWallpaperOnAllMonitors": true,
+      "linkLightAndDarkWallpapers": true,
       "fillMode": "crop",
       "fillColor": "#000000",
       "useSolidColor": false,
@@ -412,7 +480,7 @@
       "favorites": []
     },
     "appLauncher": {
-      "enableClipboardHistory": false,
+      "enableClipboardHistory": true,
       "autoPasteClipboard": false,
       "enableClipPreview": true,
       "clipboardWrapText": true,
@@ -420,14 +488,14 @@
       "enableClipboardChips": true,
       "clipboardWatchTextCommand": "wl-paste --type text --watch cliphist store",
       "clipboardWatchImageCommand": "wl-paste --type image --watch cliphist store",
-      "position": "center",
+      "position": "top_center",
       "pinnedApps": [],
       "sortByMostUsed": true,
       "terminalCommand": "alacritty -e",
       "customLaunchPrefixEnabled": false,
       "customLaunchPrefix": "",
       "viewMode": "list",
-      "showCategories": true,
+      "showCategories": false,
       "iconMode": "tabler",
       "showIconBackground": false,
       "enableSettingsSearch": true,
@@ -435,7 +503,7 @@
       "enableSessionSearch": true,
       "ignoreMouseInput": false,
       "screenshotAnnotationTool": "",
-      "overviewLayer": false,
+      "overviewLayer": true,
       "density": "default"
     },
     "controlCenter": {
@@ -557,7 +625,6 @@
       "indicatorOpacity": 0.6
     },
     "network": {
-      "airplaneModeEnabled": false,
       "bluetoothRssiPollingEnabled": false,
       "bluetoothRssiPollIntervalMs": 60000,
       "networkPanelView": "wifi",
@@ -698,14 +765,15 @@
       "backlightDeviceMappings": []
     },
     "colorSchemes": {
-      "useWallpaperColors": false,
+      "useWallpaperColors": true,
       "predefinedScheme": "Ayu",
       "darkMode": true,
       "schedulingMode": "off",
       "manualSunrise": "06:30",
       "manualSunset": "18:30",
       "generationMethod": "tonal-spot",
-      "monitorForColors": ""
+      "monitorForColors": "",
+      "syncGsettings": true
     },
     "templates": {
       "activeTemplates": [],
@@ -761,12 +829,12 @@
   "state": {
     "doNotDisturb": false,
     "noctaliaPerformanceMode": false,
-    "barVisible": false,
+    "barVisible": true,
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "DP-1": "/home/dallinchi/Pictures/Wallpapers/Giant_hand_2.png",
-      "HDMI-A-1": "/home/dallinchi/Pictures/Wallpapers/Giant_hand_2.png"
+      "HDMI-A-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven-6ld5kx.png",
+      "DP-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven-6ld5kx.png"
     },
     "desktopWidgetsEditMode": false,
     "display": {
@@ -802,10 +870,10 @@
       }
     },
     "notificationsState": {
-      "lastSeenTs": 1775950820000
+      "lastSeenTs": 1780385316000
     },
     "changelogState": {
-      "lastSeenVersion": "v4.7.1"
+      "lastSeenVersion": "v4.7.6"
     },
     "colorSchemesList": {
       "schemes": [],
