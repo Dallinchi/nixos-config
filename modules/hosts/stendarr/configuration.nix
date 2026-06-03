@@ -80,9 +80,10 @@
       kernelPackages = pkgs.linuxPackages_zen;
       kernelParams = [
         "sched_migration_cost_ns=5000000"
-          "cgroup_no_v1=all"
-          "mem_sleep_default=deep"
-          "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
+        "cgroup_no_v1=all"
+        "mem_sleep_default=deep"
+        "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
+        "btusb.enable_autosuspend=n" # Fix bluethooth
       ];
       # kernelModules = [ "v4l2loopback" ];
       # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
@@ -208,8 +209,6 @@
       };
       
       journald.extraConfig = "SystemMaxUser=50m"; # Max weight logs
-      # blueman.enable = true; # Bluetooth Support
-      # tumbler.enable = true; # Image/video preview
       gnome.gnome-keyring.enable = true;
 
       smartd = {
@@ -223,25 +222,17 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         wireplumber.enable = true;
-
-        extraConfig.pipewire = {
-          "92-sample-rate" = {
-            "context.properties" = {
-              "default.clock.rate" = 48000;
-              "default.clock.allowed-rates" = [ 48000 ];
-            };
-          };
-          "92-buffer" = {
-            "context.properties" = {
-              "default.clock.quantum" = 1024;
-              "default.clock.min-quantum" = 512;
-              "default.clock.max-quantum" = 1024;
-            };
-          };
-        };
       };
       
-      power-profiles-daemon.enable = true;
+      # power-profiles-daemon.enable = true;
+
+      tlp = {
+        enable = true;
+        settings = {
+          CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
+        };
+      };
+
       
       greetd = {
         enable = true;
