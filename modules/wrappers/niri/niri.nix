@@ -75,7 +75,6 @@
           warp-mouse-to-focus
           focus-follows-mouse max-scroll-amount="95%"
           disable-power-key-handling
-          workspace-auto-back-and-forth
         }
 
         output "DP-1" {
@@ -137,7 +136,7 @@
           proportion 0.666667
           proportion 1.000000
         }
-        center-focused-column "always"
+        center-focused-column "never"
         always-center-single-column
       }
 
@@ -178,7 +177,7 @@
         Super+3 { focus-workspace "code"; }
         Super+4 { focus-workspace "chat"; }
         Super+5 { focus-workspace "game"; }
-        Super+6 { focus-workspace 6; }
+        Super+6 { focus-workspace "music"; }
         Super+7 { focus-workspace 7; }
         Super+8 { focus-workspace 8; }
 
@@ -272,17 +271,17 @@
                 {
                   key = "t";
                   desc = "Telegram";
-                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn Telegram";
+                  cmd = "Telegram";
                 }
                 {
                   key = "d";
                   desc = "Discord";
-                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn discord";
+                  cmd = "discord";
                 }
                 {
                   key = "c";
                   desc = "Chatterino";
-                  cmd = "alacritty -T \"Password to enter the namespace\" -e exec-in-namespace ns_vpn chatterino";
+                  cmd = "chatterino";
                 }
                 {
                   key = "m";
@@ -332,8 +331,7 @@
         // Super+V { spawn "sh" "-c" "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; }
         // Super+Tab { spawn "sh" "-c" "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show window; niri msg action close-overview"; }
         // Super+Tab { spawn "sh" "-c" "noctalia-shell ipc call launcher windows"; }
-        Super+O repeat=false { toggle-overview; }
-        Super+Tab { focus-workspace "stratch"; }
+        Super+Tab repeat=false { toggle-overview; }
 
         // Super+T { spawn "sh" "-c" "notify-send 'Время' '$(date +"%H:%M:%S")'"}
         Super+T { spawn-sh "noctalia-shell ipc call toast send \"{\\\"title\\\": \\\"Время\\\", \\\"body\\\": \\\"$(date +'%H:%M:%S')\\\"}\""; }
@@ -370,7 +368,7 @@
       workspace "code" { open-on-output "DP-1"; }
       workspace "chat" { open-on-output "HDMI-A-1"; }
       workspace "game" { open-on-output "DP-1"; }
-      workspace "stratch" { open-on-output "HDMI-A-1"; }
+      workspace "music" { open-on-output "HDMI-A-1"; }
 
       window-rule {
         open-focused true
@@ -437,8 +435,8 @@
       }
 
       window-rule {
-        match app-id="org.pulseaudio.pavucontrol"
-        open-on-workspace "stratch"
+        match app-id="electron"
+        open-on-workspace "music"
       }
 
       window-rule {
@@ -472,7 +470,7 @@
       }
 
       window-rule {
-        match app-id="yandex-music"
+        match app-id="electron"
         match app-id="steam" title="Список друзей"
         default-column-width { proportion 0.300000; }
       }
@@ -554,5 +552,6 @@
         QT_QPA_PLATFORMTHEME = "gtk3";
       };
     };
+
   };
 }
