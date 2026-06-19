@@ -36,6 +36,7 @@
       vscode # Text editor
       xwayland-satellite # Xwayland for niri 
       chatterino7 # Twitch chat
+      koodo-reader # Books reader
 
       gparted
       alsa-utils
