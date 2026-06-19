@@ -1,5 +1,5 @@
 {
-  flake.modules.home.shell = { host, ... }: {
+  flake.modules.home.shell = {
 
     programs.git = {
       enable = true;
@@ -32,5 +32,11 @@
         };
       };
     };
+  };
+  
+  flake.modules.nixos.shell = {pkgs, ...}: {
+    environment.systemPackages = [
+      pkgs.lazygit
+    ];
   };
 }
