@@ -1,7 +1,6 @@
 { 
   inputs,
   self,
-  options,
   ... 
 }: {
   flake.nixosConfigurations.auri-el = inputs.nixpkgs.lib.nixosSystem {
@@ -10,12 +9,12 @@
     ];
   };
 
-  flake.hosts.auri-el = {pkgs, lib, options, ...}: {
+  flake.hosts.auri-el = {pkgs, options, ...}: {
     # import any other modules from here
     imports = [
       self.modules.nixos.nixos 
       self.modules.nixos.scripts
-      # self.modules.nixos.desktop 
+      self.modules.nixos.desktop 
       self.modules.nixos.stylix
       self.modules.nixos.gaming
 
@@ -138,14 +137,6 @@
       smartd = {
         enable = true;
         autodetect = true;
-      };
-
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
       };
 
       system76-scheduler.settings.cfsProfiles.enable = true;   # Better scheduling for CPU cycles - thanks System76!!!

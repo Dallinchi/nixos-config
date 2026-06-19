@@ -15,7 +15,7 @@
     imports = [
       self.modules.nixos.nixos
       self.modules.nixos.scripts
-      # self.modules.nixos.desktop 
+      self.modules.nixos.desktop 
       self.modules.nixos.stylix 
 
       self.modules.nixos.minecraft-servers
@@ -216,16 +216,6 @@
         autodetect = true;
       };
       
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        wireplumber.enable = true;
-      };
-      
-      # power-profiles-daemon.enable = true;
-
       tlp = {
         enable = true;
         settings = {

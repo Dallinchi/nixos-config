@@ -24,4 +24,10 @@
       selfpkgs.niri-session
     ];
   };
+
+  flake.modules.nixos.desktop = {
+    imports = [
+      self.modules.nixos.pipewire
+    ];
+  };
 }
