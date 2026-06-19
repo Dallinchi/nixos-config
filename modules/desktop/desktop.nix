@@ -21,6 +21,7 @@
     home.packages = [
       selfpkgs.noctalia-shell
       selfpkgs.niri
+      selfpkgs.niri-session
     ];
   };
 }

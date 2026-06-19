@@ -173,7 +173,7 @@
         settings = {
           default_session = {
             user = "dallinchi";
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri"; # start Hyprland with a TUI login manager
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd wrapped-niri-session"; # start Hyprland with a TUI login manager
           };
         };
       };

@@ -531,25 +531,28 @@
       '';
     };
 
+    packages.niri-session = inputs.wrappers.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.niri;
+      exePath = "${pkgs.niri}/bin/niri-session";
+      binName = "wrapped-niri-session";
+
+      env = {
+        NIRI_CONFIG = "${conf}";
+        QT_QPA_PLATFORMTHEME = "gtk3";
+      };
+    };
+
     packages.niri = inputs.wrappers.lib.wrapPackage {
       inherit pkgs;
       package = pkgs.niri;
+      exePath = "${pkgs.niri}/bin/niri";
+      binName = "wrapped-niri";
 
-      wrapper = { exePath, ... }: ''
-        #!${pkgs.bash}/bin/bash
-        set -euo pipefail
-
-        case "''${1:-}" in
-          msg|validate|panic|completions|help|-v|-V|--version|--help|-h|--config|-c)
-            exec "${pkgs.niri}/bin/niri" "$@"
-            ;;
-          *)
-            export NIRI_CONFIG=${conf}
-            export QT_QPA_PLATFORMTHEME=gtk3
-            exec "${pkgs.niri}/bin/niri-session"
-            ;;
-        esac
-      '';
+      env = {
+        NIRI_CONFIG = "${conf}";
+        QT_QPA_PLATFORMTHEME = "gtk3";
+      };
     };
   };
 }
