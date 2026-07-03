@@ -502,6 +502,19 @@
           inactive-color "rgba(224, 53, 53, 30%)"
         }
       }
+
+      window-rule {
+        match app-id="zen-twilight"
+        
+        opacity 0.95
+        background-effect {
+          xray true
+          blur true
+          noise 0.04
+          saturation 4
+        }
+      }
+
       
       layer-rule { geometry-corner-radius 5.000000 5.000000 5.000000 5.000000; }
       
