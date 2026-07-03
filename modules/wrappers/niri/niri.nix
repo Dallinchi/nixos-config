@@ -35,6 +35,21 @@
       builtins.readFile ./scripts/niri-toggle-mouse-lock
     ); 
 
+    ocrScreenshot = pkgs.writeScriptBin "niri-ocr-screenshot" ''
+      ${pkgs.lib.getExe pkgs.hyprshot} -sm region \
+      -o /home/dallinchi/Code/Projects/cli-translater \
+      --filename source.png
+
+      TEXT=$(${pkgs.lib.getExe pkgs.tesseract} \
+          /home/dallinchi/Code/Projects/cli-translater/source.png \
+          - quiet -no-auto | tr "\n" " ")
+
+      TRANS=$(${pkgs.lib.getExe pkgs.translate-shell} -brief :ru "$TEXT")
+
+      noctalia-shell ipc call toast send \
+      "{\"title\":\"Перевод\",\"body\":\"$TRANS\"}"
+      ''; 
+    
     conf =
       pkgs.writeTextFile {
         name = "niri-config.kdl";
@@ -171,6 +186,7 @@
 
       binds {
         Print { screenshot; }
+        Alt+Print { spawn "sh" "-c" "${lib.getExe ocrScreenshot}"; }
 
         Super+1 { focus-workspace "media"; }
         Super+2 { focus-workspace "docs"; }
