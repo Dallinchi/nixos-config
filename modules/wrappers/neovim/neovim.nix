@@ -40,6 +40,8 @@
         pkgs.glib
         pkgs.lazygit
         pkgs.sqlite
+        # pkgs.yazi # TODO: Wrapped Yazi
+        pkgs.git
       ];
 
       specs.start = let
