@@ -17,7 +17,7 @@
 
         "92-buffer" = {
           "context.properties" = {
-            "default.clock.min-quantum" = 512;
+            "default.clock.min-quantum" = 1024;
             "default.clock.quantum" = 1024;
             "default.clock.max-quantum" = 2048;
           };
