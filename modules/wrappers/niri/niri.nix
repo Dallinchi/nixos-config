@@ -369,6 +369,13 @@
         Super+Shift+V { spawn "sh" "-c" "niri msg output \"HDMI-A-1\" transform 90"; }
         Super+Shift+grave { move-window-to-monitor-next; }
 
+        Super+Shift+1 { move-column-to-workspace "media"; }
+        Super+Shift+2 { move-column-to-workspace "docs"; }
+        Super+Shift+3 { move-column-to-workspace "code"; }
+        Super+Shift+4 { move-column-to-workspace "chat"; }
+        Super+Shift+5 { move-column-to-workspace "game"; }
+        Super+Shift+6 { move-column-to-workspace "music"; }
+        
         XF86AudioLowerVolume { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --output-volume -5"; }
         XF86AudioMicMute { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --input-volume mute-toggle"; }
         XF86AudioMute { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --output-volume mute-toggle"; }
@@ -428,6 +435,7 @@
       window-rule {
         match app-id="zen-twilight"
         match app-id="electron"
+        match app-id="yandex-music"
         open-on-workspace "media"
       }
 
@@ -452,6 +460,7 @@
 
       window-rule {
         match app-id="electron"
+        match app-id="yandex-music"
         open-on-workspace "music"
       }
 
@@ -486,7 +495,6 @@
       }
 
       window-rule {
-        match app-id="electron"
         match app-id="steam" title="Список друзей"
         default-column-width { proportion 0.300000; }
       }
