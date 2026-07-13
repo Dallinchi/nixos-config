@@ -30,7 +30,7 @@
         '';
       };
 
-      extraPackages = [
+      runtimePkgs = [
         pkgs.lua-language-server
         pkgs.nixd
 

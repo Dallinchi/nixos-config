@@ -30,7 +30,6 @@ in
     stylix = {
       inherit base16Scheme;
       enable = true;
-      
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Ice";
@@ -39,6 +38,7 @@ in
 
       polarity = "dark";
 
+      targets.zen-browser.profileNames = ["outside"];
     };
   };
 

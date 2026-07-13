@@ -1,8 +1,10 @@
 {
   flake.modules.home.home-manager = {pkgs, ...}: {
   
-    home.stateVersion = "25.11";
     programs.home-manager.enable = true;
+
+    home.stateVersion = "25.11";
+    home.pointerCursor.enable = true;
 
     home.packages = with pkgs; [
       pulseaudio # For pactl
