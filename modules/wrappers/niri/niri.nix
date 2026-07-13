@@ -350,7 +350,7 @@
         Super+Tab repeat=false { toggle-overview; }
 
         // Super+T { spawn "sh" "-c" "notify-send 'Время' '$(date +"%H:%M:%S")'"}
-        Super+T { spawn-sh "noctalia-shell ipc call toast send \"{\\\"title\\\": \\\"Время\\\", \\\"body\\\": \\\"$(date +'%H:%M:%S')\\\"}\""; }
+        Super+T { spawn-sh "noctalia-shell ipc call toast send \"{\\\"title\\\": \\\"Время\\\", \\\"body\\\": \\\"$(date +'%d.%m.%g | %b - %a | %H:%M:%S')\\\"}\""; }
 
         Super+grave { focus-monitor-next; }
 
