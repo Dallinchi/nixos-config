@@ -12,6 +12,17 @@
     ...
   }: let
     selfpkgs = self.packages."${pkgs.system}";
+    
+    nvim-tcss = pkgs.vimUtils.buildVimPlugin {
+      name = "nvim-tcss";
+      src = pkgs.fetchFromGitHub {
+        owner = "cachebag";
+        repo = "nvim-tcss";
+        rev = "main";
+        hash = "sha256-QHY+UzJrFir/gtj7KDzxvSgFfckG+xwGtd6YyDk81lc="; # lib.fakeHash 
+      };
+    };
+
   in {
     imports = [wlib.wrapperModules.neovim];
 
@@ -58,6 +69,8 @@
         p.nvim-web-devicons
         p.comment-nvim
         
+        nvim-tcss
+
         # misc
         p.snacks-nvim
         p.lualine-nvim
