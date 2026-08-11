@@ -30,6 +30,8 @@ vim.keymap.set("n", "<C-j>", ":resize +2<CR>", opts)
 vim.keymap.set("n", "<C-d>", "5<C-d>", opts)
 vim.keymap.set("n", "<C-u>", "5<C-u>", opts)
 
+vim.keymap.set("x", "p", '"_dP', opts)
+
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
