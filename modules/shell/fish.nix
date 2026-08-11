@@ -31,7 +31,12 @@
         '';
         };
 
-      direnv.enable = true;
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+        silent = true;
+      };
+
       starship = {
         enable = true;
         enableFishIntegration = true;
