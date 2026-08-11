@@ -29,7 +29,7 @@
       libnotify # Notify utils
       obsidian # Notes
       hyprshot # Screenshots
-      peaclock # cli timer, stopwatch, clock
+      # peaclock # cli timer, stopwatch, clock
       # taskwarrior3 # cli task manager
       yandex-music
       nautilus
@@ -39,6 +39,22 @@
       xwayland-satellite # Xwayland for niri 
       chatterino7 # Twitch chat
       koodo-reader # Books reader
+      transmission_4-gtk
+      steam-run
+      (pkgs.lutris.override {
+         extraPkgs = p: with p; [
+           vdpauinfo
+           libvdpau
+           libtheora
+           speex
+           libgudev
+           gvfs
+
+           # Force 32-bit compatibility layers for GStreamer
+           pkgsi686Linux.libtheora
+           pkgsi686Linux.libvdpau
+         ];
+       })
 
       gparted
       alsa-utils
