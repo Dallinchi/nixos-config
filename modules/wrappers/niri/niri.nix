@@ -62,7 +62,6 @@
         spawn-at-startup "zen-twilight"
         spawn-at-startup "steam"
         spawn-at-startup "discord"
-        spawn-at-startup "pavucontrol"
 
         input {
           keyboard {
