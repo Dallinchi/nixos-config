@@ -27,17 +27,20 @@
       home-manager
     ];
   
-    fonts.packages = with pkgs; [
-      nerd-fonts.symbols-only
-      nerd-fonts.agave
-      nerd-fonts.fira-code
-      dejavu_fonts
-      fira-code
-      noto-fonts
-      roboto
-      roboto-mono
-      symbola
-    ];
+    fonts = {
+      fontconfig.enable = true;
+      packages = with pkgs; [
+        nerd-fonts.symbols-only
+        nerd-fonts.agave
+        nerd-fonts.fira-code
+        dejavu_fonts
+        fira-code
+        noto-fonts
+        roboto
+        roboto-mono
+        symbola
+      ];
+    };
   };
 
 }
