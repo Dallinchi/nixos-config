@@ -594,7 +594,7 @@
       "disableDesktopWidgets": true
     },
     "dock": {
-      "enabled": true,
+      "enabled": false,
       "position": "bottom",
       "displayMode": "exclusive",
       "dockType": "attached",
@@ -833,8 +833,8 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "HDMI-A-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven-6ld5kx.png",
-      "DP-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven-6ld5kx.png"
+      "HDMI-A-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven_z8x18v.jpg",
+      "DP-1": "/home/dallinchi/Pictures/Wallpapers/wallhaven_z8x18v.jpg"
     },
     "desktopWidgetsEditMode": false,
     "display": {
@@ -870,10 +870,10 @@
       }
     },
     "notificationsState": {
-      "lastSeenTs": 1780385316000
+      "lastSeenTs": 1784937467000
     },
     "changelogState": {
-      "lastSeenVersion": "v4.7.6"
+      "lastSeenVersion": "v4.7.7"
     },
     "colorSchemesList": {
       "schemes": [],
