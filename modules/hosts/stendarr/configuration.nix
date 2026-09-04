@@ -47,13 +47,7 @@
     zramSwap = {
       enable = true;
       algorithm = "zstd";
-      memoryPercent = 50;
-    };
-
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-      config.common.default = "gnome";
+      memoryPercent = 100;
     };
 
     virtualisation = {
@@ -80,11 +74,9 @@
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
       kernelParams = [
-        "sched_migration_cost_ns=5000000"
-        "cgroup_no_v1=all"
-        "mem_sleep_default=deep"
-        "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
-        "btusb.enable_autosuspend=n" # Fix bluethooth
+        # "sched_migration_cost_ns=5000000"
+        # "cgroup_no_v1=all"
+        # "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
       ];
       # kernelModules = [ "v4l2loopback" ];
       # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
@@ -100,23 +92,6 @@
       loader.efi.canTouchEfiVariables = true;
       loader.timeout = 0;
 
-    };
-
-    hardware = {
-
-      graphics = {
-        enable = true;
-
-        enable32Bit = true;
-        extraPackages = with pkgs; [
-          mesa
-            vulkan-loader
-            vulkan-validation-layers
-        ];
-      };
-      # OpenGL
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = true;
     };
 
     networking = {
@@ -209,7 +184,6 @@
         ports = [ 22 ];
       };
       
-      journald.extraConfig = "SystemMaxUser=50m"; # Max weight logs
       gnome.gnome-keyring.enable = true;
 
       smartd = {
@@ -218,20 +192,9 @@
       };
       
       tlp = {
-        enable = true;
+        enable = false;
         settings = {
           CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
-        };
-      };
-
-      
-      greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            user = "dallinchi";
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd wrapped-niri-session"; # start Hyprland with a TUI login manager
-          };
         };
       };
 

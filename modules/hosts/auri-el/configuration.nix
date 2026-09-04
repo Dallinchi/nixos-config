@@ -34,12 +34,6 @@
       memoryPercent = 150;
     };
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-      config.common.default = "gnome";
-    };
-
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
       kernelParams = [ "video=eDP-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60" ];
@@ -63,21 +57,6 @@
       #  magicOrExtension = ''\x7fELF....AI\x02'';
       #};
      # plymouth.enable = true;
-    };
-
-    hardware = {
-    #   sane = {
-    #    enable = true;
-    #    extraBackends = [ pkgs.sane-airscan ];
-    #    disabledDefaultBackends = [ "escl" ];
-    #  };
-     # logitech.wireless.enable = false;
-     # logitech.wireless.enableGraphical = false;
-      graphics.enable = true; # OpenGL
-     # enableRedistributableFirmware = true;
-     # keyboard.qmk.enable = true;
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = true;
     };
 
     networking = {
@@ -157,16 +136,6 @@
           CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
           START_CHARGE_THRESH_BAT0 = 75;
           STOP_CHARGE_THRESH_BAT0 = 81;
-        };
-      };
-
-      greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            user = "dallinchi";
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd wrapped-niri-session"; # start Hyprland with a TUI login manager
-          };
         };
       };
     };

@@ -17,17 +17,58 @@
     systemd.user.targets.niri-session.Unit.Wants = [
       "xdg-desktop-autostart.target"
     ];
-
-    home.packages = [
-      selfpkgs.noctalia-shell
-      selfpkgs.niri
-      selfpkgs.niri-session
-    ];
   };
 
-  flake.modules.nixos.desktop = {
+  flake.modules.nixos.desktop = {pkgs, lib, ...}: let
+    selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
+  in {
     imports = [
       self.modules.nixos.pipewire
     ];
+    
+    environment.systemPackages = [
+      selfpkgs.noctalia-shell
+      selfpkgs.niri
+      selfpkgs.niri-session
+
+      pkgs.alacritty
+      pkgs.kitty
+    ];
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      config.common.default = "gnome";
+    };
+
+    hardware = {
+      graphics = {
+        enable = true;
+
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+          mesa
+          vulkan-loader
+          vulkan-validation-layers
+        ];
+      };
+
+      bluetooth.enable = true;
+      bluetooth.powerOnBoot = true;
+    };
+
+    services = {
+
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${lib.getExe (selfpkgs.niri-session)}";
+          };
+        };
+      };
+
+    };
+
   };
 }
