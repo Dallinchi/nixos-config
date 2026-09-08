@@ -44,7 +44,15 @@
       runtimePkgs = [
         pkgs.lua-language-server
         pkgs.nixd
+        
+        pkgs.clang-tools
 
+        # TODO: maybe move it?
+        pkgs.cmake
+        pkgs.ninja
+        
+        pkgs.basedpyright
+        
         pkgs.tree-sitter
         pkgs.ripgrep
         pkgs.fd

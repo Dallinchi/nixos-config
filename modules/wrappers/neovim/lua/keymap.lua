@@ -1,5 +1,7 @@
 local opts = { noremap = true, silent = true }
 
+
+
 vim.keymap.set("n", "<M-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<M-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<M-k>", "<C-w>k", opts)
@@ -17,6 +19,9 @@ vim.keymap.set("n", "z{", "zfi{", opts)
 vim.keymap.set("n", "z(", "zfi(", opts)
 
 vim.keymap.set("n", "<leader><esc>", "<cmd>:noh<return>", opts)
+
+-- It already works, just remember it!
+-- vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, opts) 
 
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)

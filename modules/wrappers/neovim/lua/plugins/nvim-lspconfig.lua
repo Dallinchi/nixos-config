@@ -16,6 +16,21 @@ return {
         end
 
         local capabilities = require("blink.cmp").get_lsp_capabilities()
+        -- Python LSP
+        vim.lsp.config("basedpyright", {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+
+        vim.lsp.enable("basedpyright")
+
+        -- C++ LSP
+        vim.lsp.config("clangd", {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+
+        vim.lsp.enable("clangd")
 
         -- Lua LSP
         vim.lsp.config("lua_ls", {
@@ -56,15 +71,5 @@ return {
         vim.lsp.config("gleam", { on_attach = on_attach, capabilities = capabilities })
         vim.lsp.enable("gleam")
 
-        -- ============================= VJXL ============================= --
-
-        vim.lsp.config['parser4'] = {
-            cmd = { '/home/yurii/Videos/parser4/target/release/parser4', 'lsp' },
-            filetypes = { 'vjxl' },
-            root_markers = { '.git' },
-            root_dir = vim.fn.getcwd(),
-        }
-        vim.lsp.config("parser4", { on_attach = on_attach, capabilities = capabilities })
-        vim.lsp.enable('parser4')
     end,
 }
