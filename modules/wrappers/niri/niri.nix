@@ -5,8 +5,6 @@
 }: {
   perSystem = {pkgs, lib, config, ...}: let
     
-    noctalia-shell = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-shell;
-
     mkMenu = menu: let
       configFile = pkgs.writeText "config.yaml"
       (pkgs.lib.generators.toYAML {} {
@@ -34,7 +32,8 @@
     scriptToggleMouseLock = pkgs.writeScriptBin "niri-toggle-mouse-lock" (
       builtins.readFile ./scripts/niri-toggle-mouse-lock
     ); 
-
+    
+    # TODO: replace for noctalia v5
     ocrScreenshot = pkgs.writeScriptBin "niri-ocr-screenshot" ''
       ${pkgs.lib.getExe pkgs.hyprshot} -sm region \
       -o /home/dallinchi/Code/Projects/cli-translater \
@@ -57,7 +56,6 @@
         
         spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
         spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
-        spawn-at-startup "sh" "-c" "${lib.getExe noctalia-shell}"
         spawn-at-startup "yandex-music"
         spawn-at-startup "zen-twilight"
         spawn-at-startup "steam"
@@ -205,7 +203,7 @@
               key = "d";
               desc = "Launcher";
               # cmd = "sh -c pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show drun; niri msg action close-overview";
-              cmd = "sh -c 'noctalia-shell ipc call launcher toggle'";
+              cmd = "sh -c 'noctalia msg panel-open launcher'";
             }
             {
               key = "c";
@@ -310,24 +308,19 @@
               desc = "Noctalia Shell";
               submenu = [
                 {
-                  key = "b";
-                  desc = "Bluethooth";
-                  cmd = "noctalia-shell ipc call bluetooth togglePanel";
-                }
-                {
-                  key = "n";
-                  desc = "Notification";
-                  cmd = "noctalia-shell ipc call notifications toggleHistory";
+                  key = "c";
+                  desc = "Control Center";
+                  cmd = "noctalia msg panel-open control-center";
                 }
                 {
                   key = "w";
                   desc = "Wallpapers";
-                  cmd = "noctalia-shell ipc call wallpaper toggle";
+                  cmd = "noctalia msg panel-open wallpaper";
                 }
                 {
                   key = "s";
                   desc = "Settings";
-                  cmd = "noctalia-shell ipc call settings toggle";
+                  cmd = "noctalia msg settings-open";
                 }
               ];
             }
@@ -342,14 +335,13 @@
         Super+Return repeat=false { spawn "kitty"; }
         Super+S { expand-column-to-available-width; }
         Super+A { maximize-column; }
-        Super+V { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
+        Super+V { spawn "sh" "-c" "noctalia msg panel-open clipboard"; }
         // Super+V { spawn "sh" "-c" "pkill rofi || cliphist list | rofi -config ~/.config/rofi/config-cliphist.rasi -dmenu | cliphist decode | wl-copy"; }
         // Super+Tab { spawn "sh" "-c" "pkill rofi && niri msg action close-overview || niri msg action open-overview | rofi -config ~/.config/rofi/config-menu.rasi -show window; niri msg action close-overview"; }
-        // Super+Tab { spawn "sh" "-c" "noctalia-shell ipc call launcher windows"; }
         Super+Tab repeat=false { toggle-overview; }
 
         // Super+T { spawn "sh" "-c" "notify-send 'Время' '$(date +"%H:%M:%S")'"}
-        Super+T { spawn-sh "noctalia-shell ipc call toast send \"{\\\"title\\\": \\\"Время\\\", \\\"body\\\": \\\"$(date +'%d.%m.%g | %b - %a | %H:%M:%S')\\\"}\""; }
+        // Super+T { spawn-sh "noctalia-shell ipc call toast send \"{\\\"title\\\": \\\"Время\\\", \\\"body\\\": \\\"$(date +'%d.%m.%g | %b - %a | %H:%M:%S')\\\"}\""; }
 
         Super+grave { focus-monitor-next; }
 
@@ -375,15 +367,15 @@
         Super+Shift+5 { move-column-to-workspace "game"; }
         Super+Shift+6 { move-column-to-workspace "music"; }
         
-        XF86AudioLowerVolume { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --output-volume -5"; }
-        XF86AudioMicMute { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --input-volume mute-toggle"; }
-        XF86AudioMute { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --output-volume mute-toggle"; }
+        XF86AudioLowerVolume { spawn "sh" "-c" "pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
+        XF86AudioMicMute { spawn "sh" "-c" "pactl set-source-mute @DEFAULT_SOURCE@ toggle"; }
+        XF86AudioMute { spawn "sh" "-c" "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
         XF86AudioNext { spawn "sh" "-c" "playerctl next"; }
-        XF86AudioPlay { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --playerctl play-pause"; }
+        XF86AudioPlay { spawn "sh" "-c" "playerctl play-pause"; }
         XF86AudioPrev { spawn "sh" "-c" "playerctl previous"; }
-        XF86AudioRaiseVolume { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --output-volume +5"; }
-        XF86MonBrightnessDown { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --brightness -25"; }
-        XF86MonBrightnessUp { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --brightness +25"; }
+        XF86AudioRaiseVolume { spawn "sh" "-c" "pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
+        XF86MonBrightnessDown { spawn "sh" "-c" "brightnessctl set 25%-"; }
+        XF86MonBrightnessUp { spawn "sh" "-c" "brightnessctl set +25%"; }
       }
       workspace "media" { open-on-output "DP-1"; }
       workspace "docs" { open-on-output "HDMI-A-1"; }

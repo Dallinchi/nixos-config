@@ -1,17 +1,15 @@
-{self, ...}: {
+{self, inputs, ...}: {
   flake.modules.home.desktop = {pkgs, ...}: let
     selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
   in {
     imports = [
-      self.modules.home.swayosd
-      self.modules.home.rofi
-
       self.modules.home.alacritty
       self.modules.home.zen-browser
       self.modules.home.kitty
       self.modules.home.stylix
       self.modules.home.obs-studio
       self.modules.home.discord
+      self.modules.home.noctalia
     ];
 
     systemd.user.targets.niri-session.Unit.Wants = [
@@ -24,15 +22,17 @@
   in {
     imports = [
       self.modules.nixos.pipewire
+      self.modules.nixos.noctalia
     ];
     
     environment.systemPackages = [
-      selfpkgs.noctalia-shell
       selfpkgs.niri
       selfpkgs.niri-session
 
       pkgs.alacritty
       pkgs.kitty
+      pkgs.libreoffice
+      pkgs.dbeaver-bin
     ];
 
     xdg.portal = {
