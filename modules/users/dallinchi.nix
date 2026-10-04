@@ -24,6 +24,8 @@ in
         "input"
         "networkmanager"
         "podman"
+        "kwm"
+        "adbusers"
       ];
       hashedPasswordFile = config.sops.secrets."dallinchi-password".path;
     };
