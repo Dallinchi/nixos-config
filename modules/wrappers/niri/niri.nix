@@ -194,7 +194,7 @@
         Super+7 { focus-workspace 7; }
         Super+8 { focus-workspace 8; }
 
-        Super+Alt+K { spawn "sh" "-c" "swayosd-client --monitor HDMI-A-1 --playerctl play-pause"; }
+        Super+Alt+K { spawn "sh" "-c" "playerctl play-pause"; }
         Super+Alt+N { spawn "sh" "-c" "playerctl next"; }
         Super+Alt+P { spawn "sh" "-c" "playerctl previous"; }
 
