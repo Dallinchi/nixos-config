@@ -32,7 +32,6 @@
       pkgs.alacritty
       pkgs.kitty
       pkgs.libreoffice
-      pkgs.dbeaver-bin
     ];
 
     xdg.portal = {
