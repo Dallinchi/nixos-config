@@ -22,6 +22,8 @@
       self.modules.nixos.prismlauncher
       self.modules.nixos.gaming
       self.modules.nixos.v2raya
+      self.modules.nixos.android-studio
+      self.modules.nixos.dbeaver
 
       self.modules.nixos.dallinchi
     ];
