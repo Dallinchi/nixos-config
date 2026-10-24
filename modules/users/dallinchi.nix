@@ -28,6 +28,12 @@ in
         "adbusers"
       ];
       hashedPasswordFile = config.sops.secrets."dallinchi-password".path;
+
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDM6CGh2wpEokuVEbPrNfz3fgshLmoolFSSc+tKkID6O stendarr"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZ2zyjdoLxxLAFyemsDvkwtkdU40NJccX2o2SkOowt2 auri-el"
+      ];
+
     };
 
   };

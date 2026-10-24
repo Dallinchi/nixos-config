@@ -22,6 +22,8 @@
       self.modules.nixos.desktop
 
       self.modules.nixos.v2raya
+
+      self.modules.nixos.dallinchi
     ];
  
     boot = {
@@ -59,14 +61,7 @@
       };
       enable = true;
     };
-    
-    # Enable SSH in the boot process.
-    systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
-    users.users.root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDM6CGh2wpEokuVEbPrNfz3fgshLmoolFSSc+tKkID6O stendarr"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZ2zyjdoLxxLAFyemsDvkwtkdU40NJccX2o2SkOowt2 auri-el"
-    ];
-    
+        
     security.rtkit.enable = true;
 
     services = {
