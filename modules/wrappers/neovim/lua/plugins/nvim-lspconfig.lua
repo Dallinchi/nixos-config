@@ -24,6 +24,14 @@ return {
 
         vim.lsp.enable("basedpyright")
 
+        -- Java LSP
+        vim.lsp.config("jdtls", {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+
+        vim.lsp.enable("jdtls")
+
         -- C++ LSP
         vim.lsp.config("clangd", {
           on_attach = on_attach,

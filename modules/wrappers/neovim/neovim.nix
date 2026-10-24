@@ -44,6 +44,7 @@
       runtimePkgs = [
         pkgs.lua-language-server
         pkgs.nixd
+        pkgs.jdt-language-server
         
         pkgs.clang-tools
 
