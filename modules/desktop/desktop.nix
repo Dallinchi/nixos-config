@@ -25,19 +25,76 @@
       self.modules.nixos.noctalia
     ];
     
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       selfpkgs.niri
       selfpkgs.niri-session
 
-      pkgs.alacritty
-      pkgs.kitty
-      pkgs.libreoffice
+      alacritty
+      kitty
+      libreoffice
+      pulseaudio # For pactl
+      filezilla # FTP Client
+      btop # System monitor
+      brightnessctl # For Screen Brightness Control
+      ffmpeg # Terminal Video / Audio Editing
+      mpv # Incredible Video Player
+      pavucontrol # For Editing Audio Levels & Devices
+      playerctl # Allows Changing Media Volume Through Scripts
+      usbutils # Good Tools For USB Devices
+      v4l-utils # Used For Things Like OBS Virtual Camera
+      tofi # Launch menu
+      swaybg # Wallpaper
+      fastfetch # System info
+      wl-clipboard # Clipboard
+      cliphist
+      telegram-desktop # Chat
+      nsxiv # Image viewer
+      seafile-client # Cloud
+      libnotify # Notify utils
+      obsidian # Notes
+      hyprshot # Screenshots
+      yandex-music
+      nautilus
+      wineWow64Packages.stable # support both 32-bit and 64-bit applications
+      winetricks # winetricks (all versions)
+      vscode # Text editor
+      xwayland-satellite # Xwayland for niri 
+      chatterino7 # Twitch chat
+      papers # Books reader
+      transmission_4-gtk
+      steam-run
+      (pkgs.lutris.override {
+         extraPkgs = p: with p; [
+           vdpauinfo
+           libvdpau
+           libtheora
+           speex
+           libgudev
+           gvfs
+
+           # Force 32-bit compatibility layers for GStreamer
+           pkgsi686Linux.libtheora
+           pkgsi686Linux.libvdpau
+         ];
+       })
+
+      gparted
+      alsa-utils
+
     ];
 
-    xdg.portal = {
+    xdg = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-      config.common.default = "gnome";
+      mime.enable = true;
+      mimeApps = {
+        enable = true;
+      };
+
+      portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+        config.common.default = "gnome";
+      };
     };
 
     hardware = {
