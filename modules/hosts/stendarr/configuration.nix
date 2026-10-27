@@ -24,6 +24,7 @@
       self.modules.nixos.v2raya
       self.modules.nixos.android-studio
       self.modules.nixos.dbeaver
+      self.modules.nixos.wireshark
 
       self.modules.nixos.dallinchi
     ];
@@ -52,6 +53,11 @@
       memoryPercent = 100;
     };
 
+    services.mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
+
     virtualisation = {
       containers.enable = true;
 
@@ -71,29 +77,6 @@
       };
       virtualisation.diskSize = 20480; # в MB (20 GB)
       virtualisation.memorySize = 8096;
-    };
-
-    boot = {
-      kernelPackages = pkgs.linuxPackages_zen;
-      kernelParams = [
-        # "sched_migration_cost_ns=5000000"
-        # "cgroup_no_v1=all"
-        # "video=DVI-D-1:1920x1080@60" "video=HDMI-A-1:1920x1080@60"
-      ];
-      # kernelModules = [ "v4l2loopback" ];
-      # extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-      kernel.sysctl = { 
-        "vm.max_map_count" = 262144;
-        "kernel.pid_max" = 32768;
-        "vm.swappiness" = 10;
-        "vm.vfs_cache_pressure" = 50;
-        "kernel.sched_autogroup_enabled" = 1;
-      };
-
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      loader.timeout = 0;
-
     };
 
     networking = {

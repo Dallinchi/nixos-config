@@ -1,5 +1,5 @@
 {self, inputs, ...}: {
-  flake.modules.nixos.nixos = {pkgs, ...}: {
+  flake.modules.nixos.nixos = {pkgs, lib, ...}: {
     imports = [
       self.modules.nixos.shell
     ];
@@ -22,6 +22,21 @@
       ];
     };
 
+    programs.nix-ld.enable = true;
+
+    boot = {
+      kernelPackages = pkgs.linuxPackages_zen;
+      kernelParams = [ ];
+      kernel.sysctl = { 
+        "vm.swappiness" = 0;
+      };
+
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+      loader.timeout = lib.mkDefault 0;
+
+    };
+
     nix = {
       settings = {
         download-buffer-size = 200000000;
@@ -30,8 +45,6 @@
           "nix-command"
           "flakes"
         ];
-        #      substituters = [ "https://hyprland.cachix.org" ];
-        #      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
       };
     };
 

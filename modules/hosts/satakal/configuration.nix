@@ -12,7 +12,7 @@
   
   flake.packages.x86_64-linux.satakal = self.nixosConfigurations.satakal.config.system.build.isoImage;
   
-  flake.hosts.satakal = {pkgs, modulesPath, ...}: {
+  flake.hosts.satakal = {pkgs, lib, modulesPath, ...}: {
     # import any other modules from here
     imports = [
       (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
@@ -26,11 +26,7 @@
       self.modules.nixos.dallinchi
     ];
  
-    boot = {
-      kernelPackages = pkgs.linuxPackages;
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-    };
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
     
     networking = {
       hostName = "satakal";
