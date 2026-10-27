@@ -48,3 +48,16 @@ vim.opt.langmap =
 vim.g.mapleader = " "
 
 vim.cmd.colorscheme("theme")
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("YankHighlight", {
+    clear = true,
+  }),
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "Visual",
+      timeout = 300,
+    })
+  end,
+})
+
