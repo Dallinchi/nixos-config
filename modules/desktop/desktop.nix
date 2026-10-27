@@ -15,6 +15,12 @@
     systemd.user.targets.niri-session.Unit.Wants = [
       "xdg-desktop-autostart.target"
     ];
+
+    xdg = {
+      enable = true;
+      mime.enable = true;
+    };
+
   };
 
   flake.modules.nixos.desktop = {pkgs, lib, ...}: let
@@ -83,18 +89,10 @@
 
     ];
 
-    xdg = {
+    xdg.portal = {
       enable = true;
-      mime.enable = true;
-      mimeApps = {
-        enable = true;
-      };
-
-      portal = {
-        enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-        config.common.default = "gnome";
-      };
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      config.common.default = "gnome";
     };
 
     hardware = {
