@@ -32,6 +32,22 @@ return {
 
         vim.lsp.enable("jdtls")
 
+        -- Rust LSP
+        vim.lsp.config("rust_analyzer", {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+              checkOnSave = true,
+            },
+          },
+        })
+
+        vim.lsp.enable("rust_analyzer")
+
         -- C++ LSP
         vim.lsp.config("clangd", {
           on_attach = on_attach,
