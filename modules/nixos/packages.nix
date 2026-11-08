@@ -12,8 +12,6 @@
       lm_sensors # Used For Getting Hardware Temps
       pciutils # Collection Of Tools For Inspecting PCI Devices
       pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
-      unrar # Tool For Handling .rar Files
-      unzip # Tool For Handling .zip Files
       wget # Tool For Fetching Files With Links
       python3
       screen
@@ -24,6 +22,7 @@
       dhcpcd
       docker-compose # Podman compose compatable
       git
+      p7zip
       home-manager
     ];
   
