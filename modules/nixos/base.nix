@@ -28,7 +28,7 @@
       kernelPackages = pkgs.linuxPackages_zen;
       kernelParams = [ ];
       kernel.sysctl = { 
-        "vm.swappiness" = 0;
+        "vm.swappiness" = 10;
       };
 
       loader.systemd-boot.enable = true;
