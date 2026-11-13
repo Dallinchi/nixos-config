@@ -34,6 +34,7 @@
     environment.systemPackages = with pkgs; [
       selfpkgs.niri
       selfpkgs.niri-session
+      selfpkgs.yandex-music
 
       alacritty
       kitty
@@ -59,7 +60,6 @@
       libnotify # Notify utils
       obsidian # Notes
       hyprshot # Screenshots
-      yandex-music
       nautilus
       wineWow64Packages.stable # support both 32-bit and 64-bit applications
       winetricks # winetricks (all versions)
