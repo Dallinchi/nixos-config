@@ -21,6 +21,7 @@ thickness = 38
 
     [bar.default.monitor.DP-1]
     capsule = true
+    start = [ "launcher", "wallpaper", "workspaces", "ambient-sounds", "screenshot" ]
 
 [battery.device."/org/freedesktop/UPower/devices/headset_dev_A8_E6_E8_4F_A7_F9"]
 warning_threshold = 20
@@ -37,6 +38,7 @@ widget_order = []
     [desktop_widgets.widget]
 
 [dock]
+background_opacity = 0.99999997764825821
 cross_axis_padding = 2
 enabled = true
 icon_size = 41
@@ -108,6 +110,9 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@HDMI-A-1" ]
         show_unlock_hint = true
         show_weather = true
 
+[notification]
+layer = "overlay"
+
 [osd]
 offset_y = 16
 position = "bottom_right"
@@ -118,11 +123,15 @@ enabled = [ "reaperhound/ambient-sounds" ]
 [shell]
 button_borders = false
 card_borders = false
+clipboard_history_max_entries = 300
 corner_radius_scale = 0.65000000968575478
 input_borders = false
 lang = "ru"
 panel_anchor_bar = "default"
 popup_borders = false
+
+    [shell.animation]
+    speed = 1.700000025331974
 
     [shell.launcher.providers.panels]
     global = false
@@ -143,29 +152,34 @@ popup_borders = false
     direction = "center"
 
 [theme]
-builtin = "Noctalia"
+builtin = "Dracula"
 community_palette = "Oxocarbon"
+custom_palette = "wallhaven-k8kke7-mo"
 mode = "dark"
-source = "wallpaper"
-wallpaper_scheme = "m3-content"
+pure_black_dark = true
+source = "custom"
+wallpaper_scheme = "m3-monochrome"
 
     [theme.templates]
-    builtin_ids = [ "alacritty", "btop", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    builtin_ids = [ "alacritty", "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "labwc", "niri", "qt", "scroll" ]
+    community_ids = [ "zen-browser", "discord", "neovim", "obs", "zellij", "yazi" ]
+    enable_builtin_templates = false
 
 [wallpaper]
 directory = "/home/dallinchi/Pictures/Wallpapers"
+transition = [ "zoom" ]
 
     [wallpaper.default]
-    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-yq2zwl.png"
+    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-4xq8yo.png"
 
     [wallpaper.last]
-    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-yq2zwl.png"
+    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-4xq8yo.png"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-yq2zwl.png"
+    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-4xq8yo.png"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-yq2zwl.png"
+    path = "/home/dallinchi/Pictures/Wallpapers/wallhaven-4xq8yo.png"
 
 [widget.ambient-sounds]
 type = "reaperhound/ambient-sounds:ambient-sounds"
