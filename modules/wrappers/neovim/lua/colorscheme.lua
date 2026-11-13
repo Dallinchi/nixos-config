@@ -1,5 +1,5 @@
 local COLORSCHEME = {
-    base00 = "#0A0E14",
+    base00 = "#000000",
     base01 = "#131721",
     base02 = "#272D38",
     base03 = "#3E4B59",
