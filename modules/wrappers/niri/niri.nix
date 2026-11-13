@@ -8,14 +8,15 @@
     mkMenu = menu: let
       configFile = pkgs.writeText "config.yaml"
       (pkgs.lib.generators.toYAML {} {
-       anchor = "bottom";
+       anchor = "bottom-right";
        color = "#d3ebe9";
-       border = "#6c7380";
-       border_width = 1;
+       # border = "#6c7380";
+       border_width = 0;
        corner_r = 5;
-       padding = 5;
-       margin_bottom = 5;
-       background = "#11151c";
+       padding = 8;
+       margin_bottom = -5;
+       margin_right = 70;
+       background = "#000000";
        rows_per_column = 5;
        column_padding = 25; # Defaults to padding
        inherit menu;
@@ -118,11 +119,17 @@
           bottom 0
         }
         focus-ring {
+          off
           width 1
           active-color "#6c7380"
           inactive-color "#00000000"
         }
-        border { off; }
+        border {
+          on
+          width 1
+          active-color "rgba(0, 0, 0, 60%)"
+          inactive-color "rgba(0, 0, 0, 60%)"
+        }
         background-color "transparent"
         tab-indicator {
           place-within-column
@@ -408,6 +415,12 @@
           softness 5
           spread 5
         }
+      }
+
+      window-rule {
+        match app-id="zen-twilight$" title="^Картинка в картинке$"
+          default-floating-position x=32 y=32 relative-to="bottom-left"
+          open-floating true
       }
       
       window-rule {
