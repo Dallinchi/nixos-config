@@ -40,7 +40,7 @@ return {
         { "<leader>fo", function() Snacks.picker.recent() end,                       desc = "Find Recent Files" },
         { "<leader>fG", function() Snacks.picker.grep({ ft = vim.bo.filetype }) end, desc = "grep" },
         { "<leader>fg", function() Snacks.picker.grep() end,                         desc = "grep" },
-        { "gr",         function() Snacks.picker.lsp_references() end,               nowait = true,             desc = "References" },
-        { "gd",         function() Snacks.picker.lsp_definitions() end,              desc = "Goto Definition" },
+        -- { "gr",         function() Snacks.picker.lsp_references() end,               nowait = true,             desc = "References" },
+        -- { "gd",         function() Snacks.picker.lsp_definitions() end,              desc = "Goto Definition" },
     }
 }
